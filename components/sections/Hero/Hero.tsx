@@ -95,7 +95,7 @@ export const Hero = () => {
               transition={{ duration: 1, delay: 0.2 }}
               whileInView={{ y: 0, opacity: 1 }}
             >
-              <code className="text-2xl font-medium dark:text-white md:text-4xl 2xl:text-xl">
+              <code className="text-2xl font-medium dark:text-black md:text-4xl 2xl:text-xl">
                 &lt;HELLO WORLD😎/&gt;, <br />
               </code>
               nice to meet you. This is the place that you can get in touch with
