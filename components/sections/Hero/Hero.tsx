@@ -88,14 +88,14 @@ export const Hero = () => {
       <Container className="flex flex-col justify-between order-1 w-full pt-5 pb-12 md:order-0">
         <Box className="md:mb-10" />
         <Box className="order-1 max-w-xl mt-5 md:order-2 md:mt-10">
-          <Text className="mb-6 text-white 2xl:mb-10">
+          <Text className="mb-6 text-black dark:text-white 2xl:mb-10">
             <motion.span
               className="block"
               initial={{ y: 20, opacity: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
               whileInView={{ y: 0, opacity: 1 }}
             >
-              <code className="text-2xl font-medium dark:text-black md:text-4xl 2xl:text-xl">
+              <code className="text-2xl font-medium text-black dark:text-white md:text-4xl 2xl:text-xl">
                 &lt;HELLO WORLD😎/&gt;, <br />
               </code>
               nice to meet you. This is the place that you can get in touch with
