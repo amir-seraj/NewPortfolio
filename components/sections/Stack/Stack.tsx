@@ -45,7 +45,7 @@ export const TechStack = () => {
             </motion.span>
           </Text>
           <Link
-            href="https://docs.google.com/document/d/16-sqqDzL3SR1vomlTW6gKOKIqJ7xd_MgfJXrDLkqbnU/"
+            href="/myResume.pdf"
             target="_blank"
             className="mb-6 text-sm font-medium uppercase font-heading hover:text-yellow-500 dark:hover:text-yellow-500 md:mb-0"
           >
@@ -68,7 +68,7 @@ export const TechStack = () => {
           >
             Over the last couple of years I have worked on a variety of projects
             and have also used a variety of technologies, below are some of the
-            technologies I have used.
+            technologies I have used are :
           </motion.span>
         </Text>
       </Container>
