@@ -21,19 +21,17 @@ export const About = () => {
           </motion.span>
         </Text>
         <Text className="gap-5 md:columns-2 2xl:gap-10">
-          Hello there, my name is Amir, a passionate Software Developer from
-          Isfahan, Iran. I currently work as a{" "}
-          <span className="font-medium">Web Developer</span> as a{" "}
+          I am Amir, a passionate Software Developer from Isfahan, Iran. I currently work as a{" "}
           <Link
             className="font-medium text-yellow-500 dark:text-yellow-500"
             target="_blank"
             href="https://github.com/amir-seraj"
           >
-            Freelancer
+            <span className="font-medium">Freelancer Web Developer</span>
           </Link>
-          . I&lsquo;m obsessed with making best user experience in all aspects
-          of web, I&lsquo;ve worked on a variety of projects, ranging from
-          back-end or front-end to smart contracts, such as{" "}
+          . I&lsquo;m obsessed with making the best user experience in all aspects of the web,
+          I&lsquo;ve worked on various projects, 
+          ranging from back-end or front-end to smart contracts, such as{" "}
           <Link
             className="font-medium text-yellow-500 dark:text-yellow-500"
             target="_blank"
@@ -41,21 +39,13 @@ export const About = () => {
           >
             Jobify
           </Link>
-          ,{" "}
+          and
           <Link
             className="font-medium text-yellow-500 dark:text-yellow-500"
             target="_blank"
             href="https://github.com/ArsalanSeraj/"
           >
             Eth Marketplace
-          </Link>
-          , and{" "}
-          <Link
-            className="font-medium text-yellow-500 dark:text-yellow-500"
-            target="_blank"
-            href="https://github.com/ArsalanSeraj/Animations-Effects"
-          >
-            Animation-Effects
           </Link>
           .
         </Text>
