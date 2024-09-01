@@ -12,7 +12,7 @@ export const Card = ({
   variant = "md",
 }) => {
   return (
-    <Link href={`/blog/${slug}`} className="block group">
+    <Link href={`/projects/${slug}`} className="block group">
       <Image
         src={coverImage}
         width={600}
@@ -21,7 +21,7 @@ export const Card = ({
         objectFit="cover"
         placeholder="blur"
         blurDataURL="/images/blog-placeholder.png"
-        className="transition duration-200 ease-in-out bg-slate-50 group-hover:scale-110 dark:bg-slate-800"
+        className="transition duration-200 ease-in-out bg-slate-50 group-hover:scale-110 dark:bg-[#696b6b] rounded"
         alt=""
       />
 

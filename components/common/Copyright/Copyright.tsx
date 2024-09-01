@@ -8,7 +8,7 @@ export const Copyright = () => (
     </Text>
     <Text fontSize="sm" className="mx-1">
       {" "}
-      Made with ❤️ in Iran by{" "}
+      Made with ❤️ in Italy by{" "}
       <Link
         href="https://amirseraj.ir"
         className="font-medium text-yellow-600 hover:text-yellow-700 dark:text-yellow-500"

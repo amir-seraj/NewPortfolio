@@ -6,7 +6,7 @@ interface Props {
   title: string;
   url: string;
   type?: string;
-  keywords: string;
+  // keywords: string;
   description: string;
   image: string;
   canonicalURL?: string;
@@ -17,7 +17,7 @@ export const Page: FC<Props> = ({
   title,
   type = "website",
   url,
-  keywords,
+  // keywords,
   description,
   image,
   canonicalURL,
@@ -28,7 +28,7 @@ export const Page: FC<Props> = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
+        {/* <meta name="keywords" content={keywords} /> */}
         <meta name="author" content="Amir Seraj" />
         <meta name="image" content={image} />
         <meta name="og:title" content={title} />
@@ -44,7 +44,7 @@ export const Page: FC<Props> = ({
         <meta name="twitter:image" content={image} />
         <meta
           name="theme-color"
-          content={theme === "dark" ? "#1A9E8F" : "#ffffff"}
+          content={theme === "dark" ? "#202020" : "#ffffff"}
         />
         <meta name="twitter:site" content="@amirseraj" />
         <meta name="twitter:creator" content="@amirseraj" />

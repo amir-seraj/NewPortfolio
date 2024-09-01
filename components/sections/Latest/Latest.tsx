@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 SwiperCore.use([EffectCards]);
 
-export const LatestBlogs = ({ articles }) => {
+export const LatestProjects = ({ projects }) => {
   const [x, setX] = useState(0);
 
   const translate = (pos) => {
@@ -21,7 +21,7 @@ export const LatestBlogs = ({ articles }) => {
   return (
     <Container full className={s.root} id="latest">
       <Container className="mb-5">
-        <Box className="flex items-center justify-between mb-7">
+        <Box className="mb-7 flex items-center justify-between">
           <Text as="h2" fontSize="4xl">
             <motion.span
               className="block"
@@ -29,12 +29,12 @@ export const LatestBlogs = ({ articles }) => {
               transition={{ duration: 1 }}
               whileInView={{ x: 0 }}
             >
-              Latest Blogs
+              Latest Projects
             </motion.span>
           </Text>
           <Link
-            href="/blog"
-            className="hidden text-sm font-medium uppercase font-heading hover:text-yellow-500 dark:hover:text-yellow-500 md:block"
+            href="/projects"
+            className="hidden font-heading text-sm font-medium uppercase hover:text-slate-500 dark:hover:text-slate-100 md:block"
           >
             <motion.span
               className="block"
@@ -42,24 +42,24 @@ export const LatestBlogs = ({ articles }) => {
               transition={{ duration: 1 }}
               whileInView={{ x: 0 }}
             >
-              See the full blog
+              See the full project
             </motion.span>
           </Link>
         </Box>
         <Text className="md:hidden">
           <motion.span
-            className="block mb-3"
+            className="mb-3 block"
             initial={{ x: -10 }}
             transition={{ duration: 0.6 }}
             whileInView={{ x: 0 }}
           >
-            My blog is where I share my thoughts and experiences about tech and
+            My projects is where I share my thoughts and experiences about tech and
             the web in general. Swipe left or right to see some of my latest
             blogs
           </motion.span>
           <Link
-            href="/blog"
-            className="text-sm font-medium text-yellow-500 uppercase font-heading"
+            href="/projects"
+            className="font-heading text-sm font-medium uppercase text-slate-500"
           >
             See the full blog
           </Link>{" "}
@@ -68,23 +68,16 @@ export const LatestBlogs = ({ articles }) => {
 
       <Container className="md:hidden">
         <Swiper effect={"cards"} grabCursor={true}>
-          {articles?.length &&
-            articles.map(
-              ({
-                id,
-                slug,
-                title,
-                published_at,
-                reading_time_minutes,
-                cover_image,
-              }) => (
+          {projects?.length &&
+            projects.map(
+              ({ id, slug, title, publishedAt, readTime, coverImage }) => (
                 <SwiperSlide key={id}>
                   <Card
                     slug={slug}
                     title={title}
-                    date={published_at}
-                    readingTime={reading_time_minutes}
-                    coverImage={cover_image}
+                    date={publishedAt}
+                    readingTime={readTime}
+                    coverImage={coverImage}
                   />
                 </SwiperSlide>
               )
@@ -96,19 +89,9 @@ export const LatestBlogs = ({ articles }) => {
           className="hidden w-[3000px] gap-x-10 pl-10 transition duration-500 ease-in-out md:flex"
           style={{ transform: `translate3d(${x}px, 0px, 0px)` }}
         >
-          {articles?.length &&
-            articles.map(
-              (
-                {
-                  id,
-                  slug,
-                  title,
-                  published_at,
-                  reading_time_minutes,
-                  cover_image,
-                },
-                idx
-              ) => (
+          {projects?.length &&
+            projects.map(
+              ({ id, slug, title, publishedAt, readTime, coverImage }, idx) => (
                 <motion.div
                   key={id}
                   initial={{
@@ -125,32 +108,35 @@ export const LatestBlogs = ({ articles }) => {
                   <Card
                     slug={slug}
                     title={title}
-                    date={published_at}
-                    readingTime={reading_time_minutes}
-                    coverImage={cover_image}
+                    date={publishedAt}
+                    readingTime={readTime}
+                    coverImage={coverImage}
                   />
                 </motion.div>
               )
             )}
         </Box>
       </AnimatePresence>
-      <Container className="hidden md:block">
+      <Container className="hidden md:block ">
         <Button
-          className={s.arrows}
-          size="sm"
+          variant="primary"
+          size="lg"
           disabled={x === 0}
+          className="m-2"
           onClick={() => translate(510)}
         >
-          <MdArrowBackIosNew className="w-auto h-6" />
+          <MdArrowBackIosNew className="" />
           <span className="sr-only">Click to move one slide to left</span>
         </Button>
         <Button
-          className={s.arrows}
+          variant="primary"
+          className="m-2"
+          size="lg"
           disabled={x === -1530}
-          size="sm"
+
           onClick={() => translate(-510)}
         >
-          <MdArrowForwardIos className="w-auto h-6" />
+          <MdArrowForwardIos className="" />
           <span className="sr-only">Click to move one slide to right</span>
         </Button>
       </Container>

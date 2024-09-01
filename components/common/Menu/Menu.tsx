@@ -12,27 +12,27 @@ export const Menu = ({ onClose }) => {
       href: "/",
     },
     {
-      label: "Blog",
-      href: "/blog",
+      label: "Projects",
+      href: "/projects",
     },
     {
       label: "About",
       href: "/#about",
     },
-    {
-      label: "Subscribe",
-      href: "/#subscribe",
-    },
-    {
-      label: "My Resume",
-      href: "/myResume.pdf",
-    },
+    // {
+    //   label: "Subscribe",
+    //   href: "/#subscribe",
+    // },
+    // {
+    //   label: "My Resume",
+    //   href: "/myResume.pdf",
+    // },
   ];
 
   const getClasses = (path: string) => {
     return cn(
       {
-        "text-yellow-500": pathname === path,
+        "text-slate-200": pathname === path,
       },
       "font-heading md:ml-60 max-w-xs px-4 text-4xl uppercase transition duration-100 ease-linear hover:translate-x-1"
     );
@@ -69,7 +69,7 @@ export const Menu = ({ onClose }) => {
       initial="initial"
       animate="enter"
       exit="exit"
-      className="fixed top-0 left-0 z-20 h-screen w-full bg-white bg-opacity-90 backdrop-blur backdrop-filter dark:bg-[#006458] dark:bg-opacity-80 dark:backdrop-blur"
+      className="fixed top-0 left-0 z-20 h-screen w-full bg-white bg-opacity-90 backdrop-blur backdrop-filter dark:bg-[#000000bc] dark:bg-opacity-80 dark:backdrop-blur"
     >
       <CloseButton onClose={onClose} />
       <Container className="h-full">
@@ -77,7 +77,7 @@ export const Menu = ({ onClose }) => {
           {links.map(({ label, href }, idx) => (
             <motion.li
               key={href}
-              className="hover:text-yellow-500"
+              className="hover:text-slate-500"
               initial={{
                 opacity: 0,
                 x: -20,

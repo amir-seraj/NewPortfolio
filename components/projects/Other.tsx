@@ -1,5 +1,5 @@
 import { Box, Container, Text } from '@components/ui';
-import { Card } from '@components/blog/Card';
+import { Card } from '@components/projects/Card';
 
 export const OtherArticles = ({ otherArticles }) => (
   <Container className='my-6'>

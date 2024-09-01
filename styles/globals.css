@@ -29,20 +29,20 @@ body {
   @apply scroll-smooth font-body 2xl:text-xl;
 }
 body {
-  @apply text-slate-900 transition duration-100 ease-in-out dark:bg-[#006458] dark:text-slate-300;
+  @apply text-slate-900 transition duration-100 ease-in-out dark:bg-[#232B2B] dark:text-slate-200;
 }
 
 .times {
   font-family: Times, serif !important;
 }
 .prose pre {
-  @apply bg-slate-800 dark:bg-[#006458] !important;
+  @apply bg-slate-800 dark:bg-[#232B2B] !important;
 }
 code {
   @apply font-mono !important;
 }
 .prose code {
-  @apply whitespace-pre bg-slate-800 font-mono text-sm dark:bg-[#006458] !important;
+  @apply whitespace-pre bg-slate-800 font-mono text-sm dark:bg-[#232B2B] !important;
 }
 .prose svg {
   width: 0;
@@ -55,7 +55,7 @@ code {
 /* NProgress */
 /* Make clicks pass-through */
 :root {
-  --nprogress-color: #ffda00;
+  --nprogress-color: #e8e8e8;
 }
 #nprogress {
   pointer-events: none;
@@ -68,7 +68,7 @@ code {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(18, 145, 118, 0.2);
+  background: #232b2b27;
 }
 #nprogress .bar {
   background: var(--nprogress-color);

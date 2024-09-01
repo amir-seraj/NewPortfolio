@@ -45,7 +45,7 @@ const Form = ({ status, message, onValidated }) => {
       </Text>
       <Text className="mb-4 2xl:mb-8">
         {status === "success" ? (
-          <span className="text-base font-bold text-green-500">{message}</span>
+          <span className="text-base font-bold text-slate-100">{message}</span>
         ) : (
           "Subscribe to my newsletter to stay up to date with articles, tips and much more!"
         )}

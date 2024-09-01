@@ -6,7 +6,7 @@ import { formatDate } from '@utils/format-date';
 
 export const Card = ({ slug, title, date, readingTime, coverImage }) => {
   return (
-    <Link href={`/blog/${slug}`} className={cn(s.root, 'group')}>
+    <Link href={`/projects/${slug}`} className={cn(s.root, 'group')}>
       <Image
         src={coverImage}
         className={s.image}

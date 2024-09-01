@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Box, Container, Text, Link } from "@components/ui";
 import { Copyright, Nav } from "@components/common";
 import { formatDate } from "@utils/format-date";
-import { OtherArticles } from "@components/blog";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { motion } from "framer-motion";
 import {
@@ -58,10 +57,10 @@ const Header = ({ slug, title, readTime, publishedAt }) => {
   return (
     <div ref={ref}>
       <Link
-        href="/blog"
+        href="/projects"
         className="relative -left-[7px] mt-4 mb-5 flex items-center font-heading text-xs uppercase hover:text-rose-500 md:hidden"
       >
-        <MdOutlineKeyboardArrowLeft className="w-auto h-4 mr-1" /> back to blog
+        <MdOutlineKeyboardArrowLeft className="w-auto h-4 mr-1" /> back to projects
       </Link>
       <Box className="flex items-center justify-between">
         <Text as="span" fontSize="sm" className="block mb-2 opacity-75 md:pt-5">
@@ -74,7 +73,7 @@ const Header = ({ slug, title, readTime, publishedAt }) => {
             {formatDate(publishedAt)} — {readTime} min{readTime > 1 && "s"} read
           </motion.span>
         </Text>
-        <Share url={`https://amirseraj.ir/blog/${slug}`} title={title} />
+        <Share url={`https://amirseraj.ir/projects/${slug}`} title={title} />
       </Box>
       <Text as="h1" fontSize="4xl" className="max-w-lg mb-8">
         <motion.span
@@ -90,19 +89,19 @@ const Header = ({ slug, title, readTime, publishedAt }) => {
   );
 };
 
-export const BlogDetail = ({
+export const ProjectDetail = ({
   slug,
   title,
   body,
   coverImage,
-  tags,
+  // tags,
   publishedAt,
   readTime,
-  otherArticles,
+  // otherArticles,
 }) => {
   return (
-    <Box className="h-screen overflow-y-auto">
-      <Nav variant="blog" />
+    <Box className="h-screen overflow-y-auto flex flex-col">
+      <Nav variant="projects" />
       <Container className="">
         <Header
           title={title}
@@ -116,17 +115,17 @@ export const BlogDetail = ({
           animate={{ y: 0, opacity: 1 }}
         >
           <Prose>
-            <Image src={coverImage} alt="" width={1000} height={420} />
-            <Box className="flex flex-wrap mt-5 2xl:mt-2">
-              {tags.map((tag) => (
+            <Image src={coverImage} alt="" width={800} height={420} objectFit="contain" />
+            {/* <Box className="flex flex-wrap mt-5 2xl:mt-2">
+             {tags.map((tag) => (
                 <Badge key={tag}>#{tag}</Badge>
-              ))}
-            </Box>
+              ))} 
+            </Box> */}
             <Box html={body} />
-          </Prose>
+            </Prose>
         </motion.div>
       </Container>
-      <OtherArticles otherArticles={otherArticles} />
+      {/* <OtherArticles otherArticles={otherArticles} /> */}
       <Copyright />
     </Box>
   );

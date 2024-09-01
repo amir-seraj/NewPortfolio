@@ -32,7 +32,7 @@ export const Footer = () => {
               transition={{ duration: 0.8 }}
               whileInView={{ opacity: 1 }}
             >
-              Software engineer from Isfahan, Iran who is trying to make the
+              Designer from Italy who is trying to make the
               world a better place one{" "}
               <code className="text-sm font-bold dark:font-medium dark:text-slate-300 2xl:text-lg">
                 {"<commit/>"}
@@ -64,32 +64,32 @@ export const Footer = () => {
             >
               <Link
                 href="mailto:amirseraj.ir@gmail.com"
-                className="block mb-3 text-base font-medium hover:text-yellow-500 dark:hover:text-yellow-500"
+                className="block mb-3 text-base font-medium hover:text-slate-500 dark:hover:text-slate-100 dark:text-slate-300"
               >
                 <code>{"<Email me/>"}</code>
               </Link>
               <Link
-                href="/blog"
-                className="block mb-3 text-base font-medium hover:text-yellow-500 dark:hover:text-yellow-500"
+                href="/projects"
+                className="block mb-3 text-base font-medium hover:text-slate-500 dark:hover:text-slate-100 dark:text-slate-300"
               >
-                <code>{"<Read the Blog/>"}</code>
+                <code>{"<Read the Projects/>"}</code>
               </Link>
               <Link
                 href="/#about"
-                className="block mb-3 text-base font-medium hover:text-yellow-500 dark:hover:text-yellow-500"
+                className="block mb-3 text-base font-medium hover:text-slate-500 dark:hover:text-slate-100 dark:text-slate-300"
               >
                 <code>{"<About Amir/>"}</code>
               </Link>
             </motion.span>
           </Box>
         </Box>
-        <Box className="hidden col-span-2 md:block">
+        {/* <Box className="hidden col-span-2 md:block">
           <Subscribe />
-        </Box>
+        </Box> */}
 
         <Link
           href="#top"
-          className="absolute bottom-0 items-center hidden gap-2 text-sm font-medium text-yellow-500 uppercase transition duration-300 ease-in-out group right-10 hover:text-yellow-600 dark:text-yellow-500 md:flex"
+          className="absolute bottom-0 items-center hidden gap-2 text-sm font-medium text-slate-500 uppercase transition duration-300 ease-in-out group right-10 hover:text-slate-100 dark:text-slate-300 md:flex"
         >
           Back to top
           <BsArrowUpCircle className="relative -top-[2px] h-5 w-5 transform transition duration-300 ease-in-out group-hover:-translate-y-1" />

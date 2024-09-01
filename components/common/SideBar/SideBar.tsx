@@ -12,17 +12,13 @@ import { Logo } from "../Logo/Logo";
 export const SideBar = () => {
   const links = [
     {
-      href: "https://github.com/amirseraj",
+      href: "https://github.com/amir-seraj",
       Icon: AiFillGithub,
       title: "Github",
     },
+
     {
-      href: "https://twitter.com/amirseraj",
-      Icon: AiFillTwitterCircle,
-      title: "Twitter",
-    },
-    {
-      href: "https://www.linkedin.com/in/amirseraj/",
+      href: "https://www.linkedin.com/in/amir-seraj/",
       Icon: AiFillLinkedin,
       title: "Linkedin",
     },
@@ -39,14 +35,14 @@ export const SideBar = () => {
         <Logo />
         <Box className={s.bar}>
           <Text as="h5" casing="uppercase" className="mb-1 font-heading">
-            Software Engineer
+            Designer / Developer
           </Text>
           <Text
             casing="uppercase"
             fontSize="xs"
-            className="text-yellow-500 dark:text-yellow-300"
+            className="text-slate-500 dark:text-slate-300"
           >
-            Music Enthusiast
+            Problem Solving Enthusiast
           </Text>
         </Box>
 
@@ -56,7 +52,7 @@ export const SideBar = () => {
               key={href}
               href={href}
               target="_blank"
-              className="block mb-5 dark:hover:text-yellow-500"
+              className="block mb-5 dark:hover:text-slate-100"
             >
               <Icon className={s.icon} />
               <span className="sr-only">Connect with Amir on {title}</span>
