@@ -1,6 +1,3 @@
-export {}
-import { useEffect } from "react";
-import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
 
 import { Box } from "@components/ui";
@@ -22,10 +19,6 @@ export default function Home(allprojects) {
     readTime,
   } = allprojects;
 
-
-  useEffect(() => {
-    Prism.highlightAll();
-  }, [slug]);
   
   return (
     <Page
