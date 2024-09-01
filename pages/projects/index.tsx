@@ -1,6 +1,6 @@
 import { Projects } from "@components/sections";
 import { Nav, Page } from "@components/common";
-import allprojects from "./DataProjects";
+import allprojects from "../../lib/DataProjects";
 
 export default function Home({ allprojects }) {
   return (

@@ -7,7 +7,7 @@ import {
 } from "@components/sections";
 import { Footer, Nav, Page } from "@components/common";
 import { LatestProjects } from "@components/sections/Latest/Latest";
-import allprojects from "./projects/DataProjects";
+import allprojects from "../lib/DataProjects";
 
 export default function Home({ articles }) {
   const [schedule, setSchedule] = useState(false);

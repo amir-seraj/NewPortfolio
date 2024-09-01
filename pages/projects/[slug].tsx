@@ -5,7 +5,7 @@ import "prismjs/themes/prism-okaidia.css";
 import { Box } from "@components/ui";
 import { Page } from "@components/common";
 import { DetailImage } from "@components/projects";
-import allprojects from "./DataProjects";
+import allprojects from "../../lib/DataProjects";
 import { ProjectDetail } from "@components/projects/Detail";
 
 interface ProjectProps {
