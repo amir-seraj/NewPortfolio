@@ -92,3 +92,4 @@ export async function getStaticPaths() {
 }
 
 export default Home;
+export {};
