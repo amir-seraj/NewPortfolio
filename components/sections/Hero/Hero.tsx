@@ -36,7 +36,7 @@ export const Hero = () => {
                 width={100}
                 alt="#"
               ></Image>
-              <a
+              <Link
                 href="/resume.pdf"
                 download="resume.pdf"
                 className="font-heading text-sm uppercase"
@@ -44,7 +44,7 @@ export const Hero = () => {
                 <Button variant="primary" size="lg">
                   See my Resume
                 </Button>
-              </a>
+              </Link>
             </motion.span>
           </Box>
         </Box>

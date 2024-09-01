@@ -37,20 +37,19 @@ export const About = () => {
           </Link> */}
         </Text>
         <Box>
-          <a
+          <Link
             href="/resume.pdf"
-            download="resume.pdf"
             className="m-1 font-heading text-sm uppercase"
           >
             <Button variant="primary" size="lg">
               See My Resume
             </Button>
-          </a>
-          <a href="/projects" className="m-1 font-heading text-sm uppercase">
+          </Link>
+          <Link href="/projects" className="m-1 font-heading text-sm uppercase">
             <Button variant="primary" size="lg">
               My Projects
             </Button>
-          </a>
+          </Link>
         </Box>
       </Box>
       <Box className="m-8">
