@@ -38,7 +38,6 @@ export const Hero = () => {
               ></Image>
               <Link
                 href="/resume.pdf"
-                download="resume.pdf"
                 className="font-heading text-sm uppercase"
               >
                 <Button variant="primary" size="lg">
