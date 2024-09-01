@@ -1,3 +1,4 @@
+export {}
 import { useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
@@ -12,7 +13,6 @@ export default function Home(allprojects) {
   const {
     slug,
     title,
-    // tags,
     description,
     body,
     coverImage,
@@ -22,16 +22,6 @@ export default function Home(allprojects) {
     readTime,
   } = allprojects;
 
-  // const blogKeywords =
-  //   "software, coding, development, engineering, inclusive, community".split(
-  //     ", "
-  //   );
-
-  // const randomizeArticles = () => {
-  //   return allprojects
-  //     .sort((a: any, b: any) => 0.5 - Math.random())
-  //     .slice(0, 2);
-  // };
 
   useEffect(() => {
     Prism.highlightAll();
@@ -42,7 +32,6 @@ export default function Home(allprojects) {
       title={title}
       url={canonicalURL}
       type="project"
-      // keywords={Array.from(new Set([...tags, ...blogKeywords])).join(", ")}
       description={description}
       image={socialImage}
       canonicalURL={canonicalURL}
