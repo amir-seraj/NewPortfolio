@@ -14,7 +14,7 @@ export const SideBar = () => {
     {
       href: "https://github.com/amir-seraj",
       Icon: AiFillGithub,
-      title: "Github",
+      title: "Github ",
     },
 
     {
