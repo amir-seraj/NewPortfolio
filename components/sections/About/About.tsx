@@ -8,7 +8,7 @@ export const About = () => {
       id="about"
       className=" grid max-w-[1180px] gap-10 md:mb-40 md:grid-cols-2 2xl:max-w-7xl"
     >
-      <Box className="m-8 flex flex-col h-full">
+      <Box className="m-8 flex h-full flex-col">
         <Text as="h1" className="mb-6 text-3xl font-bold ">
           <motion.span
             className="block"
@@ -20,21 +20,15 @@ export const About = () => {
           </motion.span>
         </Text>
         <Text as="p" fontSize="md" className="mb-6 gap-5 text-sm 2xl:gap-10 ">
-          I'm Amir, a passionate explorer of the intersection between technology
-          and human experience. Currently pursuing my MSc in Human-Computer
-          Interaction, I’m fascinated by how affective computing can transform
-          user interactions. Whether I'm diving into the nuances of emotion
-          recognition in gaming or tinkering with XR technologies, I’m always up
-          for a challenge. With a background in computer engineering, I bring a
-          strong technical foundation to my research, but it's my curiosity and
-          love for problem-solving that drive me.
-          {/* <Link
-            className="font-medium text-slate-500 dark:text-slate-100"
-            target="_blank"
-            href="https://github.com/ArsalanSeraj/"
-          >
-            Eth Marketplace
-          </Link> */}
+          I&apos;m Amir, a passionate explorer of the intersection between
+          technology and human experience. Currently pursuing my MSc in
+          Human-Computer Interaction, I&apos;m fascinated by how affective
+          computing can transform user interactions. Whether I&apos;m diving
+          into the nuances of emotion recognition in gaming or tinkering with XR
+          technologies, I&apos;m always up for a challenge. With a background in
+          computer engineering, I bring a strong technical foundation to my
+          research, but it&apos;s my curiosity and love for problem-solving that
+          drive me.
         </Text>
         <Box>
           <Link
