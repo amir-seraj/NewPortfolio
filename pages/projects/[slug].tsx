@@ -1,15 +1,26 @@
-
 import { useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
 
 import { Box } from "@components/ui";
 import { Page } from "@components/common";
-import {  DetailImage } from "@components/projects";
+import { DetailImage } from "@components/projects";
 import allprojects from "./DataProjects";
 import { ProjectDetail } from "@components/projects/Detail";
 
-export default function Home(allprojects) {
+interface ProjectProps {
+  slug: string;
+  title: string;
+  description: string;
+  body: string;
+  coverImage: string;
+  socialImage: string;
+  publishedAt: string;
+  canonicalURL: string;
+  readTime: string;
+}
+
+function Home(project: ProjectProps) {
   const {
     slug,
     title,
@@ -20,13 +31,12 @@ export default function Home(allprojects) {
     publishedAt,
     canonicalURL,
     readTime,
-  } = allprojects;
-
+  } = project;
 
   useEffect(() => {
     Prism.highlightAll();
   }, [slug]);
-  
+
   return (
     <Page
       title={title}
@@ -37,38 +47,37 @@ export default function Home(allprojects) {
       canonicalURL={canonicalURL}
     >
       <Box className="flex h-screen overflow-hidden md:grid-cols-2">
-        <Box className=" w-1/6 h-full">
-        <DetailImage coverImage={coverImage}           title={title}/>
+        <Box className="w-1/6 h-full">
+          <DetailImage coverImage={coverImage} title={title} />
         </Box>
         <Box className="w-5/6">
-        <ProjectDetail
-          title={title}
-          body={body}
-          coverImage={coverImage}
-          slug={slug}
-          // tags={tags}
-          publishedAt={publishedAt}
-          readTime={readTime}
-        />
+          <ProjectDetail
+            title={title}
+            body={body}
+            coverImage={coverImage}
+            slug={slug}
+            publishedAt={publishedAt}
+            readTime={readTime}
+          />
         </Box>
       </Box>
     </Page>
   );
 }
 
-  export async function getStaticProps({ params }) {
-    const { slug } = params;
-    const project = allprojects.find((project) => project.slug === slug);
-    if (!project) {
-      return {
-        notFound: true,
-      };
-    }
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  const project = allprojects.find((project) => project.slug === slug);
+  if (!project) {
     return {
-      props:
-      project
-    }
-};
+      notFound: true,
+    };
+  }
+  return {
+    props: project, // Wrap the project object in an object with a `props` key
+  };
+}
+
 export async function getStaticPaths() {
   const paths = allprojects.map((project) => ({
     params: {
@@ -81,4 +90,5 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-export {};
+
+export default Home;
