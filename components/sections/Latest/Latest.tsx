@@ -55,13 +55,13 @@ export const LatestProjects = ({ projects }) => {
           >
             My projects is where I share my thoughts and experiences about tech and
             the web in general. Swipe left or right to see some of my latest
-            blogs
+            projects
           </motion.span>
           <Link
             href="/projects"
             className="font-heading text-sm font-medium uppercase text-slate-500"
           >
-            See the full blog
+            See the all projects
           </Link>{" "}
         </Text>
       </Container>

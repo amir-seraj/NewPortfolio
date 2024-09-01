@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { InlineWidget } from "react-calendly";
 import {
   About,
   GetInTouch,
   Hero,
-  // LatestBlogs,
-  // TechStack,
 } from "@components/sections";
 import { Footer, Nav, Page } from "@components/common";
-import { Box } from "@components/ui";
-import { VscChromeClose } from "react-icons/vsc";
 import { LatestProjects } from "@components/sections/Latest/Latest";
 import allprojects from "./projects/DataProjects";
 
