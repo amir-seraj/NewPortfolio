@@ -3,19 +3,18 @@ import { motion } from "framer-motion";
 import { AiOutlineArrowDown } from "react-icons/ai";
 
 import { Text, Box, Container, Link, Button } from "@components/ui";
-// import { Calendy } from "@components/common";
 
 export const Hero = () => {
   return (
-    <Box className="mb-10 grid md:mb-40 md:h-screen md:grid-cols-3" id="top">
-      <Container className="md:order-0 order-1 flex w-full flex-col justify-between pb-12 pt-5">
+    <Box className="mb-10 flex justify-center items-center md:grid md:mb-40 md:h-screen md:grid-cols-3" id="top">
+      <Container className="md:order-0 order-0 flex w-full flex-col justify-between pb-12 pt-5">
         <Box className="order-1 mt-5 flex max-w-xl flex-col items-center justify-center md:order-2">
-          <Text as="h1" className="md:ml-12 md:mt-32" fontSize="5xl">
+          <Text as="h1" className="md:ml-12 md:mt-32 ">
             <motion.span
-              className="block"
+              className="block text-3xl md:5xl"
               initial={{ y: 0, opacity: 0 }}
               transition={{ duration: 0.8 }}
-              whileInView={{ y:40, opacity: 1 }}
+              whileInView={{ y: 40, opacity: 1 }}
             >
               Hi 👋🏼, I’m Amir. <br /> UX Designer/ <br />
               Developer.
@@ -32,15 +31,16 @@ export const Hero = () => {
               <Image
                 src="/images/arrow.png"
                 layout="fixed"
-                height={100}
-                width={100}
+                className=" md:hidden"
+                height={50}
+                width={50}
                 alt="#"
               ></Image>
               <Link
                 href="/resume.pdf"
                 className="font-heading text-sm uppercase"
               >
-                <Button variant="primary" size="lg">
+                <Button variant="primary" size="lg" className="hidden">
                   See my Resume
                 </Button>
               </Link>
@@ -57,9 +57,9 @@ export const Hero = () => {
         <Image
           src="/images/amir-banner.png"
           layout="fixed"
-          height={280}
-          width={280}
-          objectFit="cover"
+          height={200}
+          width={50}
+          objectFit="contain"
           objectPosition="bottom"
           priority
           quality={100}
@@ -87,7 +87,7 @@ export const Hero = () => {
           objectPosition="bottom"
           alt="Amir Seraj"
         />
-      </motion.div>{" "}
+      </motion.div>
       <Container className="md:order-0 order-1 flex w-full flex-col justify-between pb-12 pt-5">
         <Box className="md:mb-10" />
         <Box className="order-1 mt-5 max-w-xl md:order-2 md:mt-10">
@@ -99,35 +99,12 @@ export const Hero = () => {
               whileInView={{ y: 0, opacity: 1 }}
             >
               <code className="text-2xl font-medium text-black dark:text-white md:text-4xl 2xl:text-xl">
-                &lt;HELLO WORLD😎/&gt;, <br />
+                &lt;GREETINGS😎/&gt;, <br />
               </code>
               nice to meet you. This is the place that you can get in touch with
               me.
             </motion.span>
           </Text>
-          {/* <Box className="flex">
-            <motion.div
-              initial={{ x: -10 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              whileInView={{ x: 0 }}
-            >
-              <Button
-                variant="primary"
-                size="lg"
-                href="/projects"
-                className="mr-3 text-sm uppercase font-heading"
-              >
-                My projects
-              </Button>
-            </motion.div> */}
-          {/* <motion.div
-              initial={{ x: 10 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              whileInView={{ x: 0 }}
-            >
-              <Calendy>Schedule meeting</Calendy>
-            </motion.div> */}
-          {/* </Box> */}
         </Box>
         <motion.div
           initial={{ y: -20, opacity: 0 }}

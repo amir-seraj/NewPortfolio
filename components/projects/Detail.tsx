@@ -100,7 +100,7 @@ export const ProjectDetail = ({
   // otherArticles,
 }) => {
   return (
-    <Box className="h-screen overflow-y-auto flex flex-col">
+    <Box className="h-screen w-full overflow-y-auto flex flex-col">
       <Nav variant="projects" />
       <Container className="">
         <Header

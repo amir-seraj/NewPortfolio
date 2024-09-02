@@ -46,11 +46,11 @@ function Home(project: ProjectProps) {
       image={socialImage}
       canonicalURL={canonicalURL}
     >
-      <Box className="flex h-screen overflow-hidden md:grid-cols-2">
-        <Box className="w-1/6 h-full">
+      {/* <Box className="flex h-screen overflow-hidden md:grid-cols-2"> */}
+        {/* <Box className="hidden h-full md:w-1/6">
           <DetailImage coverImage={coverImage} title={title} />
-        </Box>
-        <Box className="w-5/6">
+        </Box> */}
+        <Box className="w-screen ">
           <ProjectDetail
             title={title}
             body={body}
@@ -60,7 +60,7 @@ function Home(project: ProjectProps) {
             readTime={readTime}
           />
         </Box>
-      </Box>
+      {/* </Box> */}
     </Page>
   );
 }
