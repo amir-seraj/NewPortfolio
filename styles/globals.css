@@ -3,24 +3,29 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "TT Commons";
+  font-family: "Mont";
   font-weight: 400;
-  src: url("/fonts/Poppins/Poppins-Regular.ttf");
+  src: url("/fonts/Poppins/Montserrat-Regular.ttf");
   font-display: swap;
 }
 @font-face {
-  font-family: "TT Commons";
+  font-family: "Mont";
   font-weight: 500;
-  src: url("/fonts/Poppins/Poppins-Medium.ttf");
+  src: url("/fonts/Poppins/Montserrat-Medium.ttf");
   font-display: swap;
 }
 @font-face {
-  font-family: "TT Commons";
+  font-family: "Mont";
   font-weight: 600;
-  src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  src: url("/fonts/Poppins/Montserrat-SemiBold.ttf");
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Pop";
+  src: url("/fonts/Poppins/Poppins-Medium.ttf");
+  font-display: swap;
+}
 html {
   @apply filter;
 }
@@ -29,7 +34,7 @@ body {
   @apply scroll-smooth font-body 2xl:text-xl;
 }
 body {
-  @apply text-slate-900 transition duration-100 ease-in-out dark:bg-[#232B2B] dark:text-slate-200;
+  @apply text-slate-900 transition duration-100 ease-in-out dark:bg-[#282828] dark:text-slate-200;
 }
 
 .times {

@@ -52,7 +52,7 @@ export const Card = ({
         {title}
       </Text>
 
-      <Text as="p" className="hidden opacity-75 md:block">
+      <Text as="p" className="hidden opacity-75 md:block" fontSize="sm">
         {description}
       </Text>
     </Link>

@@ -12,7 +12,7 @@ export default function Home({ allprojects }) {
       image="https://amirseraj.ir/images/banner.jpg"
       canonicalURL="https://amirseraj.ir"
     >
-      <Nav className="fixed py-3 bg-white bg-opacity-75 border-b backdrop-blur dark:bg-[#232B2B] dark:bg-opacity-90" />
+      <Nav className="fixed py-3 bg-white bg-opacity-75  backdrop-blur dark:bg-[#323232] dark:bg-opacity-90" />
       <Projects allprojects={allprojects} />
     </Page>
   );
