@@ -46,15 +46,15 @@ export const About = () => {
           </Link>
         </Box>
       </Box>
-      <Box className=" my-8 w-fit">
+      <Box className=" my-8 w-full">
         <Text as="h2" className="mb-6 text-3xl font-bold">
           My Skills
         </Text>
         <Box className="overflow-x-auto">
           <table className="w-full border border-gray-300 bg-transparent">
             <thead>
-              <tr className="border-b text-sm md:text-lg bg-gray-100">
-                <th className="p-4 text-left font-thin text-gray-600">
+              <tr className="border-b text-base md:text-lg bg-gray-100">
+                <th className="p-3 text-left font-thin text-gray-600">
                   Technical Skills
                 </th>
                 <th className="text-left font-thin text-gray-600">
@@ -67,30 +67,30 @@ export const About = () => {
             </thead>
             <tbody className="text-sm">
               <tr className=" border-b">
-                <td className="p-4 ">
+                <td className="p-3">
                   Python, JavaScript
                   <br />
                   OpenCV, TensorFlow, Keras{" "}
                 </td>
-                <td className="p-4">Teamwork and Collaboration</td>
-                <td className="p-4">React, Tailwind</td>
+                <td className="p-3">Teamwork and Collaboration</td>
+                <td className="p-3">React, Tailwind</td>
               </tr>
               <tr className="border-b">
-                <td className="p-4">
+                <td className="p-3">
                   Dataset Creation,
                   <br />
                   Literature Review
                 </td>
-                <td className="p-4">Effective Communication</td>
-                <td className="p-4">Node.JS, Mongodb</td>
+                <td className="p-3">Effective Communication</td>
+                <td className="p-3">Node.JS, Mongodb</td>
               </tr>
               <tr className="border-b">
-                <td className="p-4">
+                <td className="p-3">
                   Data Preprocessing, <br />
                   Model Development
                 </td>
-                <td className="p-4">Problem-Solving and Critical Thinking</td>
-                <td className="p-4">Photoshop, AfterEffects, Figma</td>
+                <td className="p-3">Problem-Solving and Critical Thinking</td>
+                <td className="p-3">Photoshop, AfterEffects, Figma</td>
               </tr>
             </tbody>
           </table>
