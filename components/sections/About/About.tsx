@@ -90,7 +90,7 @@ export const About = () => {
                   Model Development
                 </td>
                 <td className="p-3">Problem-Solving and Critical Thinking</td>
-                <td className="p-3">Photoshop, AfterEffects, Figma</td>
+                <td className="p-3">Figma</td>
               </tr>
             </tbody>
           </table>
