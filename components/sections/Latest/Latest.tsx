@@ -140,6 +140,15 @@ export const LatestProjects = ({ projects }) => {
           <span className="sr-only">Click to move one slide to right</span>
         </Button>
       </Container>
+      <Container className="md:hidden ">
+        <Text
+        className="flex justify-center items-center text-slate-400"
+        >
+          <MdArrowBackIosNew className="m-1" />
+          <span className="m-1">Swipe</span>
+          <MdArrowForwardIos className="m-1" />
+        </Text>
+      </Container>
     </Container>
   );
 };
