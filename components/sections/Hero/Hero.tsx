@@ -6,59 +6,36 @@ import { Text, Box, Container, Link, Button } from "@components/ui";
 
 export const Hero = () => {
   return (
-    <Box className="mb-10 flex justify-center items-center md:grid md:mb-40 md:h-screen md:grid-cols-3" id="top">
+    <Box
+      className="mb-10 flex flex-col items-center justify-center md:mb-40 md:grid md:h-screen md:grid-cols-3"
+      id="top"
+    >
       <Container className="md:order-0 order-0 flex w-full flex-col justify-between pb-12 pt-5">
-        <Box className="order-1 mt-5 flex max-w-xl flex-col items-center justify-center md:order-2">
-          <Text as="h1" className="md:ml-12 md:mt-32 ">
+        <Box className="order-1 mt-5 flex max-w-xl flex-col md:order-2">
+          <Text as="h1" className="md:ml-12 pt-16 md:pt-0">
             <motion.span
-              className="block text-3xl md:5xl"
+              className="md:text-5xl block text-4xl text-center md:text-left "
               initial={{ y: 0, opacity: 0 }}
               transition={{ duration: 0.8 }}
-              whileInView={{ y: 40, opacity: 1 }}
+              whileInView={{ y:0, opacity: 1 }}
             >
               Hi 👋🏼, I’m Amir. <br /> UX Designer/ <br />
               Developer.
-            </motion.span>{" "}
-          </Text>{" "}
-          <Box className="order-1 mt-10 max-w-xl md:order-2">
-            <motion.span
-              className="block"
-              initial={{ y: 40, opacity: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              whileInView={{ y: 0, opacity: 1 }}
-            >
-              {" "}
-              <Image
-                src="/images/arrow.png"
-                layout="fixed"
-                className=" md:hidden"
-                height={50}
-                width={50}
-                alt="#"
-              ></Image>
-              <Link
-                href="/resume.pdf"
-                className="font-heading text-sm uppercase"
-              >
-                <Button variant="primary" size="lg" className="hidden">
-                  See my Resume
-                </Button>
-              </Link>
             </motion.span>
-          </Box>
+          </Text>
         </Box>
       </Container>
       <motion.div
         initial={{ opacity: 0.8 }}
         transition={{ duration: 0.6 }}
         animate={{ opacity: 1 }}
-        className="relative mx-7 mt-[74px] h-[20vh]  md:hidden  "
+        className="md:hidden"
       >
         <Image
-          src="/images/amir-banner.png"
+          src="/images/amir-banner-mobile.png"
           layout="fixed"
-          height={200}
-          width={50}
+          height={300}
+          width={300}
           objectFit="contain"
           objectPosition="bottom"
           priority
@@ -89,27 +66,52 @@ export const Hero = () => {
         />
       </motion.div>
       <Container className="md:order-0 order-1 flex w-full flex-col justify-between pb-12 pt-5">
-        <Box className="md:mb-10" />
         <Box className="order-1 mt-5 max-w-xl md:order-2 md:mt-10">
           <Text className="mb-6 text-black dark:text-white 2xl:mb-10">
             <motion.span
-              className="block"
+              className="block  text-center  md:text-left"
               initial={{ y: 20, opacity: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              whileInView={{ y: 0, opacity: 1 }}
+              whileInView={{ y:40, opacity: 1 }}
             >
-              <code className="text-2xl font-medium text-black dark:text-white md:text-4xl 2xl:text-xl">
+              <code className="text-2xl font-medium text-black dark:text-white md:text-2xl 2xl:text-xl">
                 &lt;GREETINGS😎/&gt;, <br />
               </code>
               nice to meet you. This is the place that you can get in touch with
               me.
             </motion.span>
           </Text>
+          <Box className="order-1 max-w-xl md:order-2">
+            <motion.span
+              className=" flex flex-col justify-center items-center"
+              initial={{ y: 40, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              whileInView={{ y: 0, opacity: 1 }}
+            >
+              {" "}
+              <Image
+                src="/images/arrow.png"
+                layout="fixed"
+                className=" md:hidden"
+                height={100}
+                width={100}
+                alt="#"
+              ></Image>
+              <Link
+                href="/resume.pdf"
+                className="font-heading text-sm uppercase"
+              >
+                <Button variant="primary" size="lg" className="hidden">
+                  See my Resume
+                </Button>
+              </Link>
+            </motion.span>
+          </Box>
         </Box>
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 100, opacity: 1 }}
           className="order-2 hidden md:order-3 md:block"
         >
           <Link

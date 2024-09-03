@@ -6,9 +6,9 @@ export const About = () => {
   return (
     <Container
       id="about"
-      className=" grid max-w-[1180px] gap-10 md:mb-40 md:grid-cols-2 2xl:max-w-7xl"
+      className="flex flex-col justify-center items-center md:grid max-w-[1180px] md:gap-10 md:mb-40 md:grid-cols-2 2xl:max-w-7xl"
     >
-      <Box className="m-8 flex h-full flex-col">
+      <Box className="m-8 flex h-full flex-col w-full">
         <Text as="h1" className="mb-6 text-3xl font-bold ">
           <motion.span
             className="block"
@@ -46,27 +46,27 @@ export const About = () => {
           </Link>
         </Box>
       </Box>
-      <Box className="m-8">
+      <Box className=" my-8 w-fit">
         <Text as="h2" className="mb-6 text-3xl font-bold">
           My Skills
         </Text>
         <Box className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 bg-transparent">
+          <table className="w-full border border-gray-300 bg-transparent">
             <thead>
-              <tr className="border-b bg-gray-100">
+              <tr className="border-b text-sm md:text-lg bg-gray-100">
                 <th className="p-4 text-left font-thin text-gray-600">
                   Technical Skills
                 </th>
-                <th className="p-4 text-left font-thin text-gray-600">
+                <th className="text-left font-thin text-gray-600">
                   Soft Skills
                 </th>
-                <th className="p-4 text-left font-thin text-gray-600">
+                <th className="text-left font-thin text-gray-600">
                   Other Skills
                 </th>
               </tr>
             </thead>
             <tbody className="text-sm">
-              <tr className="border-b">
+              <tr className=" border-b">
                 <td className="p-4 ">
                   Python, JavaScript
                   <br />
