@@ -56,7 +56,7 @@ export const About = () => {
         <Text as="h2" className="mb-6 text-3xl font-bold">
           My Skills
         </Text>
-        <Box className="">
+        <Box className="mb-8">
           <table className="w-full border border-gray-300 bg-transparent">
             <thead>
               <tr className="border-b text-base md:text-lg bg-gray-100">
