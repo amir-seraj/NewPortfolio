@@ -6,7 +6,7 @@ export const About = () => {
   return (
     <Container
       id="about"
-      className="flex flex-col justify-center items-center md:grid w-full  md:gap-10 md:mb-40 md:grid-cols-2 2xl:max-w-7xl"
+      className="flex flex-col justify-center items-center md:grid w-full  md:gap-10 mb-40 md:grid-cols-2 2xl:max-w-7xl"
     >
       <Box className=" flex h-full flex-col w-full">
         <Text as="h1" className="mb-6 text-3xl font-bold ">
@@ -46,7 +46,13 @@ export const About = () => {
           </Link>
         </Box>
       </Box>
-      <Box className="w-full">
+      <Box className="w-full h-full">
+      <motion.span
+            className="block"
+            initial={{ y: -10 }}
+            transition={{ duration: 0.8 }}
+            whileInView={{ y: 0 }}
+          >
         <Text as="h2" className="mb-6 text-3xl font-bold">
           My Skills
         </Text>
@@ -89,6 +95,7 @@ export const About = () => {
             </tbody>
           </table>
         </Box>
+          </motion.span>
       </Box>
     </Container>
   );
