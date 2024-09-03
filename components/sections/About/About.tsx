@@ -6,9 +6,9 @@ export const About = () => {
   return (
     <Container
       id="about"
-      className="flex flex-col justify-center items-center md:grid max-w-[1180px] md:gap-10 md:mb-40 md:grid-cols-2 2xl:max-w-7xl"
+      className="flex flex-col justify-center items-center md:grid w-full  md:gap-10 md:mb-40 md:grid-cols-2 2xl:max-w-7xl"
     >
-      <Box className="m-8 flex h-full flex-col w-full">
+      <Box className=" flex h-full flex-col w-full">
         <Text as="h1" className="mb-6 text-3xl font-bold ">
           <motion.span
             className="block"
@@ -30,7 +30,7 @@ export const About = () => {
           research, but it&apos;s my curiosity and love for problem-solving that
           drive me.
         </Text>
-        <Box>
+        <Box className="mb-8">
           <Link
             href="/resume.pdf"
             className="m-1 font-heading text-sm uppercase"
@@ -46,11 +46,11 @@ export const About = () => {
           </Link>
         </Box>
       </Box>
-      <Box className=" my-8 w-full">
+      <Box className="w-full">
         <Text as="h2" className="mb-6 text-3xl font-bold">
           My Skills
         </Text>
-        <Box className="overflow-x-auto">
+        <Box className="">
           <table className="w-full border border-gray-300 bg-transparent">
             <thead>
               <tr className="border-b text-base md:text-lg bg-gray-100">
@@ -89,7 +89,7 @@ export const About = () => {
                   Data Preprocessing, <br />
                   Model Development
                 </td>
-                <td className="p-3">Problem-Solving and Critical Thinking</td>
+                <td className="p-3">Problem-Solving</td>
                 <td className="p-3">Figma</td>
               </tr>
             </tbody>

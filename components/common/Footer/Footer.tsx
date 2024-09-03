@@ -32,7 +32,7 @@ export const Footer = () => {
               transition={{ duration: 0.8 }}
               whileInView={{ opacity: 1 }}
             >
-              Designer from Italy who is trying to make the
+              An engineer who is trying to make the
               world a better place one{" "}
               <code className="text-sm font-bold dark:font-medium dark:text-slate-300 2xl:text-lg">
                 {"<commit/>"}
@@ -72,7 +72,7 @@ export const Footer = () => {
                 href="/projects"
                 className="block mb-3 text-base font-medium hover:text-slate-500 dark:hover:text-slate-100 dark:text-slate-300"
               >
-                <code>{"<Read the Projects/>"}</code>
+                <code>{"<See the Projects/>"}</code>
               </Link>
               <Link
                 href="/#about"
