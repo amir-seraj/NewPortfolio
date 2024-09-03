@@ -10,7 +10,7 @@ export const Hero = () => {
       className="mb-10 flex flex-col items-center justify-center md:mb-40 md:grid md:h-screen md:grid-cols-3"
       id="top"
     >
-      <Container className="md:order-0 order-0 flex w-full flex-col justify-between pb-12 pt-5">
+      <Container className=" order-0 flex w-full flex-col pt-5">
         <Box className="order-1 mt-5 flex max-w-xl flex-col md:order-2">
           <Text as="h1" className="md:ml-12 pt-16 md:pt-0">
             <motion.span
@@ -72,7 +72,7 @@ export const Hero = () => {
               className="block  text-center  md:text-left"
               initial={{ y: 20, opacity: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              whileInView={{ y:40, opacity: 1 }}
+              whileInView={{ y:0, opacity: 1 }}
             >
               <code className="text-2xl font-medium text-black dark:text-white md:text-2xl 2xl:text-xl">
                 &lt;GREETINGS😎/&gt;, <br />
@@ -88,15 +88,7 @@ export const Hero = () => {
               transition={{ duration: 1, delay: 0.2 }}
               whileInView={{ y: 0, opacity: 1 }}
             >
-              {" "}
-              <Image
-                src="/images/arrow.png"
-                layout="fixed"
-                className=" md:hidden"
-                height={100}
-                width={100}
-                alt="#"
-              ></Image>
+
               <Link
                 href="/resume.pdf"
                 className="font-heading text-sm uppercase"
