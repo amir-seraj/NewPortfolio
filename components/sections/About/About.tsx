@@ -58,9 +58,6 @@ export const About = () => {
                   Technical Skills
                 </th>
                 <th className="text-left font-thin text-gray-600">
-                  Soft Skills
-                </th>
-                <th className="text-left font-thin text-gray-600">
                   Other Skills
                 </th>
               </tr>
@@ -72,7 +69,6 @@ export const About = () => {
                   <br />
                   OpenCV, TensorFlow, Keras{" "}
                 </td>
-                <td className="p-3">Teamwork and Collaboration</td>
                 <td className="p-3">React, Tailwind</td>
               </tr>
               <tr className="border-b">
@@ -81,7 +77,6 @@ export const About = () => {
                   <br />
                   Literature Review
                 </td>
-                <td className="p-3">Effective Communication</td>
                 <td className="p-3">Node.JS, Mongodb</td>
               </tr>
               <tr className="border-b">
@@ -89,8 +84,7 @@ export const About = () => {
                   Data Preprocessing, <br />
                   Model Development
                 </td>
-                <td className="p-3">Problem-Solving</td>
-                <td className="p-3">Figma</td>
+                <td className="p-3">Figma, Photoshop, AfterEffects</td>
               </tr>
             </tbody>
           </table>
