@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://amirseraj.ir
+
+# Sitemaps
+Sitemap: https://amirseraj.ir/sitemap.xml

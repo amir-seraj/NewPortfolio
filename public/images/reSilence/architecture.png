@@ -1,0 +1,6 @@
+# This is a placeholder for the reSilence architecture diagram
+# You should replace this with an actual diagram showing:
+# [Webcam] -> [Python Analysis (MediaPipe + DeepFace)] -> [OSC] -> [Max/MSP]
+# Include the flow of movement and emotion data
+# Show the STATE fusion process
+# Recommended size: 600x300px

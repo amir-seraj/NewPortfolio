@@ -32,10 +32,10 @@ export const Footer = () => {
               transition={{ duration: 0.8 }}
               whileInView={{ opacity: 1 }}
             >
-              An engineer who is trying to make the
+              A researcher and engineer who is trying to make the
               world a better place one{" "}
               <code className="text-sm font-bold dark:font-medium dark:text-slate-300 2xl:text-lg">
-                {"<commit/>"}
+                {"<interaction/>"}
               </code>{" "}
               at a time 😎.
             </motion.span>

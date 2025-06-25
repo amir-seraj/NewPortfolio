@@ -23,9 +23,10 @@ export const About = () => {
           I&apos;m Amir, a passionate explorer of the intersection between
           technology and human experience. Currently pursuing my MSc in
           Human-Computer Interaction, I&apos;m fascinated by how affective
-          computing can transform user interactions. Whether I&apos;m diving
-          into the nuances of emotion recognition in gaming or tinkering with XR
-          technologies, I&apos;m always up for a challenge. With a background in
+          computing and interactive systems can transform user experiences. 
+          Whether I&apos;m developing blockchain applications, creating 
+          interactive art installations, or researching emotion recognition 
+          in gaming, I&apos;m always up for a challenge. With a background in
           computer engineering, I bring a strong technical foundation to my
           research, but it&apos;s my curiosity and love for problem-solving that
           drive me.

@@ -14,12 +14,12 @@ export const Hero = () => {
         <Box className="order-1 mt-5 flex max-w-xl flex-col md:order-2">
           <Text as="h1" className="md:ml-12 pt-16 md:pt-0">
             <motion.span
-              className="md:text-5xl block text-4xl text-center md:text-left "
+              className="md:text-4xl block text-3xl text-center md:text-left "
               initial={{ y: 0, opacity: 0 }}
               transition={{ duration: 0.8 }}
               whileInView={{ y:0, opacity: 1 }}
             >
-              Hi 👋🏼, I’m Amir. <br /> UX Designer/ <br />
+              Hi 👋🏼, I&apos;m Amir. <br /> HCI Researcher/ <br />
               Developer.
             </motion.span>
           </Text>
@@ -77,8 +77,8 @@ export const Hero = () => {
               <code className="text-2xl font-medium text-black dark:text-white md:text-2xl 2xl:text-xl">
                 &lt;GREETINGS😎/&gt;, <br />
               </code>
-              nice to meet you. This is the place that you can get in touch with
-              me.
+              nice to meet you. I&apos;m a researcher and developer passionate about 
+              creating meaningful interactions between humans and technology.
             </motion.span>
           </Text>
           <Box className="order-1 max-w-xl md:order-2">

@@ -35,7 +35,7 @@ export const SideBar = () => {
         <Logo />
         <Box className={s.bar}>
           <Text as="h5" casing="uppercase" className="mb-1 font-heading">
-            Designer / Developer
+            Researcher / Developer
           </Text>
           <Text
             casing="uppercase"

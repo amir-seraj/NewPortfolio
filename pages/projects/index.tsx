@@ -5,8 +5,8 @@ import allprojects from "../../lib/DataProjects";
 export default function Home({ allprojects }) {
   return (
     <Page
-      title="Amir Seraj | Software Engineer"
-      description="I am a Software Engineer, Music Enthusiast based in Isfahan, Iran."
+      title="Amir Seraj | HCI Researcher & Full-Stack Developer"
+      description="Exploring the intersection of technology and human experience through interactive systems, blockchain development, and affective computing research."
       url="https://amirseraj.ir"
       // keywords="Amir, Seraj,Amir Seraj,Seraj, software engineer, Iran, Isfahan software developer, Iran developer, software development blog, BlockChain, Solidity, React Developer, React Blog"
       image="https://amirseraj.ir/images/banner.jpg"
