@@ -10,7 +10,7 @@ const ScrollRestoration = () => {
     document.documentElement.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'instant', // 'instant' is more reliable than 'smooth' for this purpose
+      behavior: 'auto', // 'auto' provides instant scrolling without animation
     });
   }, [asPath]); // The key change is this dependency array
 
