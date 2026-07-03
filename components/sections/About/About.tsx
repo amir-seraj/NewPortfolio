@@ -1,102 +1,92 @@
-import { Text, Box, Container, Link } from "@components/ui";
-import { motion } from "framer-motion";
-import { Button } from "@components/ui";
+import { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+import { Box, Container, Text } from "@components/ui";
+
+const EASE_EXPO = [0.16, 1, 0.3, 1];
+
+const COUNTS = [
+  { value: 6, label: "projects shipped, 2023 to 2025" },
+  { value: 2, label: "installations exhibited in 2025" },
+  { value: 1, label: "mirror that reads faces" },
+];
+
+const CountUp = ({ value }: { value: number }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || reduceMotion) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        const t0 = performance.now();
+        const dur = 700;
+        const tick = (now: number) => {
+          const p = Math.min(1, (now - t0) / dur);
+          el.textContent = String(Math.round(value * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.5 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [value, reduceMotion]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      {value}
+    </span>
+  );
+};
 
 export const About = () => {
+  const reduceMotion = useReducedMotion();
+
   return (
     <Container
       id="about"
-      className="flex flex-col justify-center items-center md:grid w-full  md:gap-10 mb-40 md:grid-cols-2 2xl:max-w-7xl"
+      className="mb-28 grid w-full gap-12 pt-24 md:grid-cols-2 md:gap-16 2xl:max-w-7xl"
     >
-      <Box className=" flex h-full flex-col w-full">
-        <Text as="h1" className="mb-6 text-3xl font-bold ">
-          <motion.span
-            className="block"
-            initial={{ x: -10 }}
-            transition={{ duration: 0.8 }}
-            whileInView={{ x: 0 }}
-          >
-            A little bit about me
-          </motion.span>
+      <motion.div
+        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: EASE_EXPO }}
+      >
+        <Text
+          as="h2"
+          className="mb-5 font-heading text-3xl font-bold md:text-4xl"
+        >
+          Who&apos;s asking
         </Text>
-        <Text as="p" fontSize="md" className="mb-6 leading-relaxed">
-          I&apos;m Amir, a passionate explorer of the intersection between
-          technology and human experience. Currently pursuing my MSc in
-          Human-Computer Interaction, I&apos;m fascinated by how affective
-          computing and interactive systems can transform user experiences. 
-          Whether I&apos;m developing blockchain applications, creating 
-          interactive art installations, or researching emotion recognition 
-          in gaming, I&apos;m always up for a challenge. With a background in
-          computer engineering, I bring a strong technical foundation to my
-          research, but it&apos;s my curiosity and love for problem-solving that
-          drive me.
+        <Text as="p" className="max-w-[58ch] leading-relaxed">
+          Engineer&apos;s training. Researcher&apos;s questions. Three shipped
+          systems that read emotion, posture and balance, and answer well. If
+          software is going to watch people anyway, it should learn some
+          manners; mine do.
         </Text>
-        <Box className="mb-8">
-          <Link
-            href="/resume.pdf"
-            className="m-1 font-heading text-sm uppercase"
+      </motion.div>
+      <Box className="flex flex-col gap-6 md:pt-2">
+        {COUNTS.map(({ value, label }, i) => (
+          <motion.div
+            key={label}
+            className="border-t border-slate-300 pt-4 dark:border-slate-600"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: EASE_EXPO, delay: i * 0.12 }}
           >
-            <Button variant="primary" size="lg">
-              See My Resume
-            </Button>
-          </Link>
-          <Link href="/projects" className="m-1 font-heading text-sm uppercase">
-            <Button variant="primary" size="lg">
-              My Projects
-            </Button>
-          </Link>
-        </Box>
-      </Box>
-      <Box className="w-full h-full">
-      <motion.span
-            className="block"
-            initial={{ y: -10 }}
-            transition={{ duration: 0.8 }}
-            whileInView={{ y: 0 }}
-          >
-        <Text as="h2" className="mb-6 text-3xl font-bold">
-          My Skills
-        </Text>
-        <Box className="mb-8">
-          <table className="w-full border border-gray-300 bg-transparent">
-            <thead>
-              <tr className="border-b text-base md:text-lg bg-gray-100">
-                <th className="p-3 text-left font-thin text-gray-600">
-                  Technical Skills
-                </th>
-                <th className="text-left font-thin text-gray-600">
-                  Other Skills
-                </th>
-              </tr>
-            </thead>
-            <tbody className="text-sm">
-              <tr className=" border-b">
-                <td className="p-3">
-                  Python, JavaScript
-                  <br />
-                  OpenCV, TensorFlow, Keras{" "}
-                </td>
-                <td className="p-3">React, Tailwind</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-3">
-                  Dataset Creation,
-                  <br />
-                  Literature Review
-                </td>
-                <td className="p-3">Node.JS, Mongodb</td>
-              </tr>
-              <tr className="border-b">
-                <td className="p-3">
-                  Data Preprocessing, <br />
-                  Model Development
-                </td>
-                <td className="p-3">Figma, Photoshop, AfterEffects</td>
-              </tr>
-            </tbody>
-          </table>
-        </Box>
-          </motion.span>
+            <span className="block font-heading text-4xl font-bold leading-tight text-teal-700 dark:text-teal-300">
+              <CountUp value={value} />
+            </span>
+            {label}
+          </motion.div>
+        ))}
       </Box>
     </Container>
   );
