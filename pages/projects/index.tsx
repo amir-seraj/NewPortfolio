@@ -6,7 +6,7 @@ export default function Home({ allprojects }) {
   return (
     <Page
       title="Projects | Amir Seraj"
-      description="Eleven shipped projects, 2023 to 2026: systems that read emotion, posture and balance, plus the engineering that came before them."
+      description="Twelve shipped projects, 2023 to 2026: systems that read emotion, posture and balance, plus the engineering that came before them."
       url="https://amirseraj.ir/projects"
       image="https://amirseraj.ir/images/banner.jpg"
       canonicalURL="https://amirseraj.ir/projects"

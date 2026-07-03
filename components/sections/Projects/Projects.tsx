@@ -39,7 +39,7 @@ export const Projects = ({ allprojects }: Props) => {
           className="anim-rise mt-3 max-w-[60ch] text-slate-600 dark:text-slate-300"
           style={{ "--stagger": 1 } as CSSProperties}
         >
-          Eleven shipped projects, 2023 to 2026: systems that read emotion,
+          Twelve shipped projects, 2023 to 2026: systems that read emotion,
           posture and balance, plus the engineering that came before them.
         </Text>
       </Container>
