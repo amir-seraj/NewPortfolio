@@ -10,7 +10,7 @@ Recruiters, research collaborators, and potential clients scanning a personal po
 
 ## Product Purpose
 
-Personal portfolio of Amir Seraj: HCI researcher and developer (MSc, University of Genova) working on affective computing, emotion recognition, and interactive systems. The site's job is to present shipped evidence (reSilence, Unity at Sea, Perfect Posture, and three more projects) and convert interest into email contact. Success: visitors remember one claim ("machines can learn to notice people — I teach them") and reach the inbox.
+Personal portfolio of Amir Seraj: HCI researcher and developer (MSc, University of Genova) working on affective computing, emotion recognition, and interactive systems. The site's job is to present shipped evidence (reSilence, Unity at Sea, Perfect Posture, and three more) and convert interest into email contact. Success: visitors remember one claim ("machines can learn to notice people — I teach them") and reach the inbox.
 
 ## Brand Personality
 

@@ -21,12 +21,12 @@ const FEATURED: Record<string, { display: string; kind: string; year: string }> 
     "resilience-ai-mirror-emotional-wellbeing": {
       display: "reSilence",
       kind: "AI mirror",
-      year: "2025",
+      year: "2024",
     },
     "unity-at-sea-soundscape-shared-balance": {
       display: "Unity at Sea",
       kind: "Installation",
-      year: "2025",
+      year: "2024",
     },
     "perfect-posture-case-study": {
       display: "Perfect Posture",
