@@ -111,3 +111,25 @@ code {
     transform: rotate(360deg);
   }
 }
+
+/* Bold redesign: entrance utility. CSS animation (not class-gated
+   transition) so content is always in the DOM and ends visible. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.anim-rise {
+  animation: rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--stagger, 0) * 90ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise {
+    animation: none;
+  }
+}
