@@ -35,4 +35,4 @@ yarn-error.log*
 .vercel
 
 /public/*.js
-/public/*.js.*
+/public/*.js.*tsconfig.tsbuildinfo
