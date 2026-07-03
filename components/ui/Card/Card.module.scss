@@ -7,5 +7,5 @@
 }
 
 .content {
-  @apply absolute inset-0 flex flex-col justify-end bg-[#000000] bg-opacity-80 p-5 text-white #{!important};
+  @apply absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/40 to-black/5 p-5 text-white #{!important};
 }

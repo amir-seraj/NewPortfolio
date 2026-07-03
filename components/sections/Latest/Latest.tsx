@@ -42,7 +42,7 @@ export const LatestProjects = ({ projects }) => {
               transition={{ duration: 1 }}
               whileInView={{ x: 0 }}
             >
-              See the full project
+              See all projects
             </motion.span>
           </Link>
         </Box>
@@ -53,15 +53,14 @@ export const LatestProjects = ({ projects }) => {
             transition={{ duration: 0.6 }}
             whileInView={{ x: 0 }}
           >
-            My projects is where I share my thoughts and experiences about tech and
-            the web in general. Swipe left or right to see some of my latest
-            projects
+            A selection of my latest work — research, installations and web
+            projects. Swipe left or right to browse.
           </motion.span>
           <Link
             href="/projects"
             className="font-heading text-sm font-medium uppercase text-slate-500"
           >
-            See the all projects
+            See all projects
           </Link>{" "}
         </Text>
       </Container>
@@ -70,8 +69,8 @@ export const LatestProjects = ({ projects }) => {
         <Swiper effect={"cards"} grabCursor={true}>
           {projects?.length &&
             projects.map(
-              ({ id, slug, title, publishedAt, readTime, coverImage }) => (
-                <SwiperSlide key={id}>
+              ({ slug, title, publishedAt, readTime, coverImage }) => (
+                <SwiperSlide key={slug}>
                   <Card
                     slug={slug}
                     title={title}
@@ -91,9 +90,9 @@ export const LatestProjects = ({ projects }) => {
         >
           {projects?.length &&
             projects.map(
-              ({ id, slug, title, publishedAt, readTime, coverImage }, idx) => (
+              ({ slug, title, publishedAt, readTime, coverImage }, idx) => (
                 <motion.div
-                  key={id}
+                  key={slug}
                   initial={{
                     opacity: 0,
                     y: -40,

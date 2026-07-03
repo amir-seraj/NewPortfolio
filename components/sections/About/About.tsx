@@ -19,7 +19,7 @@ export const About = () => {
             A little bit about me
           </motion.span>
         </Text>
-        <Text as="p" fontSize="md" className="mb-6 gap-5 text-sm 2xl:gap-10 ">
+        <Text as="p" fontSize="md" className="mb-6 leading-relaxed">
           I&apos;m Amir, a passionate explorer of the intersection between
           technology and human experience. Currently pursuing my MSc in
           Human-Computer Interaction, I&apos;m fascinated by how affective

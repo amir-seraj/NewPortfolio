@@ -7,7 +7,7 @@ export const GetInTouch = () => (
       <Text as="h2" className="mb-4" fontSize="4xl" align="center">
         Get in touch
       </Text>
-      <Text className="max-w-md mx-auto mb-5 opacity-75" align="center">
+      <Text className="max-w-md mx-auto mb-5 text-slate-600 dark:text-slate-300" align="center">
         You have a cool project that you want to discuss or a tech article you
         want written? I&lsquo;d love to hear from you.
       </Text>
