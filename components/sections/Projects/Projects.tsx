@@ -22,6 +22,9 @@ interface Props {
 const year = (date: string) => new Date(date).getFullYear() || "";
 
 export const Projects = ({ allprojects }: Props) => {
+  const sorted = [...allprojects].sort((a, b) =>
+    b.publishedAt.localeCompare(a.publishedAt)
+  );
   return (
     <Box>
       <Container className="mt-24 mb-3 md:mt-28">
@@ -36,12 +39,12 @@ export const Projects = ({ allprojects }: Props) => {
           className="anim-rise mt-3 max-w-[60ch] text-slate-600 dark:text-slate-300"
           style={{ "--stagger": 1 } as CSSProperties}
         >
-          Six shipped projects, 2023 to 2024: systems that read emotion,
+          Eleven shipped projects, 2023 to 2026: systems that read emotion,
           posture and balance, plus the engineering that came before them.
         </Text>
       </Container>
       <Box className="mt-8 flex flex-col gap-5 px-5 pb-16 md:px-10">
-        {allprojects.map(
+        {sorted.map(
           ({ slug, title, description, coverImage, publishedAt }, idx) => (
             <div
               key={slug}

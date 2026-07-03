@@ -130,7 +130,7 @@ export const Evidence = ({ projects }: Props) => {
           href="/projects"
           className="font-heading text-sm font-medium uppercase tracking-wide text-teal-700 hover:underline dark:text-teal-300"
         >
-          All six projects →
+          All projects →
         </Link>
       </Container>
       <Box className="flex flex-col gap-5 px-5 md:px-10">

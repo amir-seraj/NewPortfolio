@@ -6,7 +6,7 @@ import { Box, Container, Text } from "@components/ui";
 const EASE_EXPO = [0.16, 1, 0.3, 1];
 
 const COUNTS = [
-  { value: 6, label: "projects shipped, 2023 to 2024" },
+  { value: 11, label: "projects shipped, 2023 to 2026" },
   { value: 2, label: "installations exhibited in 2024" },
   { value: 1, label: "mirror that reads faces" },
 ];
