@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import NextLink, { LinkProps } from 'next/link';
 import cn from 'classnames';
 
@@ -8,6 +8,7 @@ interface Props extends LinkProps {
   className?: string;
   onClick?: () => void;
   target?: '_blank' | '_self' | '_parent' | '_top';
+  style?: CSSProperties;
 }
 
 export const Link: FC<Props> = ({
