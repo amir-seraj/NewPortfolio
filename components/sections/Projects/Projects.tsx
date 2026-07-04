@@ -25,6 +25,7 @@ const year = (date: string) => new Date(date).getFullYear() || "";
 // treatment without fighting baked-in text. Ordered flagship-first.
 const CASE_STUDY_SLUGS = [
   "shodocode",
+  "est-generic-event-boundary-detector-thesis",
   "resilience-ai-mirror-emotional-wellbeing",
   "unity-at-sea-soundscape-shared-balance",
   "perfect-posture-case-study",
@@ -54,7 +55,7 @@ export const Projects = ({ allprojects }: Props) => {
           className="anim-rise mt-3 max-w-[60ch] text-slate-600 dark:text-slate-300"
           style={{ "--stagger": 1 } as CSSProperties}
         >
-          Twelve shipped projects, 2023 to 2026: systems that read emotion,
+          Thirteen shipped projects, 2023 to 2026: systems that read emotion,
           posture and balance, plus the engineering that came before them.
         </Text>
       </Container>
