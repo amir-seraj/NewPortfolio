@@ -8,15 +8,18 @@ import { CloseButton } from "./Close";
 
 const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
-const LINKS = [
+const STATIC_LINKS = [
   { label: "Home", href: "/" },
   { label: "The evidence", href: "/projects" },
   { label: "Blog", href: "/blog" },
   { label: "Who's asking", href: "/#about" },
-  { label: "Mail", href: "mailto:amirseraj.ir@gmail.com" },
 ];
 
-export const Menu = ({ onClose }) => {
+export const Menu = ({ onClose, email = "amirseraj.ir@gmail.com" }) => {
+  const LINKS = [
+    ...STATIC_LINKS,
+    { label: "Mail", href: `mailto:${email}` },
+  ];
   // next/compat/router works in both the app dir (returns null) and pages
   // dir (returns the NextRouter) — plain next/router's useRouter throws
   // when mounted under the App Router, which Nav now renders into via

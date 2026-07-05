@@ -93,7 +93,11 @@ export async function getHome(): Promise<Home> {
   return p.findGlobal({ slug: "home" });
 }
 
-export async function getSettings(): Promise<Setting> {
+// layout.tsx's generateMetadata() and every page's render (each threads
+// settings.email into Nav/Footer/etc — Task 11) resolve this same global
+// within one request — React.cache() dedupes that instead of hitting the
+// DB once per call site, same reasoning as getProject/getPost above.
+export const getSettings = cache(async (): Promise<Setting> => {
   const p = await payload();
   return p.findGlobal({ slug: "settings" });
-}
+});

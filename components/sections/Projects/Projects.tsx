@@ -21,11 +21,12 @@ interface Project {
 
 interface Props {
   allprojects: Project[];
+  email?: string | null;
 }
 
 type View = "graph" | "timeline";
 
-export const Projects = ({ allprojects }: Props) => {
+export const Projects = ({ allprojects, email }: Props) => {
   const projects = allprojects.map((p) => ({ ...p, tags: p.tags ?? [] }));
   const [view, setView] = useState<View>("graph");
 
@@ -99,8 +100,8 @@ export const Projects = ({ allprojects }: Props) => {
         </Container>
       </Box>
 
-      <GetInTouch />
-      <Footer />
+      <GetInTouch email={email} />
+      <Footer email={email} />
     </Box>
   );
 };

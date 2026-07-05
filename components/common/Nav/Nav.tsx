@@ -11,9 +11,14 @@ import { AnimatePresence } from "motion/react";
 interface Props {
   variant?: "main" | "projects";
   className?: string;
+  email?: string | null;
 }
 
-export const Nav: FC<Props> = ({ className = "", variant = "main" }) => {
+export const Nav: FC<Props> = ({
+  className = "",
+  variant = "main",
+  email = "amirseraj.ir@gmail.com",
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const onOpen = () => setIsMenuOpen(true);
   const onClose = () => setIsMenuOpen(false);
@@ -24,7 +29,7 @@ export const Nav: FC<Props> = ({ className = "", variant = "main" }) => {
           className={`right-0 top-0 left-0 z-10  dark:border-slate-700 md:left-[81px] 2xl:left-20 ${className}`}
         >
           <Container className="flex items-center justify-between ">
-            <MailMe className="hidden md:block " />
+            <MailMe className="hidden md:block " email={email ?? undefined} />
             <Logo className="md:hidden" />
             <MenuButton onOpen={onOpen} />
           </Container>
@@ -46,7 +51,7 @@ export const Nav: FC<Props> = ({ className = "", variant = "main" }) => {
         </Box>
       )}
       <AnimatePresence>
-        {isMenuOpen && <Menu onClose={onClose} />}
+        {isMenuOpen && <Menu onClose={onClose} email={email ?? undefined} />}
       </AnimatePresence>
     </>
   );

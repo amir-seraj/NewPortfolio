@@ -103,53 +103,56 @@ const Header = ({ slug, title, readTime, publishedAt, tags }) => {
   );
 };
 
-const FooterNav = ({ prevProject, nextProject }) => (
-  <Box className="mt-14 border-t border-teal-600/20 pt-8 dark:border-teal-400/20">
-    <Box className="grid gap-3 sm:grid-cols-2">
-      {prevProject ? (
+const FooterNav = ({ prevProject, nextProject, email }) => {
+  const emailAddress = email ?? "amirseraj.ir@gmail.com";
+  return (
+    <Box className="mt-14 border-t border-teal-600/20 pt-8 dark:border-teal-400/20">
+      <Box className="grid gap-3 sm:grid-cols-2">
+        {prevProject ? (
+          <Link
+            href={`/projects/${prevProject.slug}`}
+            className="group rounded-lg bg-teal-600/[0.07] p-4 transition-colors hover:bg-teal-600/[0.14] dark:bg-teal-400/[0.08] dark:hover:bg-teal-400/[0.14]"
+          >
+            <span className="flex items-center font-heading text-xs uppercase tracking-wide text-teal-700 dark:text-teal-300">
+              <MdOutlineKeyboardArrowLeft className="mr-1 h-4 w-auto" />
+              Shipped before this
+            </span>
+            <span className="mt-1 block text-sm font-medium group-hover:underline">
+              {prevProject.title}
+            </span>
+          </Link>
+        ) : (
+          <span aria-hidden="true" />
+        )}
+        {nextProject && (
+          <Link
+            href={`/projects/${nextProject.slug}`}
+            className="group rounded-lg bg-teal-600/[0.07] p-4 text-right transition-colors hover:bg-teal-600/[0.14] dark:bg-teal-400/[0.08] dark:hover:bg-teal-400/[0.14]"
+          >
+            <span className="flex items-center justify-end font-heading text-xs uppercase tracking-wide text-teal-700 dark:text-teal-300">
+              Shipped after this
+              <MdOutlineKeyboardArrowRight className="ml-1 h-4 w-auto" />
+            </span>
+            <span className="mt-1 block text-sm font-medium group-hover:underline">
+              {nextProject.title}
+            </span>
+          </Link>
+        )}
+      </Box>
+      <Text as="p" fontSize="sm" className="mt-8 mb-2 text-center opacity-75">
+        Questions about this one?
+      </Text>
+      <Text as="p" align="center" className="mb-4 font-heading font-medium">
         <Link
-          href={`/projects/${prevProject.slug}`}
-          className="group rounded-lg bg-teal-600/[0.07] p-4 transition-colors hover:bg-teal-600/[0.14] dark:bg-teal-400/[0.08] dark:hover:bg-teal-400/[0.14]"
+          href={`mailto:${emailAddress}`}
+          className="text-teal-700 underline decoration-teal-600/40 underline-offset-4 hover:decoration-teal-600 dark:text-teal-300 dark:decoration-teal-400/40 dark:hover:decoration-teal-300"
         >
-          <span className="flex items-center font-heading text-xs uppercase tracking-wide text-teal-700 dark:text-teal-300">
-            <MdOutlineKeyboardArrowLeft className="mr-1 h-4 w-auto" />
-            Shipped before this
-          </span>
-          <span className="mt-1 block text-sm font-medium group-hover:underline">
-            {prevProject.title}
-          </span>
+          {emailAddress}
         </Link>
-      ) : (
-        <span aria-hidden="true" />
-      )}
-      {nextProject && (
-        <Link
-          href={`/projects/${nextProject.slug}`}
-          className="group rounded-lg bg-teal-600/[0.07] p-4 text-right transition-colors hover:bg-teal-600/[0.14] dark:bg-teal-400/[0.08] dark:hover:bg-teal-400/[0.14]"
-        >
-          <span className="flex items-center justify-end font-heading text-xs uppercase tracking-wide text-teal-700 dark:text-teal-300">
-            Shipped after this
-            <MdOutlineKeyboardArrowRight className="ml-1 h-4 w-auto" />
-          </span>
-          <span className="mt-1 block text-sm font-medium group-hover:underline">
-            {nextProject.title}
-          </span>
-        </Link>
-      )}
+      </Text>
     </Box>
-    <Text as="p" fontSize="sm" className="mt-8 mb-2 text-center opacity-75">
-      Questions about this one?
-    </Text>
-    <Text as="p" align="center" className="mb-4 font-heading font-medium">
-      <Link
-        href="mailto:amirseraj.ir@gmail.com"
-        className="text-teal-700 underline decoration-teal-600/40 underline-offset-4 hover:decoration-teal-600 dark:text-teal-300 dark:decoration-teal-400/40 dark:hover:decoration-teal-300"
-      >
-        amirseraj.ir@gmail.com
-      </Link>
-    </Text>
-  </Box>
-);
+  );
+};
 
 interface ProjectLink {
   slug: string;
@@ -166,10 +169,11 @@ export const ProjectDetail = ({
   readTime,
   prevProject = null as ProjectLink | null,
   nextProject = null as ProjectLink | null,
+  email = "amirseraj.ir@gmail.com" as string | null,
 }) => {
   return (
     <Box className="flex h-screen w-full flex-col overflow-y-auto">
-      <Nav variant="projects" />
+      <Nav variant="projects" email={email} />
       <Container className="w-full">
         <Box className="mx-auto w-full max-w-3xl">
           <Header
@@ -196,7 +200,7 @@ export const ProjectDetail = ({
               <Box html={body} />
             </Prose>
           </motion.div>
-          <FooterNav prevProject={prevProject} nextProject={nextProject} />
+          <FooterNav prevProject={prevProject} nextProject={nextProject} email={email} />
         </Box>
       </Container>
       <Copyright />

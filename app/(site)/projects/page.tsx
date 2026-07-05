@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Projects } from "@components/sections";
 import { Nav } from "@components/common";
-import { getProjects } from "../../../cms/queries";
+import { getProjects, getSettings } from "../../../cms/queries";
 
 export const metadata: Metadata = {
   title: "Projects | Amir Seraj",
@@ -17,11 +17,17 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ProjectsPage() {
-  const allprojects = await getProjects();
+  const [allprojects, settings] = await Promise.all([
+    getProjects(),
+    getSettings(),
+  ]);
   return (
     <main>
-      <Nav className="fixed py-3 bg-teal-900 bg-opacity-90 text-teal-50 backdrop-blur dark:bg-[#082f2c] dark:bg-opacity-90" />
-      <Projects allprojects={allprojects} />
+      <Nav
+        className="fixed py-3 bg-teal-900 bg-opacity-90 text-teal-50 backdrop-blur dark:bg-[#082f2c] dark:bg-opacity-90"
+        email={settings.email}
+      />
+      <Projects allprojects={allprojects} email={settings.email} />
     </main>
   );
 }

@@ -7,11 +7,27 @@ import { Box, Container, Text } from "@components/ui";
 
 const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
+const HEADING = "Who's asking";
+
+const PARAGRAPHS = [
+  {
+    text: "Engineer's training. Researcher's questions. Three shipped systems that read emotion, posture and balance, and answer well. If software is going to watch people anyway, it should learn some manners; mine do.",
+  },
+];
+
 const COUNTS = [
   { value: 13, label: "projects shipped, 2023 to 2026" },
   { value: 2, label: "installations exhibited in 2024" },
   { value: 1, label: "mirror that reads faces" },
 ];
+
+type AboutProps = {
+  about?: {
+    heading?: string | null;
+    paragraphs?: { text: string }[] | null;
+    stats?: { value: number; label: string }[] | null;
+  } | null;
+};
 
 const CountUp = ({ value }: { value: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -46,8 +62,11 @@ const CountUp = ({ value }: { value: number }) => {
   );
 };
 
-export const About = () => {
+export const About = ({ about }: AboutProps) => {
   const reduceMotion = useReducedMotion();
+  const heading = about?.heading ?? HEADING;
+  const paragraphs = about?.paragraphs?.length ? about.paragraphs : PARAGRAPHS;
+  const stats = about?.stats?.length ? about.stats : COUNTS;
 
   return (
     <Container
@@ -64,17 +83,16 @@ export const About = () => {
           as="h2"
           className="mb-5 font-heading text-3xl font-bold md:text-4xl"
         >
-          Who&apos;s asking
+          {heading}
         </Text>
-        <Text as="p" className="max-w-[58ch] leading-relaxed">
-          Engineer&apos;s training. Researcher&apos;s questions. Three shipped
-          systems that read emotion, posture and balance, and answer well. If
-          software is going to watch people anyway, it should learn some
-          manners; mine do.
-        </Text>
+        {paragraphs.map((p, i) => (
+          <Text key={i} as="p" className="max-w-[58ch] leading-relaxed">
+            {p.text}
+          </Text>
+        ))}
       </motion.div>
       <Box className="flex flex-col gap-6 md:pt-2">
-        {COUNTS.map(({ value, label }, i) => (
+        {stats.map(({ value, label }, i) => (
           <motion.div
             key={label}
             className="border-t border-slate-300 pt-4 dark:border-slate-600"

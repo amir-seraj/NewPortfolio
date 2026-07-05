@@ -9,14 +9,15 @@ interface Props {
   children?: ReactNode;
   as?: "div" | "section" | JSXElementConstructor<any>;
   full?: boolean;
+  email?: string | null;
 }
 
-export const Layout: FC<Props> = ({ children }) => {
+export const Layout: FC<Props> = ({ children, email }) => {
   return (
     <Box>
       <Box className={s.root}>
         <Box className="md:h-screen">
-          <SideBar />
+          <SideBar email={email} />
         </Box>
         <Box className="overflow-x-hidden">
           <main>{children}</main>

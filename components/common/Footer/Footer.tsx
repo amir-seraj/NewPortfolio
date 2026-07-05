@@ -3,13 +3,20 @@ import { BsArrowUpCircle } from "react-icons/bs";
 import { Container, Box, Text, Link } from "@components/ui";
 import { Copyright } from "@components/common";
 
-const LINKS = [
-  { label: "Email me", href: "mailto:amirseraj.ir@gmail.com" },
+const STATIC_LINKS = [
   { label: "The evidence", href: "/projects" },
   { label: "Who's asking", href: "/#about" },
 ];
 
-export const Footer = () => {
+export const Footer = ({
+  email = "amirseraj.ir@gmail.com",
+}: {
+  email?: string | null;
+}) => {
+  const LINKS = [
+    { label: "Email me", href: `mailto:${email ?? "amirseraj.ir@gmail.com"}` },
+    ...STATIC_LINKS,
+  ];
   return (
     <footer>
       <Container className="relative mb-10 grid-cols-5 gap-20 md:grid 2xl:px-16">

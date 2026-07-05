@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Nav } from "@components/common";
 import { Container } from "@components/ui";
 import { PostCard } from "../../../components/blog/PostCard";
-import { getPublishedPosts, getUsedTags } from "../../../cms/queries";
+import { getPublishedPosts, getSettings, getUsedTags } from "../../../cms/queries";
 
 export const metadata: Metadata = {
   title: "Blog | Amir Seraj",
@@ -19,11 +19,18 @@ export default async function BlogPage({
   searchParams: Promise<{ tag?: string }>;
 }) {
   const { tag } = await searchParams;
-  const [posts, allTags] = await Promise.all([getPublishedPosts(tag), getUsedTags()]);
+  const [posts, allTags, settings] = await Promise.all([
+    getPublishedPosts(tag),
+    getUsedTags(),
+    getSettings(),
+  ]);
 
   return (
     <main>
-      <Nav className="fixed py-3 bg-white bg-opacity-75 backdrop-blur dark:bg-[#323232] dark:bg-opacity-90" />
+      <Nav
+        className="fixed py-3 bg-white bg-opacity-75 backdrop-blur dark:bg-[#323232] dark:bg-opacity-90"
+        email={settings.email}
+      />
       <Container className="pt-32 pb-20">
         <h1 className="font-heading text-4xl font-bold text-slate-900 dark:text-slate-100 md:text-5xl">Blog</h1>
         {allTags.length > 0 && (

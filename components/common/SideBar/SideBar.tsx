@@ -9,7 +9,11 @@ import { Box, Link, Text } from "@components/ui";
 import s from "./SideBar.module.scss";
 import { Logo } from "../Logo/Logo";
 
-export const SideBar = () => {
+export const SideBar = ({
+  email = "amirseraj.ir@gmail.com",
+}: {
+  email?: string | null;
+}) => {
   const links = [
     {
       href: "https://github.com/amir-seraj",
@@ -23,7 +27,7 @@ export const SideBar = () => {
       title: "Linkedin",
     },
     {
-      href: "mailto:amirseraj.ir@gmail.com",
+      href: `mailto:${email ?? "amirseraj.ir@gmail.com"}`,
       Icon: AiFillMail,
       title: "Email",
     },

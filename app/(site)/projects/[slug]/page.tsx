@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Box } from "@components/ui";
 import { PrismHighlight } from "@components/common";
 import { ProjectDetail } from "@components/projects/Detail";
-import { getProject, getProjects } from "../../../../cms/queries";
+import { getProject, getProjects, getSettings } from "../../../../cms/queries";
 
 interface Params {
   slug: string;
@@ -45,7 +45,7 @@ export default async function ProjectPage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const project = await getProject(slug);
+  const [project, settings] = await Promise.all([getProject(slug), getSettings()]);
   if (!project) notFound();
 
   // Chronological neighbors: prev = shipped before, next = shipped after.
@@ -70,6 +70,7 @@ export default async function ProjectPage({
           tags={project.tags ?? []}
           prevProject={toLink(byDate[i - 1])}
           nextProject={toLink(byDate[i + 1])}
+          email={settings.email}
         />
       </Box>
     </main>

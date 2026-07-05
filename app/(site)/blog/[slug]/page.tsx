@@ -32,13 +32,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function PostPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const [post, settings] = await Promise.all([getPost(slug), getSettings()]);
   if (!post) notFound();
   const cover = typeof post.coverImage === "object" ? post.coverImage : null;
 
   return (
     <main>
-      <Nav className="fixed py-3 bg-white bg-opacity-75 backdrop-blur dark:bg-[#323232] dark:bg-opacity-90" />
+      <Nav
+        className="fixed py-3 bg-white bg-opacity-75 backdrop-blur dark:bg-[#323232] dark:bg-opacity-90"
+        email={settings.email}
+      />
       <PrismHighlight trigger={slug} />
       <Container className="pt-32 pb-20">
         <article className="prose prose-slate mx-auto dark:prose-invert lg:prose-lg">
