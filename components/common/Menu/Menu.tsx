@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/compat/router";
 import { motion, useReducedMotion } from "motion/react";
 import cn from "classnames";
 import { Container, Link } from "@components/ui";
@@ -14,7 +16,12 @@ const LINKS = [
 ];
 
 export const Menu = ({ onClose }) => {
-  const { pathname } = useRouter();
+  // next/compat/router works in both the app dir (returns null) and pages
+  // dir (returns the NextRouter) — plain next/router's useRouter throws
+  // when mounted under the App Router, which Nav now renders into via
+  // app/(site)/page.tsx.
+  const router = useRouter();
+  const pathname = router?.pathname;
   const reduceMotion = useReducedMotion();
 
   const getClasses = (path: string) =>

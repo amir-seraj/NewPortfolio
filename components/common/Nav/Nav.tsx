@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useState } from "react";
 import { Container, Box, Link } from "@components/ui";
 import { Menu } from "@components/common";

@@ -47,7 +47,7 @@ const Share = ({ url, title }) => (
 );
 
 const Header = ({ slug, title, readTime, publishedAt, tags }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (ref.current) {
@@ -149,16 +149,21 @@ const FooterNav = ({ prevProject, nextProject }) => (
   </Box>
 );
 
+interface ProjectLink {
+  slug: string;
+  title: string;
+}
+
 export const ProjectDetail = ({
   slug,
   title,
   body,
   coverImage,
-  tags = [],
+  tags = [] as string[],
   publishedAt,
   readTime,
-  prevProject = null,
-  nextProject = null,
+  prevProject = null as ProjectLink | null,
+  nextProject = null as ProjectLink | null,
 }) => {
   return (
     <Box className="flex h-screen w-full flex-col overflow-y-auto">
