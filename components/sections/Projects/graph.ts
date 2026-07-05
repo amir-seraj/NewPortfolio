@@ -53,7 +53,7 @@ const LAYOUT: Record<
     x: 185,
     y: 175,
     dx: 0,
-    dy: 26,
+    dy: 30,
     anchor: "middle",
     label: "reSilence",
   },

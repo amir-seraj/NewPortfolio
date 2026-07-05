@@ -29,12 +29,12 @@ export const Nav: FC<Props> = ({ className = "", variant = "main" }) => {
         </nav>
       )}
       {variant === "projects" && (
-        <Box className="sticky top-0 z-10 border-b bg-white backdrop-blur backdrop-filter dark:border-[#595959]  dark:bg-[#161616] md:bg-opacity-80 md:dark:bg-opacity-90">
+        <Box className="sticky top-0 z-10 border-b border-teal-800 bg-teal-900 text-teal-50 backdrop-blur backdrop-filter dark:border-teal-950 dark:bg-[#062e2a] md:bg-opacity-90 md:dark:bg-opacity-90">
           <Container className="flex items-center justify-between py-3">
-            <Logo className="md:hidden" />
+            <Logo className="md:hidden !text-teal-100 hover:!text-white" />
             <Link
               href="/projects"
-              className="relative items-center hidden text-xs uppercase -left-1 font-heading hover:text-slate-500 md:flex"
+              className="relative items-center hidden text-xs uppercase -left-1 font-heading text-teal-100 hover:text-white md:flex"
             >
               <MdOutlineKeyboardArrowLeft className="w-auto h-4 mr-1" /> back to
               Projects

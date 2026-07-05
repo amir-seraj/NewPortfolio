@@ -14,13 +14,15 @@ export const Timeline = ({ projects }: Props) => {
     .slice()
     .reverse()
     .map((b) => ({ ...b, projects: b.projects.slice().reverse() }));
+  const hasGap = blocks.some((b) => b.isGap);
 
   return (
     <>
-      <div className="mb-4 rounded-lg bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-600 dark:bg-[#323232] dark:text-slate-300">
+      <div className="mb-4 rounded-lg bg-white/[0.06] px-4 py-3 text-xs leading-relaxed text-teal-100">
         Most recent first. No categories, no reshuffling by importance
-        &mdash; just the order things shipped. A gap year sits empty on
-        purpose: no faked placeholder to fill the column.
+        &mdash; just the order things shipped.
+        {hasGap &&
+          " A gap year sits empty on purpose: no faked placeholder to fill the column."}
       </div>
 
       <div className={s.wrap}>
