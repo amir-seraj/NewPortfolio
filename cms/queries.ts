@@ -75,7 +75,10 @@ export async function getUsedTags(): Promise<Tag[]> {
   return Array.from(bySlug.values());
 }
 
-export async function getPost(slug: string): Promise<Post | null> {
+// generateMetadata() and the page component both resolve the same slug for
+// every statically generated post page — React.cache() dedupes that
+// within a single render pass instead of hitting the DB twice per path.
+export const getPost = cache(async (slug: string): Promise<Post | null> => {
   const p = await payload();
   const { docs } = await p.find({
     collection: "posts",
@@ -83,7 +86,7 @@ export async function getPost(slug: string): Promise<Post | null> {
     limit: 1,
   });
   return docs[0] ?? null;
-}
+});
 
 export async function getHome(): Promise<Home> {
   const p = await payload();
