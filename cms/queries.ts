@@ -6,6 +6,7 @@ import type {
   Project as ProjectDoc,
   Home,
   Setting,
+  Tag,
 } from "../payload-types";
 
 // Projects.tags is an array field (`{ tag: string }[]`) in the CMS schema,
@@ -57,6 +58,21 @@ export async function getPublishedPosts(tagSlug?: string): Promise<Post[]> {
     limit: 100,
   });
   return docs;
+}
+
+// Tags actually attached to a published post — used to build the /blog tag
+// filter without ever offering a tag whose posts are all drafts. Dedupes by
+// slug (a Map keyed on slug beats the brief's JSON.stringify-round-trip
+// dedup and keeps the resolved Tag object shape throughout).
+export async function getUsedTags(): Promise<Tag[]> {
+  const posts = await getPublishedPosts();
+  const bySlug = new Map<string, Tag>();
+  for (const post of posts) {
+    for (const t of post.tags ?? []) {
+      if (typeof t === "object") bySlug.set(t.slug, t);
+    }
+  }
+  return Array.from(bySlug.values());
 }
 
 export async function getPost(slug: string): Promise<Post | null> {

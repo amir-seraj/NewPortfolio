@@ -11,6 +11,7 @@ const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 const LINKS = [
   { label: "Home", href: "/" },
   { label: "The evidence", href: "/projects" },
+  { label: "Blog", href: "/blog" },
   { label: "Who's asking", href: "/#about" },
   { label: "Mail", href: "mailto:amirseraj.ir@gmail.com" },
 ];
