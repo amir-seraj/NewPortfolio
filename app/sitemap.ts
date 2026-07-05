@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
-import allprojects from "../lib/DataProjects";
+import { getProjects } from "../cms/queries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://amirseraj.ir";
+  const allprojects = await getProjects();
   return [
     { url: base },
     { url: `${base}/projects` },
-    ...allprojects.map((p: any) => ({ url: `${base}/projects/${p.slug}` })),
+    ...allprojects.map((p) => ({ url: `${base}/projects/${p.slug}` })),
   ];
 }

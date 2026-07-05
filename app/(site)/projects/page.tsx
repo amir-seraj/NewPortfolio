@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Projects } from "@components/sections";
 import { Nav } from "@components/common";
-import allprojects from "../../../lib/DataProjects";
+import { getProjects } from "../../../cms/queries";
 
 export const metadata: Metadata = {
   title: "Projects | Amir Seraj",
@@ -14,7 +14,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProjectsPage() {
+export const revalidate = 60;
+
+export default async function ProjectsPage() {
+  const allprojects = await getProjects();
   return (
     <main>
       <Nav className="fixed py-3 bg-teal-900 bg-opacity-90 text-teal-50 backdrop-blur dark:bg-[#082f2c] dark:bg-opacity-90" />

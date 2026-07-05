@@ -4,16 +4,14 @@ import { notFound } from "next/navigation";
 import { Box } from "@components/ui";
 import { PrismHighlight } from "@components/common";
 import { ProjectDetail } from "@components/projects/Detail";
-import allprojects from "../../../../lib/DataProjects";
+import { getProject, getProjects } from "../../../../cms/queries";
 
 interface Params {
   slug: string;
 }
 
-const findProject = (slug: string) =>
-  allprojects.find((p) => p.slug === slug) ?? null;
-
-export function generateStaticParams(): Params[] {
+export async function generateStaticParams(): Promise<Params[]> {
+  const allprojects = await getProjects();
   return allprojects.map((project) => ({ slug: project.slug }));
 }
 
@@ -25,7 +23,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = findProject(slug);
+  const project = await getProject(slug);
   if (!project) return {};
   const canonical = `https://amirseraj.ir/projects/${project.slug}`;
   return {
@@ -47,10 +45,11 @@ export default async function ProjectPage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const project = findProject(slug);
+  const project = await getProject(slug);
   if (!project) notFound();
 
   // Chronological neighbors: prev = shipped before, next = shipped after.
+  const allprojects = await getProjects();
   const byDate = [...allprojects].sort((a, b) =>
     a.publishedAt.localeCompare(b.publishedAt)
   );
