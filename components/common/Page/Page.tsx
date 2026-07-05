@@ -1,8 +1,9 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import Head from "next/head";
 import { useTheme } from "hooks";
 
 interface Props {
+  children?: ReactNode;
   title: string;
   url: string;
   type?: string;

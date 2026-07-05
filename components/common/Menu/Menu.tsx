@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import cn from "classnames";
 import { Container, Link } from "@components/ui";
 import { CloseButton } from "./Close";
 
-const EASE_EXPO = [0.16, 1, 0.3, 1];
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
 const LINKS = [
   { label: "Home", href: "/" },

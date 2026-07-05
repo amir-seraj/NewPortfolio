@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Box, Container, Text } from "@components/ui";
 
-const EASE_EXPO = [0.16, 1, 0.3, 1];
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
 const COUNTS = [
   { value: 13, label: "projects shipped, 2023 to 2026" },

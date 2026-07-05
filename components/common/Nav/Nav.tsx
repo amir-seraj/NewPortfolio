@@ -4,7 +4,7 @@ import { Menu } from "@components/common";
 import { MailMe, MenuButton } from "..";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { Logo } from "../Logo/Logo";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 
 interface Props {
   variant?: "main" | "projects";

@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Box,Text } from '@components/ui';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export const DetailImage = ({ coverImage,title }) => {
   return (

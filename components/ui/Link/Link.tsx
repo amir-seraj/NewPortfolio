@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, ReactNode } from 'react';
 import NextLink, { LinkProps } from 'next/link';
 import cn from 'classnames';
 
@@ -9,6 +9,7 @@ interface Props extends LinkProps {
   onClick?: () => void;
   target?: '_blank' | '_self' | '_parent' | '_top';
   style?: CSSProperties;
+  children?: ReactNode;
 }
 
 export const Link: FC<Props> = ({
@@ -21,7 +22,7 @@ export const Link: FC<Props> = ({
   const classes = cn(s.root, className);
 
   return (
-    <NextLink href={href}>
+    <NextLink href={href} legacyBehavior>
       <a className={classes} {...rest} onClick={onClick}>
         {children}
       </a>

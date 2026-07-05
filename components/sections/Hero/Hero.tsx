@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/legacy/image";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Box, Container, Link } from "@components/ui";
 
-const EASE_EXPO = [0.16, 1, 0.3, 1];
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
 const LINES = [
   { text: "Machines can learn", accent: false },

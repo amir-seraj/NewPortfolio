@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { VscChromeClose } from "react-icons/vsc";
 
 export const CloseButton = ({ onClose }) => {

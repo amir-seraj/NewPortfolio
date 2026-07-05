@@ -1,10 +1,10 @@
 import { useRef, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Box, Container, Text, Link } from "@components/ui";
 import { Copyright, Nav } from "@components/common";
 import { formatDate } from "@utils/format-date";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   TwitterShareButton,
   LinkedinShareButton,
