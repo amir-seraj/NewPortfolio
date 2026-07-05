@@ -68,6 +68,10 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    media: Media;
+    tags: Tag;
+    posts: Post;
+    projects: Project;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -76,6 +80,10 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -85,8 +93,14 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    home: Home;
+    settings: Setting;
+  };
+  globalsSelect: {
+    home: HomeSelect<false> | HomeSelect<true>;
+    settings: SettingsSelect<false> | SettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -143,6 +157,105 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: number;
+  name: string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: number;
+  title: string;
+  slug: string;
+  publishedAt?: string | null;
+  coverImage?: (number | null) | Media;
+  tags?: (number | Tag)[] | null;
+  excerpt?: string | null;
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  readingTime?: number | null;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    ogImage?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  slug: string;
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  description: string;
+  /**
+   * Raw HTML with Tailwind classes. New class names require re-running the class extraction (happens automatically on deploy).
+   */
+  body: string;
+  /**
+   * Path under /public, e.g. /images/…
+   */
+  coverImage: string;
+  socialImage: string;
+  /**
+   * Kept as original string for explorer parity
+   */
+  publishedAt: string;
+  readTime: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -164,10 +277,27 @@ export interface PayloadKv {
  */
 export interface PayloadLockedDocument {
   id: number;
-  document?: {
-    relationTo: 'users';
-    value: number | User;
-  } | null;
+  document?:
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
+      } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
@@ -235,6 +365,80 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  publishedAt?: T;
+  coverImage?: T;
+  tags?: T;
+  excerpt?: T;
+  body?: T;
+  readingTime?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  description?: T;
+  body?: T;
+  coverImage?: T;
+  socialImage?: T;
+  publishedAt?: T;
+  readTime?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -272,6 +476,132 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  hero?: {
+    lines?:
+      | {
+          text: string;
+          accent?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+    ctaLabel?: string | null;
+    ctaHref?: string | null;
+    strip?:
+      | {
+          item: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  about?: {
+    heading?: string | null;
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    stats?:
+      | {
+          value: number;
+          label: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  contact?: {
+    kicker?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: number;
+  siteName?: string | null;
+  siteUrl?: string | null;
+  defaultDescription?: string | null;
+  defaultOgImage?: string | null;
+  email?: string | null;
+  twitterHandle?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        lines?:
+          | T
+          | {
+              text?: T;
+              accent?: T;
+              id?: T;
+            };
+        ctaLabel?: T;
+        ctaHref?: T;
+        strip?:
+          | T
+          | {
+              item?: T;
+              id?: T;
+            };
+      };
+  about?:
+    | T
+    | {
+        heading?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              id?: T;
+            };
+      };
+  contact?:
+    | T
+    | {
+        kicker?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  siteName?: T;
+  siteUrl?: T;
+  defaultDescription?: T;
+  defaultOgImage?: T;
+  email?: T;
+  twitterHandle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
