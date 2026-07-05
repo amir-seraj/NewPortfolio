@@ -60,7 +60,7 @@ export default async function ProjectPage({
   return (
     <main>
       <PrismHighlight trigger={slug} />
-      <Box className="w-screen">
+      <Box className="w-full">
         <ProjectDetail
           title={project.title}
           body={project.body}
