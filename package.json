@@ -1,25 +1,36 @@
 {
   "name": "amirseraj",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap"
   },
   "dependencies": {
     "@next/env": "^14.2.7",
     "@next/third-parties": "^15.5.20",
+    "@payloadcms/db-postgres": "^3.85.2",
+    "@payloadcms/next": "^3.85.2",
+    "@payloadcms/richtext-lexical": "^3.85.2",
+    "@payloadcms/storage-vercel-blob": "^3.85.2",
     "@tailwindcss/typography": "^0.5.0",
     "classnames": "^2.3.1",
+    "graphql": "^17.0.2",
     "motion": "^12.42.2",
     "next": "^15.5.20",
+    "payload": "^3.85.2",
     "prismjs": "^1.27.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-icons": "^4.3.1",
     "react-share": "^5.3.0",
-    "sass": "^1.45.1"
+    "sass": "^1.45.1",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",

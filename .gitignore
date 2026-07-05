@@ -40,3 +40,6 @@ yarn-error.log*
 # testing (playwright)
 /test-results/
 /playwright-report/
+
+# payload cms local upload fallback
+/media
