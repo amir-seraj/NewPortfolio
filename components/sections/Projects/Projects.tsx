@@ -15,7 +15,7 @@ interface Project {
   description: string;
   coverImage: string;
   publishedAt: string;
-  readTime: number;
+  readTime: string;
   tags?: string[];
 }
 

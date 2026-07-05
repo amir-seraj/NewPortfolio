@@ -1,5 +1,9 @@
+"use client";
+
 import { useRef, useEffect } from "react";
 import Image from "next/legacy/image";
+import Prism from "prismjs";
+import "prismjs/themes/prism-okaidia.css";
 import { Box, Container, Text, Link } from "@components/ui";
 import { Copyright, Nav } from "@components/common";
 import { formatDate } from "@utils/format-date";
@@ -165,6 +169,10 @@ export const ProjectDetail = ({
   prevProject = null as ProjectLink | null,
   nextProject = null as ProjectLink | null,
 }) => {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [slug]);
+
   return (
     <Box className="flex h-screen w-full flex-col overflow-y-auto">
       <Nav variant="projects" />
