@@ -2,11 +2,14 @@ import { useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
 
-import { Box } from "@components/ui";
 import { Page } from "@components/common";
-import { DetailImage } from "@components/projects";
 import allprojects from "../../lib/DataProjects";
 import { ProjectDetail } from "@components/projects/Detail";
+
+interface ProjectLink {
+  slug: string;
+  title: string;
+}
 
 interface ProjectProps {
   slug: string;
@@ -18,9 +21,12 @@ interface ProjectProps {
   publishedAt: string;
   canonicalURL: string;
   readTime: string;
+  tags: string[];
+  prevProject: ProjectLink | null;
+  nextProject: ProjectLink | null;
 }
 
-function Home(project: ProjectProps) {
+function ProjectPage(project: ProjectProps) {
   const {
     slug,
     title,
@@ -31,6 +37,9 @@ function Home(project: ProjectProps) {
     publishedAt,
     canonicalURL,
     readTime,
+    tags,
+    prevProject,
+    nextProject,
   } = project;
 
   useEffect(() => {
@@ -46,50 +55,51 @@ function Home(project: ProjectProps) {
       image={socialImage}
       canonicalURL={canonicalURL}
     >
-      {/* <Box className="flex h-screen overflow-hidden md:grid-cols-2"> */}
-        {/* <Box className="hidden h-full md:w-1/6">
-          <DetailImage coverImage={coverImage} title={title} />
-        </Box> */}
-        <Box className="w-screen ">
-          <ProjectDetail
-            title={title}
-            body={body}
-            coverImage={coverImage}
-            slug={slug}
-            publishedAt={publishedAt}
-            readTime={readTime}
-          />
-        </Box>
-      {/* </Box> */}
+      <ProjectDetail
+        title={title}
+        body={body}
+        coverImage={coverImage}
+        slug={slug}
+        publishedAt={publishedAt}
+        readTime={readTime}
+        tags={tags}
+        prevProject={prevProject}
+        nextProject={nextProject}
+      />
     </Page>
   );
 }
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const project = allprojects.find((project) => project.slug === slug);
+  const project = allprojects.find((p) => p.slug === slug);
   if (!project) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
+  // Chronological neighbors: prev = shipped before, next = shipped after.
+  const byDate = [...allprojects].sort((a, b) =>
+    a.publishedAt.localeCompare(b.publishedAt)
+  );
+  const i = byDate.findIndex((p) => p.slug === slug);
+  const toLink = (p) => (p ? { slug: p.slug, title: p.title } : null);
   return {
-    props: project, // Wrap the project object in an object with a `props` key
+    props: {
+      ...project,
+      tags: project.tags ?? [],
+      prevProject: toLink(byDate[i - 1]),
+      nextProject: toLink(byDate[i + 1]),
+    },
   };
 }
 
 export async function getStaticPaths() {
-  const paths = allprojects.map((project) => ({
-    params: {
-      slug: project.slug,
-    },
-  }));
-
   return {
-    paths,
+    paths: allprojects.map((project) => ({
+      params: { slug: project.slug },
+    })),
     fallback: false,
   };
 }
 
-export default Home;
+export default ProjectPage;
 export {};
