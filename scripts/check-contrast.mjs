@@ -22,12 +22,17 @@ const mango = {
 };
 
 // Site neutrals the mango accent actually sits on top of.
+// Note: #202020 (app/(site)/layout.tsx viewport themeColor) is browser-chrome
+// metadata only, never a rendered background — the real dark body bg is
+// #282828 (styles/globals.css `dark:bg-[#282828]`), so that's what we test.
 const neutrals = {
-  darkBody: "#202020", // body dark bg (app/(site)/layout.tsx theme-color, styles/globals.css)
-  darkSurface: "#282828", // styles/globals.css body dark:bg
+  darkBody: "#282828", // styles/globals.css body dark:bg — the rendered dark background
   white: "#FFFFFF",
   slate300: "#CBD5E1", // Button.module.scss .primary bg
 };
+
+// Bespoke muted mango used only in Timeline.module.scss .gapNote (not in the scale).
+const gapNote = "#CFA279";
 
 // ---- WCAG contrast math ----
 function hexToRgb(hex) {
@@ -60,7 +65,7 @@ function contrastRatio(hexA, hexB) {
 const pairs = [
   // A. mango accent text on dark backgrounds --------------------------------
   {
-    label: "mango-300 on #202020 (dark body bg) — nav/footer/link accents",
+    label: "mango-300 on #282828 (dark body bg) — nav/footer/link accents",
     fg: mango[300],
     bg: neutrals.darkBody,
     size: "body",
@@ -101,19 +106,41 @@ const pairs = [
     size: "body",
     min: 4.5,
   },
+  {
+    label: "mango-50 on mango-900 (Nav 'projects' variant + MailMe, light-mode bg)",
+    fg: mango[50],
+    bg: mango[900],
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "#CFA279 gapNote on mango-900 (Timeline gap note, light-mode surface)",
+    fg: gapNote,
+    bg: mango[900],
+    size: "body", // 12.5px italic
+    min: 4.5,
+  },
+  {
+    label: "#CFA279 gapNote on mango-950 (Timeline gap note, dark surface)",
+    fg: gapNote,
+    bg: mango[950],
+    size: "body",
+    min: 4.5,
+  },
 
   // B. dark text on mango button / CTA fill ---------------------------------
+  // Hero.tsx:71 ships `bg-mango-300 ... text-mango-950 ... hover:bg-mango-200`.
   {
-    label: "mango-950 text on mango-400 (Hero CTA default fill)",
+    label: "mango-950 text on mango-300 (Hero CTA default fill)",
     fg: mango[950],
-    bg: mango[400],
-    size: "large", // uppercase bold text-sm/14px+ bold
+    bg: mango[300],
+    size: "large", // uppercase bold text-sm (14px bold)
     min: 4.5, // validated at body threshold anyway for margin
   },
   {
-    label: "mango-950 text on mango-300 (Hero CTA hover fill)",
+    label: "mango-950 text on mango-200 (Hero CTA hover fill)",
     fg: mango[950],
-    bg: mango[300],
+    bg: mango[200],
     size: "large",
     min: 4.5,
   },
