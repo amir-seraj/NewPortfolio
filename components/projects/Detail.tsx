@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import Image from "next/legacy/image";
 import { Box, Container, Text, Link } from "@components/ui";
 import { Copyright, Nav } from "@components/common";
+import { BlockRenderer } from "@components/projects/blocks/BlockRenderer";
 import { formatDate } from "@utils/format-date";
 import {
   MdOutlineKeyboardArrowLeft,
@@ -174,6 +175,7 @@ export const ProjectDetail = ({
   slug,
   title,
   body,
+  layout = null as { id?: string | null; blockType: string }[] | null,
   coverImage,
   tags = [] as string[],
   publishedAt,
@@ -210,7 +212,11 @@ export const ProjectDetail = ({
                 priority
                 className="rounded-lg bg-white"
               />
-              <Box html={body} />
+              {layout && layout.length > 0 ? (
+                <BlockRenderer blocks={layout} />
+              ) : (
+                <Box html={body} />
+              )}
             </Prose>
           </motion.div>
           <FooterNav prevProject={prevProject} nextProject={nextProject} email={email} />
