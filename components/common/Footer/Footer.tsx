@@ -32,7 +32,7 @@ export const Footer = ({
           </Text>
           <Text className="mb-6">
             Machines can learn to notice people. I teach them, one{" "}
-            <code className="text-sm font-bold dark:font-medium dark:text-teal-300 2xl:text-lg">
+            <code className="text-sm font-bold dark:font-medium dark:text-mango-300 2xl:text-lg">
               {"<interaction/>"}
             </code>{" "}
             at a time.
@@ -51,7 +51,7 @@ export const Footer = ({
             <Link
               key={href}
               href={href}
-              className="mb-3 block text-base font-medium hover:text-teal-700 dark:text-slate-300 dark:hover:text-teal-300"
+              className="mb-3 block text-base font-medium hover:text-mango-700 dark:text-slate-300 dark:hover:text-mango-300"
             >
               {label}
             </Link>
@@ -60,7 +60,7 @@ export const Footer = ({
 
         <Link
           href="#top"
-          className="group absolute bottom-0 right-10 hidden items-center gap-2 text-sm font-medium uppercase text-slate-500 transition duration-300 ease-in-out hover:text-teal-700 dark:text-slate-300 dark:hover:text-teal-300 md:flex"
+          className="group absolute bottom-0 right-10 hidden items-center gap-2 text-sm font-medium uppercase text-slate-500 transition duration-300 ease-in-out hover:text-mango-700 dark:text-slate-300 dark:hover:text-mango-300 md:flex"
         >
           Back to top
           <BsArrowUpCircle className="relative -top-[2px] h-5 w-5 transform transition duration-300 ease-in-out group-hover:-translate-y-1" />

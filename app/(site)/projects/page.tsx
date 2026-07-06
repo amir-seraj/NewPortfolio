@@ -24,7 +24,7 @@ export default async function ProjectsPage() {
   return (
     <main>
       <Nav
-        className="fixed py-3 bg-teal-900 bg-opacity-90 text-teal-50 backdrop-blur dark:bg-[#082f2c] dark:bg-opacity-90"
+        className="fixed py-3 bg-mango-900 bg-opacity-90 text-mango-50 backdrop-blur dark:bg-mango-950 dark:bg-opacity-90"
         email={settings.email}
       />
       <Projects allprojects={allprojects} email={settings.email} />

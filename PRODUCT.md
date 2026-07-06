@@ -14,7 +14,9 @@ Personal portfolio of Amir Seraj: HCI researcher and developer (MSc, University 
 
 ## Brand Personality
 
-Bold, direct, confident. Claims first, receipts immediately after. Copy is assertive and short; numbers are real counts, never vanity metrics. The energy of the existing site's dark graphite + teal identity, turned up: statement headlines, full-width project banners, the email address as the closing move. Emotional goal: conviction — "this person delivers."
+Bold, direct, confident. Claims first, receipts immediately after. Copy is assertive and short; numbers are real counts, never vanity metrics. The energy of the existing site's dark graphite + mango identity, turned up: statement headlines, full-width project banners, the email address as the closing move. Emotional goal: conviction — "this person delivers."
+
+*(2026-07-06: accent evolved from teal/emerald to mango — user directive. Dark graphite/slate base is unchanged; only the accent hue moved, from a cool teal to a warm, energetic mango-orange. See `tailwind.config.cjs` `theme.extend.colors.mango` and `scripts/check-contrast.mjs` for the validated scale.)*
 
 ## Anti-references
 
@@ -26,7 +28,7 @@ Bold, direct, confident. Claims first, receipts immediately after. Copy is asser
 ## Design Principles
 
 1. **Claims, then receipts.** Every assertive statement is followed by shipped evidence within one scroll.
-2. **Loyal evolution.** The existing identity (dark graphite, slate, teal/emerald accent, left rail, avatar, Poppins/Montserrat) is the brand; redesigns evolve it, never replace it.
+2. **Loyal evolution.** The existing identity (dark graphite, slate, mango accent — evolved 2026-07-06 from teal/emerald, per user directive — left rail, avatar, Poppins/Montserrat) is the brand; redesigns evolve it, never replace it.
 3. **One address, no form.** Contact is the email itself, displayed large. No friction, no capture forms.
 4. **Honest signals.** Counts are real, motion is earned, nothing "live" is faked.
 5. **Reader's-time respect.** The page must survive a 30-second recruiter scan: headline → three banners → email.

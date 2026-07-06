@@ -43,13 +43,13 @@ body {
   font-family: Times, serif !important;
 }
 .prose pre {
-  @apply bg-[#0f3d38] dark:bg-[#0a2f2b] !important;
+  @apply bg-mango-900 dark:bg-mango-950 !important;
 }
 code {
   @apply font-mono !important;
 }
 .prose code {
-  @apply whitespace-pre bg-[#0f3d38] font-mono text-sm dark:bg-[#0a2f2b] !important;
+  @apply whitespace-pre bg-mango-900 font-mono text-sm dark:bg-mango-950 !important;
 }
 .prose svg {
   width: 0;

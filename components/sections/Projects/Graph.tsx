@@ -53,18 +53,18 @@ export const Graph = ({ projects }: Props) => {
 
   return (
     <>
-      <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-lg bg-white/[0.06] px-3.5 py-2.5 text-[11px] text-teal-100">
+      <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-lg bg-white/[0.06] px-3.5 py-2.5 text-[11px] text-mango-100">
         <span className="flex items-center gap-1.5">
-          <i className="inline-block h-1.5 w-1.5 rounded-full border-[1.5px] border-teal-200/70" />
-          <i className="inline-block h-3 w-3 rounded-full border-[1.5px] border-teal-200/70" />
+          <i className="inline-block h-1.5 w-1.5 rounded-full border-[1.5px] border-mango-200/70" />
+          <i className="inline-block h-3 w-3 rounded-full border-[1.5px] border-mango-200/70" />
           Size = shared-tag connections
         </span>
         <span className="flex items-center gap-1.5">
-          <i className="inline-block h-[2px] w-4 bg-teal-200/60" />
+          <i className="inline-block h-[2px] w-4 bg-mango-200/60" />
           Shared tag
         </span>
         <span className="flex items-center gap-1.5">
-          <i className="inline-block h-2.5 w-2.5 rounded-full border-[1.5px] border-dashed border-teal-200/60" />
+          <i className="inline-block h-2.5 w-2.5 rounded-full border-[1.5px] border-dashed border-mango-200/60" />
           No shared tags with anything here
         </span>
       </div>
@@ -93,7 +93,7 @@ export const Graph = ({ projects }: Props) => {
                   strokeWidth={active ? 2.5 : 1.5}
                   className={cn(
                     "transition-[stroke,opacity] duration-200",
-                    active ? "stroke-white" : "stroke-teal-200/30",
+                    active ? "stroke-white" : "stroke-mango-200/30",
                     dim && "opacity-10"
                   )}
                 />
@@ -140,10 +140,10 @@ export const Graph = ({ projects }: Props) => {
                       isSel
                         ? "fill-white stroke-white"
                         : isConn
-                        ? "fill-teal-200 stroke-teal-100"
+                        ? "fill-mango-200 stroke-mango-100"
                         : isolated
-                        ? "fill-transparent stroke-teal-200/70"
-                        : "fill-teal-300/80 stroke-teal-200/70"
+                        ? "fill-transparent stroke-mango-200/70"
+                        : "fill-mango-300/80 stroke-mango-200/70"
                     )}
                   />
                   <text
@@ -152,7 +152,7 @@ export const Graph = ({ projects }: Props) => {
                     textAnchor={n.labelAnchor}
                     className={cn(
                       "font-body text-[12px] transition-[fill] duration-200",
-                      isSel ? "fill-white font-semibold" : "fill-teal-50"
+                      isSel ? "fill-white font-semibold" : "fill-mango-50"
                     )}
                   >
                     {n.label}
@@ -164,7 +164,7 @@ export const Graph = ({ projects }: Props) => {
         </svg>
 
         <div
-          className="min-h-[220px] min-w-0 overflow-y-auto overflow-x-hidden rounded-lg border border-teal-300/25 bg-white/[0.06] p-4 md:w-1/2"
+          className="min-h-[220px] min-w-0 overflow-y-auto overflow-x-hidden rounded-lg border border-mango-300/25 bg-white/[0.06] p-4 md:w-1/2"
           aria-live="polite"
         >
           {selectedNode ? (
@@ -172,10 +172,10 @@ export const Graph = ({ projects }: Props) => {
               <h3 className="font-heading text-base font-bold text-white">
                 {selectedNode.title}
               </h3>
-              <p className="mt-1 text-xs text-teal-200">
+              <p className="mt-1 text-xs text-mango-200">
                 {selectedNode.tags.join(", ")}
               </p>
-              <p className="mt-1.5 text-xs text-teal-100/80">
+              <p className="mt-1.5 text-xs text-mango-100/80">
                 {selectedNode.degree} shared-technology connection
                 {selectedNode.degree === 1 ? "" : "s"}
               </p>
@@ -189,7 +189,7 @@ export const Graph = ({ projects }: Props) => {
                         <span className="font-medium text-white">
                           {other?.title}
                         </span>
-                        <span className="text-teal-100/80">
+                        <span className="text-mango-100/80">
                           : {e.sharedTags.join(", ")}
                         </span>
                       </li>
@@ -197,20 +197,20 @@ export const Graph = ({ projects }: Props) => {
                   })}
                 </ul>
               ) : (
-                <p className="mt-2.5 text-sm text-teal-100/80">
+                <p className="mt-2.5 text-sm text-mango-100/80">
                   No shared tags with any other project here. A genuine
                   outlier, not a bug.
                 </p>
               )}
               <Link
                 href={`/projects/${selectedNode.slug}`}
-                className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-white px-5 font-heading text-xs font-semibold uppercase tracking-wide text-teal-900 transition-colors hover:bg-teal-100"
+                className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-white px-5 font-heading text-xs font-semibold uppercase tracking-wide text-mango-900 transition-colors hover:bg-mango-100"
               >
                 Read the case study
               </Link>
             </>
           ) : (
-            <p className="text-sm text-teal-100/80">
+            <p className="text-sm text-mango-100/80">
               Click or press Enter on any node to see its shared-technology
               connections.
             </p>

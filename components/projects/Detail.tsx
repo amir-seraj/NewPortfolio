@@ -18,13 +18,13 @@ import {
 } from "react-share";
 
 const Badge = ({ children }) => (
-  <span className="rounded-full bg-teal-600/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-teal-800 dark:bg-teal-400/10 dark:text-teal-200">
+  <span className="rounded-full bg-mango-600/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-mango-800 dark:bg-mango-400/10 dark:text-mango-200">
     {children}
   </span>
 );
 
 const Prose = ({ children }) => (
-  <Box className="prose prose-lg Code language-js prose-headings:font-heading prose-headings:uppercase prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-a:text-teal-700 dark:prose-invert dark:prose-a:text-teal-300">
+  <Box className="prose prose-lg Code language-js prose-headings:font-heading prose-headings:uppercase prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-a:text-mango-700 dark:prose-invert dark:prose-a:text-mango-300">
     {children}
   </Box>
 );
@@ -63,7 +63,7 @@ const Header = ({ slug, title, readTime, publishedAt, tags }) => {
     <div ref={ref}>
       <Link
         href="/projects"
-        className="relative -left-[7px] mt-4 mb-5 flex items-center font-heading text-xs uppercase hover:text-teal-600 dark:hover:text-teal-300 md:hidden"
+        className="relative -left-[7px] mt-4 mb-5 flex items-center font-heading text-xs uppercase hover:text-mango-600 dark:hover:text-mango-300 md:hidden"
       >
         <MdOutlineKeyboardArrowLeft className="mr-1 h-4 w-auto" /> back to
         projects
@@ -106,14 +106,14 @@ const Header = ({ slug, title, readTime, publishedAt, tags }) => {
 const FooterNav = ({ prevProject, nextProject, email }) => {
   const emailAddress = email ?? "amirseraj.ir@gmail.com";
   return (
-    <Box className="mt-14 border-t border-teal-600/20 pt-8 dark:border-teal-400/20">
+    <Box className="mt-14 border-t border-mango-600/20 pt-8 dark:border-mango-400/20">
       <Box className="grid gap-3 sm:grid-cols-2">
         {prevProject ? (
           <Link
             href={`/projects/${prevProject.slug}`}
-            className="group rounded-lg bg-teal-600/[0.07] p-4 transition-colors hover:bg-teal-600/[0.14] dark:bg-teal-400/[0.08] dark:hover:bg-teal-400/[0.14]"
+            className="group rounded-lg bg-mango-600/[0.07] p-4 transition-colors hover:bg-mango-600/[0.14] dark:bg-mango-400/[0.08] dark:hover:bg-mango-400/[0.14]"
           >
-            <span className="flex items-center font-heading text-xs uppercase tracking-wide text-teal-700 dark:text-teal-300">
+            <span className="flex items-center font-heading text-xs uppercase tracking-wide text-mango-700 dark:text-mango-300">
               <MdOutlineKeyboardArrowLeft className="mr-1 h-4 w-auto" />
               Shipped before this
             </span>
@@ -127,9 +127,9 @@ const FooterNav = ({ prevProject, nextProject, email }) => {
         {nextProject && (
           <Link
             href={`/projects/${nextProject.slug}`}
-            className="group rounded-lg bg-teal-600/[0.07] p-4 text-right transition-colors hover:bg-teal-600/[0.14] dark:bg-teal-400/[0.08] dark:hover:bg-teal-400/[0.14]"
+            className="group rounded-lg bg-mango-600/[0.07] p-4 text-right transition-colors hover:bg-mango-600/[0.14] dark:bg-mango-400/[0.08] dark:hover:bg-mango-400/[0.14]"
           >
-            <span className="flex items-center justify-end font-heading text-xs uppercase tracking-wide text-teal-700 dark:text-teal-300">
+            <span className="flex items-center justify-end font-heading text-xs uppercase tracking-wide text-mango-700 dark:text-mango-300">
               Shipped after this
               <MdOutlineKeyboardArrowRight className="ml-1 h-4 w-auto" />
             </span>
@@ -145,7 +145,7 @@ const FooterNav = ({ prevProject, nextProject, email }) => {
       <Text as="p" align="center" className="mb-4 font-heading font-medium">
         <Link
           href={`mailto:${emailAddress}`}
-          className="text-teal-700 underline decoration-teal-600/40 underline-offset-4 hover:decoration-teal-600 dark:text-teal-300 dark:decoration-teal-400/40 dark:hover:decoration-teal-300"
+          className="text-mango-700 underline decoration-mango-600/40 underline-offset-4 hover:decoration-mango-600 dark:text-mango-300 dark:decoration-mango-400/40 dark:hover:decoration-mango-300"
         >
           {emailAddress}
         </Link>

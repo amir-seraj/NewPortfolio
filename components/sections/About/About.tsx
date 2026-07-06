@@ -101,7 +101,7 @@ export const About = ({ about }: AboutProps) => {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.6, ease: EASE_EXPO, delay: i * 0.12 }}
           >
-            <span className="block font-heading text-4xl font-bold leading-tight text-teal-700 dark:text-teal-300">
+            <span className="block font-heading text-4xl font-bold leading-tight text-mango-700 dark:text-mango-300">
               <CountUp value={value} />
             </span>
             {label}

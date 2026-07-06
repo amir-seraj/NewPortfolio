@@ -33,7 +33,7 @@ export const GetInTouch = ({ kicker, email }: GetInTouchProps) => {
           </Text>
           <a
             href={`mailto:${emailAddress}`}
-            className="inline-block font-heading text-2xl font-bold text-teal-700 underline decoration-2 underline-offset-8 transition-colors hover:text-teal-600 dark:text-teal-300 dark:hover:text-teal-200 md:text-4xl"
+            className="inline-block font-heading text-2xl font-bold text-mango-700 underline decoration-2 underline-offset-8 transition-colors hover:text-mango-600 dark:text-mango-300 dark:hover:text-mango-200 md:text-4xl"
           >
             {emailAddress}
           </a>

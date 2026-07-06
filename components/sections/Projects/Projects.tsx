@@ -38,9 +38,9 @@ export const Projects = ({ allprojects, email }: Props) => {
 
   return (
     <Box>
-      {/* The explorer sits on a committed teal surface; the accent is the
+      {/* The explorer sits on a committed mango surface; the accent is the
           ground here, not a trim. Light and dark are two depths of it. */}
-      <Box className="bg-teal-900 pb-16 text-teal-50 dark:bg-[#082f2c]">
+      <Box className="bg-mango-900 pb-16 text-mango-50 dark:bg-mango-950">
         <Container className="mb-4 pt-24 md:pt-28">
           <Text
             as="h1"
@@ -66,8 +66,8 @@ export const Projects = ({ allprojects, email }: Props) => {
               className={cn(
                 "rounded-full border px-4 py-2 font-heading text-xs font-semibold uppercase tracking-wide transition-colors",
                 view === "graph"
-                  ? "border-white bg-white text-teal-900"
-                  : "border-teal-300/40 text-teal-100 hover:border-teal-200 hover:text-white"
+                  ? "border-white bg-white text-mango-900"
+                  : "border-mango-300/40 text-mango-100 hover:border-mango-200 hover:text-white"
               )}
             >
               Graph view
@@ -79,8 +79,8 @@ export const Projects = ({ allprojects, email }: Props) => {
               className={cn(
                 "rounded-full border px-4 py-2 font-heading text-xs font-semibold uppercase tracking-wide transition-colors",
                 view === "timeline"
-                  ? "border-white bg-white text-teal-900"
-                  : "border-teal-300/40 text-teal-100 hover:border-teal-200 hover:text-white"
+                  ? "border-white bg-white text-mango-900"
+                  : "border-mango-300/40 text-mango-100 hover:border-mango-200 hover:text-white"
               )}
             >
               Timeline view

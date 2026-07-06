@@ -22,6 +22,24 @@ module.exports = {
       maxWidth: {
         "8xl": "1920px",
       },
+      colors: {
+        // Brand accent (evolved from teal/emerald — see PRODUCT.md, 2026-07-06).
+        // Tuned so every pairing actually used on the site clears WCAG AA;
+        // see scripts/check-contrast.mjs for the validated pairs.
+        mango: {
+          50: "#FEF7F0",
+          100: "#FDE8D3",
+          200: "#FBD1A7",
+          300: "#F9B571",
+          400: "#F7993B",
+          500: "#F5800A",
+          600: "#AB5907",
+          700: "#984F06",
+          800: "#763D05",
+          900: "#532B03",
+          950: "#2C1702",
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

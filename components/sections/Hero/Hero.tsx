@@ -45,7 +45,7 @@ export const Hero = ({ hero }: HeroProps) => {
               <span key={text} className="block overflow-hidden pb-[0.08em]">
                 <motion.span
                   className={
-                    accent ? "block text-teal-700 dark:text-teal-300" : "block"
+                    accent ? "block text-mango-700 dark:text-mango-300" : "block"
                   }
                   initial={reduceMotion ? false : { y: "105%" }}
                   animate={{ y: 0 }}
@@ -68,7 +68,7 @@ export const Hero = ({ hero }: HeroProps) => {
           >
             <Link
               href={ctaHref}
-              className="inline-block bg-teal-300 px-8 py-4 font-heading text-sm font-bold uppercase tracking-wider text-teal-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-teal-200 active:scale-95"
+              className="inline-block bg-mango-300 px-8 py-4 font-heading text-sm font-bold uppercase tracking-wider text-mango-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-mango-200 active:scale-95"
             >
               {ctaLabel}
             </Link>
@@ -94,7 +94,7 @@ export const Hero = ({ hero }: HeroProps) => {
       </Container>
 
       <Box
-        className="flex flex-wrap gap-x-9 gap-y-2 bg-[#0f2e2a] px-5 py-3.5 font-heading text-xs font-bold uppercase tracking-[0.14em] text-teal-300 md:px-12 md:text-sm"
+        className="flex flex-wrap gap-x-9 gap-y-2 bg-mango-950 px-5 py-3.5 font-heading text-xs font-bold uppercase tracking-[0.14em] text-mango-300 md:px-12 md:text-sm"
         role="presentation"
       >
         {strip.map((item, i) => (

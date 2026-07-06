@@ -18,7 +18,7 @@ export const Timeline = ({ projects }: Props) => {
 
   return (
     <>
-      <div className="mb-4 rounded-lg bg-white/[0.06] px-4 py-3 text-xs leading-relaxed text-teal-100">
+      <div className="mb-4 rounded-lg bg-white/[0.06] px-4 py-3 text-xs leading-relaxed text-mango-100">
         Most recent first. No categories, no reshuffling by importance
         &mdash; just the order things shipped.
         {hasGap &&

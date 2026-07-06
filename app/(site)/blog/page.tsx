@@ -35,9 +35,9 @@ export default async function BlogPage({
         <h1 className="font-heading text-4xl font-bold text-slate-900 dark:text-slate-100 md:text-5xl">Blog</h1>
         {allTags.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/blog" className={!tag ? "font-bold text-teal-700 dark:text-teal-300" : "text-slate-600 dark:text-slate-300"}>All</Link>
+            <Link href="/blog" className={!tag ? "font-bold text-mango-700 dark:text-mango-300" : "text-slate-600 dark:text-slate-300"}>All</Link>
             {allTags.map((t) => (
-              <Link key={t.slug} href={`/blog?tag=${t.slug}`} className={tag === t.slug ? "font-bold text-teal-700 dark:text-teal-300" : "text-slate-600 dark:text-slate-300"}>
+              <Link key={t.slug} href={`/blog?tag=${t.slug}`} className={tag === t.slug ? "font-bold text-mango-700 dark:text-mango-300" : "text-slate-600 dark:text-slate-300"}>
                 {t.name}
               </Link>
             ))}

@@ -31,8 +31,8 @@ export const Menu = ({ onClose, email = "amirseraj.ir@gmail.com" }) => {
   const getClasses = (path: string) =>
     cn(
       pathname === path
-        ? "text-teal-700 dark:text-teal-300"
-        : "hover:text-teal-700 dark:hover:text-teal-300",
+        ? "text-mango-700 dark:text-mango-300"
+        : "hover:text-mango-700 dark:hover:text-mango-300",
       "font-heading md:ml-60 max-w-fit px-4 text-4xl font-bold uppercase tracking-tight transition-transform duration-150 ease-out hover:translate-x-1.5 md:text-5xl"
     );
 
