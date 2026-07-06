@@ -1,0 +1,14 @@
+{
+  "name": "Amir Seraj — HCI Researcher & Developer",
+  "short_name": "Amir Seraj",
+  "icons": [
+    {
+      "src": "/favicon/icon.png",
+      "sizes": "2000x1781",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#282828",
+  "background_color": "#ffffff",
+  "display": "browser"
+}
