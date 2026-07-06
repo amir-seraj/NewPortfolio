@@ -46,3 +46,7 @@ npm run test:e2e
 ```
 
 Runs the Playwright suite on a hermetic dev server on port 3100.
+
+### Production database rule
+
+Never run a write script (`scripts/seed.ts`, `scripts/convert-body-to-blocks.ts`, `scripts/migrate-body-colors.ts`) against `portfolio_prod` without `NODE_ENV=production` — dev mode writes drizzle push markers into `payload_migrations` that make the CI `payload migrate` stop on an interactive prompt and fail the build. The scripts refuse to run if you try. `build:prod` passes `--forceAcceptWarning` to clear the one historical marker.
