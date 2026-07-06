@@ -7,12 +7,9 @@ test("projects explorer lists projects", async ({ page }) => {
   // graph label for perfect-posture-case-study, and also appears in the
   // timeline view's card title — so this holds regardless of which view is
   // active. Matches the brief's original assertion text exactly.
-  // Deviation: components/common/Layout wraps every page in its own <main>,
-  // and each page.tsx renders a second nested <main> — `main` resolves to 2
-  // elements site-wide, so `.first()` is required to avoid a strict-mode
-  // violation. The outer <main> contains the inner one, so `.first()` still
-  // covers all page content.
-  await expect(page.locator("main").first()).toContainText("Perfect Posture", {
+  // Exactly one <main> per page (Task 14 landmark fix), so the bare locator
+  // is strict-mode safe and asserts the single-landmark invariant.
+  await expect(page.locator("main")).toContainText("Perfect Posture", {
     timeout: 15_000,
   });
 });
@@ -20,7 +17,7 @@ test("projects explorer lists projects", async ({ page }) => {
 test("project case study renders body", async ({ page }) => {
   await page.goto("/projects/perfect-posture-case-study");
   await expect(page.locator("h1, h2").first()).toBeVisible();
-  await expect(page.locator("main").first()).toContainText(
+  await expect(page.locator("main")).toContainText(
     "Perfect Posture Case Study"
   );
 

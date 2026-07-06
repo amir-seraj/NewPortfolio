@@ -2,13 +2,10 @@ import { test, expect } from "@playwright/test";
 
 test("blog index lists the seeded post", async ({ page }) => {
   await page.goto("/blog");
-  // Deviation from brief: components/common/Layout wraps every page in its
-  // own <main>, and each page.tsx (this one included) renders a second,
-  // nested <main> — `main` resolves to 2 elements site-wide (see
-  // tests/e2e/projects.spec.ts), so `.first()` is required to avoid a
-  // strict-mode violation. The outer <main> contains the inner one, so
-  // `.first()` still covers all page content.
-  await expect(page.locator("main").first()).toContainText("Hello, blog");
+  // Exactly one <main> per page (Task 14 landmark fix: Layout.tsx no longer
+  // wraps pages in its own <main>), so the bare locator is unambiguous —
+  // and doubles as a regression check on the single-landmark invariant.
+  await expect(page.locator("main")).toContainText("Hello, blog");
 });
 
 test("post page renders body and reading time", async ({ page }) => {

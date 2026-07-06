@@ -19,9 +19,10 @@ export const Layout: FC<Props> = ({ children, email }) => {
         <Box className="md:h-screen">
           <SideBar email={email} />
         </Box>
-        <Box className="overflow-x-hidden">
-          <main>{children}</main>
-        </Box>
+        {/* Pages own their single <main> landmark; this wrapper is layout
+            chrome only. A second <main> here made every page announce two
+            nested main landmarks to screen readers (invalid HTML). */}
+        <Box className="overflow-x-hidden">{children}</Box>
       </Box>
     </Box>
   );
