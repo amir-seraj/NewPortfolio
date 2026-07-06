@@ -238,9 +238,161 @@ export interface Project {
     | null;
   description: string;
   /**
-   * Raw HTML with Tailwind classes. New class names require re-running the class extraction — this happens automatically at deploy time (see scripts/extract-body-classes.ts).
+   * Visual case-study editor. When this has blocks, it renders instead of the legacy HTML body below.
    */
-  body: string;
+  layout?:
+    | (
+        | {
+            heading: string;
+            /**
+             * One or more lines of banner copy, in order.
+             */
+            paragraphs?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Small pill badges (tech tags, topic tags) under the banner copy.
+             */
+            chips?:
+              | {
+                  label: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Gradient used for the banner surface. Mango is the on-brand default for new banners — the other options exist only to reproduce gradients already used by older case studies.
+             */
+            tone?: ('mango' | 'mango-deep' | 'green' | 'indigo' | 'orange' | 'blue' | 'purple') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ResultBanner';
+          }
+        | {
+            text: string;
+            level?: ('h2' | 'h3') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'SectionHeading';
+          }
+        | {
+            /**
+             * Paragraphs, bullet/numbered lists, and inline em/strong/links.
+             */
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'RichBody';
+          }
+        | {
+            tone?: ('info' | 'success' | 'warning' | 'neutral') | null;
+            heading?: string | null;
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Callout';
+          }
+        | {
+            heading: string;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            images?:
+              | {
+                  /**
+                   * Path under /public, e.g. /images/…
+                   */
+                  src: string;
+                  alt: string;
+                  id?: string | null;
+                }[]
+              | null;
+            columns?: ('1' | '2' | '3') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'IterationCard';
+          }
+        | {
+            images: {
+              /**
+               * Path under /public, e.g. /images/…
+               */
+              src: string;
+              alt: string;
+              id?: string | null;
+            }[];
+            columns?: ('1' | '2' | '3') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ImageGrid';
+          }
+        | {
+            /**
+             * Free text, e.g. javascript, python, solidity — display label only.
+             */
+            language?: string | null;
+            code?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'CodeSnippet';
+          }
+        | {
+            /**
+             * Lossless escape hatch — used by the converter for anything that doesn't cleanly fit the other block types, and available here for the same reason.
+             */
+            html: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'RawHtml';
+          }
+      )[]
+    | null;
+  /**
+   * Legacy HTML (fallback — used only when Layout is empty). Raw HTML with Tailwind classes. New class names require re-running the class extraction — this happens automatically at deploy time (see scripts/extract-body-classes.ts).
+   */
+  body?: string | null;
   /**
    * Path under /public, e.g. /images/…
    */
@@ -429,6 +581,99 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   description?: T;
+  layout?:
+    | T
+    | {
+        ResultBanner?:
+          | T
+          | {
+              heading?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              chips?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              tone?: T;
+              id?: T;
+              blockName?: T;
+            };
+        SectionHeading?:
+          | T
+          | {
+              text?: T;
+              level?: T;
+              id?: T;
+              blockName?: T;
+            };
+        RichBody?:
+          | T
+          | {
+              body?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Callout?:
+          | T
+          | {
+              tone?: T;
+              heading?: T;
+              body?: T;
+              id?: T;
+              blockName?: T;
+            };
+        IterationCard?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              images?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ImageGrid?:
+          | T
+          | {
+              images?:
+                | T
+                | {
+                    src?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
+        CodeSnippet?:
+          | T
+          | {
+              language?: T;
+              code?: T;
+              id?: T;
+              blockName?: T;
+            };
+        RawHtml?:
+          | T
+          | {
+              html?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   body?: T;
   coverImage?: T;
   socialImage?: T;

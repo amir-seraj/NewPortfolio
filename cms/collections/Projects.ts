@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { revalidateProject } from "../hooks/revalidate";
+import { projectLayoutBlocks } from "../blocks/ProjectLayoutBlocks";
 
 export const Projects: CollectionConfig = {
   slug: "projects",
@@ -16,12 +17,20 @@ export const Projects: CollectionConfig = {
     },
     { name: "description", type: "textarea", required: true },
     {
+      name: "layout",
+      type: "blocks",
+      blocks: projectLayoutBlocks,
+      admin: {
+        description: "Visual case-study editor. When this has blocks, it renders instead of the legacy HTML body below.",
+      },
+    },
+    {
       name: "body",
       type: "code",
-      required: true,
+      required: false,
       admin: {
         language: "html",
-        description: "Raw HTML with Tailwind classes. New class names require re-running the class extraction — this happens automatically at deploy time (see scripts/extract-body-classes.ts).",
+        description: "Legacy HTML (fallback — used only when Layout is empty). Raw HTML with Tailwind classes. New class names require re-running the class extraction — this happens automatically at deploy time (see scripts/extract-body-classes.ts).",
       },
     },
     { name: "coverImage", type: "text", required: true, admin: { description: "Path under /public, e.g. /images/…" } },

@@ -63,6 +63,7 @@ export default async function ProjectPage({
         <ProjectDetail
           title={project.title}
           body={project.body}
+          layout={project.layout}
           coverImage={project.coverImage}
           slug={project.slug}
           publishedAt={project.publishedAt}
