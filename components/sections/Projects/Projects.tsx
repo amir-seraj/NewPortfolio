@@ -64,7 +64,7 @@ export const Projects = ({ allprojects, email }: Props) => {
               aria-pressed={view === "graph"}
               onClick={() => setView("graph")}
               className={cn(
-                "rounded-full border px-4 py-2 font-heading text-xs font-semibold uppercase tracking-wide transition-colors",
+                "min-h-[44px] rounded-full border px-4 py-2 font-heading text-xs font-semibold uppercase tracking-wide transition-colors",
                 view === "graph"
                   ? "border-white bg-white text-mango-900"
                   : "border-mango-300/40 text-mango-100 hover:border-mango-200 hover:text-white"
@@ -77,7 +77,7 @@ export const Projects = ({ allprojects, email }: Props) => {
               aria-pressed={view === "timeline"}
               onClick={() => setView("timeline")}
               className={cn(
-                "rounded-full border px-4 py-2 font-heading text-xs font-semibold uppercase tracking-wide transition-colors",
+                "min-h-[44px] rounded-full border px-4 py-2 font-heading text-xs font-semibold uppercase tracking-wide transition-colors",
                 view === "timeline"
                   ? "border-white bg-white text-mango-900"
                   : "border-mango-300/40 text-mango-100 hover:border-mango-200 hover:text-white"

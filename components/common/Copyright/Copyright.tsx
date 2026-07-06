@@ -9,9 +9,11 @@ export const Copyright = () => (
     <Text fontSize="sm" className="mx-1">
       {" "}
       Made with ❤️ in Italy by{" "}
+      {/* mango, not yellow: yellow-600 on white was 3.2:1 (AA fail) and
+          off the brand accent scale. */}
       <Link
         href="https://amirseraj.ir"
-        className="font-medium text-yellow-600 hover:text-yellow-700 dark:text-yellow-500"
+        className="font-medium text-mango-700 hover:text-mango-600 dark:text-mango-300 dark:hover:text-mango-200"
       >
         Amir Seraj
       </Link>

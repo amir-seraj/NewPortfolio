@@ -21,8 +21,10 @@ export const Footer = ({
     <footer>
       <Container className="relative mb-10 grid-cols-5 gap-20 md:grid 2xl:px-16">
         <Box className="col-span-3 max-w-lg">
+          {/* p, not h4/h6: footer labels broke the heading outline
+              (h2 -> h4 -> h6 skips). Visual style is unchanged. */}
           <Text
-            as="h4"
+            as="p"
             casing="uppercase"
             fontWeight="bold"
             fontSize="xl"
@@ -40,7 +42,7 @@ export const Footer = ({
         </Box>
         <Box className="col-span-2 hidden md:block">
           <Text
-            as="h6"
+            as="p"
             casing="uppercase"
             fontWeight="medium"
             className="mb-4 font-heading"

@@ -9,7 +9,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import {
   TwitterShareButton,
   LinkedinShareButton,
@@ -30,35 +30,46 @@ const Prose = ({ children }) => (
 );
 
 const Share = ({ url, title }) => (
-  <Box className="flex items-center gap-2">
-    <Text as="span" fontSize="sm" className="opacity-75">
+  <Box className="flex items-center gap-1">
+    <Text as="span" fontSize="sm" className="mr-1 opacity-75">
       Share:
     </Text>
-    <TwitterShareButton title={title} related={["amirseraj"]} url={url}>
-      <TwitterIcon size={23} round />
+    {/* !p-2.5: react-share ships inline padding:0 — this restores a ~44px
+        tap target around each 24px icon. */}
+    <TwitterShareButton
+      title={title}
+      related={["amirseraj"]}
+      url={url}
+      className="!p-2.5"
+    >
+      <TwitterIcon size={24} round />
     </TwitterShareButton>
     <LinkedinShareButton
       title={title}
       url={url}
       summary={title}
       source="amirseraj"
+      className="!p-2.5"
     >
-      <LinkedinIcon size={23} round />
+      <LinkedinIcon size={24} round />
     </LinkedinShareButton>
   </Box>
 );
 
 const Header = ({ slug, title, readTime, publishedAt, tags }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (ref.current) {
       ref.current.scrollIntoView({
-        behavior: "smooth",
+        // scrollIntoView ignores the CSS scroll-behavior override, so the
+        // reduced-motion preference has to be honored here explicitly.
+        behavior: reduceMotion ? "auto" : "smooth",
         block: "nearest",
       });
     }
-  }, [title]);
+  }, [title, reduceMotion]);
   return (
     <div ref={ref}>
       <Link
@@ -72,7 +83,7 @@ const Header = ({ slug, title, readTime, publishedAt, tags }) => {
         <Text as="span" fontSize="sm" className="opacity-75">
           <motion.span
             className="block"
-            initial={{ y: -10, opacity: 0 }}
+            initial={reduceMotion ? false : { y: -10, opacity: 0 }}
             transition={{ duration: 0.6 }}
             animate={{ y: 0, opacity: 1 }}
           >
@@ -85,7 +96,7 @@ const Header = ({ slug, title, readTime, publishedAt, tags }) => {
       <Text as="h1" fontSize="4xl" className="mt-2 mb-4">
         <motion.span
           className="block [text-wrap:balance]"
-          initial={{ y: -20, opacity: 0 }}
+          initial={reduceMotion ? false : { y: -20, opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           animate={{ y: 0, opacity: 1 }}
         >
@@ -171,6 +182,7 @@ export const ProjectDetail = ({
   nextProject = null as ProjectLink | null,
   email = "amirseraj.ir@gmail.com" as string | null,
 }) => {
+  const reduceMotion = useReducedMotion();
   return (
     <Box className="flex h-screen w-full flex-col overflow-y-auto">
       <Nav variant="projects" email={email} />
@@ -184,7 +196,7 @@ export const ProjectDetail = ({
             tags={tags}
           />
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={reduceMotion ? false : { y: 20, opacity: 0 }}
             transition={{ duration: 0.9 }}
             animate={{ y: 0, opacity: 1 }}
           >
@@ -195,6 +207,7 @@ export const ProjectDetail = ({
                 width={800}
                 height={420}
                 objectFit="contain"
+                priority
                 className="rounded-lg bg-white"
               />
               <Box html={body} />

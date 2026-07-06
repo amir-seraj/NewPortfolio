@@ -41,6 +41,21 @@ body {
   @apply text-slate-900 transition duration-100 ease-in-out dark:bg-[#282828] dark:text-slate-200;
   scroll-behavior: smooth;
 }
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+}
+
+/* Keyboard focus: one visible ring everywhere. currentColor tracks the
+   element's own (AA-checked) text color, so the ring stays visible on
+   white, graphite and the committed mango surfaces alike. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
 .times {
   font-family: Times, serif !important;
@@ -52,7 +67,9 @@ code {
   @apply font-mono !important;
 }
 .prose code {
-  @apply whitespace-pre bg-mango-900 font-mono text-sm dark:bg-mango-950 !important;
+  /* text-mango-50: typography's default inline-code color is near-black,
+     unreadable on the mango-900 chip this rule paints under it. */
+  @apply whitespace-pre bg-mango-900 font-mono text-sm text-mango-50 dark:bg-mango-950 !important;
 }
 .prose svg {
   width: 0;

@@ -116,7 +116,9 @@ export const Graph = ({ projects }: Props) => {
                     n.degree === 1 ? "" : "s"
                   }`}
                   className={cn(
-                    "cursor-pointer outline-none transition-opacity duration-200",
+                    // no outline-none: keyboard users need the global
+                    // :focus-visible ring to see which node holds focus
+                    "cursor-pointer transition-opacity duration-200",
                     dim && "opacity-25"
                   )}
                   onClick={() => selectNode(n.slug)}

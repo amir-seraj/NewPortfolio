@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/compat/router";
 import { motion, useReducedMotion } from "motion/react";
 import cn from "classnames";
@@ -28,6 +29,18 @@ export const Menu = ({ onClose, email = "amirseraj.ir@gmail.com" }) => {
   const pathname = router?.pathname;
   const reduceMotion = useReducedMotion();
 
+  // Overlay dialog basics: Escape closes, focus moves in on open (and back
+  // to the trigger via AnimatePresence unmount + browser default).
+  const closeRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   const getClasses = (path: string) =>
     cn(
       pathname === path
@@ -38,13 +51,16 @@ export const Menu = ({ onClose, email = "amirseraj.ir@gmail.com" }) => {
 
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site menu"
       initial={reduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: EASE_EXPO }}
       className="fixed top-0 left-0 z-20 h-screen w-full bg-white bg-opacity-95 dark:bg-[#000000] dark:bg-opacity-90"
     >
-      <CloseButton onClose={onClose} />
+      <CloseButton ref={closeRef} onClose={onClose} />
       <Container className="h-full">
         <ul className="flex h-full flex-col justify-center gap-8">
           {LINKS.map(({ label, href }, idx) => (
