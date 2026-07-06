@@ -238,6 +238,99 @@ const pairs = [
     size: "body",
     min: 4.5,
   },
+
+  // E. Payload admin theme (Task 16) — app/(payload)/custom.scss ----------
+  // Primary buttons (Save/Publish/login submit — `.btn--style-primary`),
+  // identical in both admin themes (hardcoded, not theme-token-driven).
+  {
+    label: "admin: mango-950 on mango-300 (primary button fill)",
+    fg: mango[950],
+    bg: mango[300],
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: mango-950 on mango-200 (primary button hover fill)",
+    fg: mango[950],
+    bg: mango[200],
+    size: "body",
+    min: 4.5,
+  },
+  // --theme-success-* remap (focus rings, Banner/toast, Pill, Dropzone).
+  // Light admin theme:
+  {
+    label: "admin: #874606 on mango-100 (banner/toast success text, light)",
+    fg: "#874606",
+    bg: mango[100],
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: #874606 on mango-200 (banner/toast success hover, light)",
+    fg: "#874606",
+    bg: mango[200],
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: mango-800 on #FCDDBD success-150 (status pill, light)",
+    fg: mango[800],
+    bg: "#FCDDBD",
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: #2F2F2F elevation-800 on #FCDDBD success-150 (dropzone, light)",
+    fg: "#2F2F2F",
+    bg: "#FCDDBD",
+    size: "body",
+    min: 4.5,
+  },
+  // Dark admin theme:
+  {
+    label: "admin: #FAC38C on mango-900 (banner/toast success text, dark)",
+    fg: "#FAC38C",
+    bg: mango[900],
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: #FAC38C on #763D05 success-200 dark (banner/toast hover, dark)",
+    fg: "#FAC38C",
+    bg: "#763D05",
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: mango-200 on #653404 success-150 dark (status pill, dark)",
+    fg: mango[200],
+    bg: "#653404",
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: #FFFFFF elevation-1000 on #653404 success-150 dark (dropzone, dark)",
+    fg: "#FFFFFF",
+    bg: "#653404",
+    size: "body",
+    min: 4.5,
+  },
+  // Graphite surface shift sanity check — default admin body text
+  // (--theme-text, untouched) on the new dark elevation-0/100 surfaces.
+  {
+    label: "admin: #FFFFFF on #1C1C1C (elevation-0, dark admin surface)",
+    fg: "#FFFFFF",
+    bg: "#1C1C1C",
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "admin: #FFFFFF on #282828 (elevation-100, dark admin surface)",
+    fg: "#FFFFFF",
+    bg: "#282828",
+    size: "body",
+    min: 4.5,
+  },
 ];
 
 let allPass = true;

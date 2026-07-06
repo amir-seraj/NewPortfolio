@@ -238,7 +238,7 @@ export interface Project {
     | null;
   description: string;
   /**
-   * Raw HTML with Tailwind classes. New class names require re-running the class extraction (happens automatically on deploy).
+   * Raw HTML with Tailwind classes. New class names require re-running the class extraction — this happens automatically at deploy time (see scripts/extract-body-classes.ts).
    */
   body: string;
   /**
