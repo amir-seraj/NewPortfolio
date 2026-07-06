@@ -44,7 +44,6 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    "pages/_app.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [

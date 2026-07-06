@@ -25,7 +25,7 @@ export const revalidateProject = ({ doc }: any) => {
 
 export const revalidatePost = ({ doc }: any) => {
   safeRevalidatePath("/blog");
-  if (doc._status === "published") safeRevalidatePath(`/blog/${doc.slug}`);
+  safeRevalidatePath(`/blog/${doc.slug}`);
   return doc;
 };
 

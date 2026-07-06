@@ -23,6 +23,7 @@ export const Posts: CollectionConfig = {
   versions: { drafts: true },
   hooks: {
     afterChange: [revalidatePost],
+    afterDelete: [revalidatePost],
     beforeChange: [
       ({ data }) => {
         // reading time from Lexical body text length

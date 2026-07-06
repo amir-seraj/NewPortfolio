@@ -5,7 +5,7 @@ export const Projects: CollectionConfig = {
   slug: "projects",
   access: { read: () => true },
   admin: { useAsTitle: "title", defaultColumns: ["title", "publishedAt"] },
-  hooks: { afterChange: [revalidateProject] },
+  hooks: { afterChange: [revalidateProject], afterDelete: [revalidateProject] },
   fields: [
     { name: "title", type: "text", required: true },
     { name: "slug", type: "text", required: true, unique: true, index: true, admin: { position: "sidebar" } },

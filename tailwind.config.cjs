@@ -10,7 +10,6 @@ module.exports = {
   darkMode: "media",
   content: [
     "app/**/*.{js,ts,jsx,tsx}",
-    "pages/**/*.{js,ts,jsx,tsx}",
     "components/**/*.{js,ts,jsx,tsx}",
     "lib/**/*.{js,ts}",
     // Project `body` HTML now lives in Postgres, not lib/DataProjects.js, so

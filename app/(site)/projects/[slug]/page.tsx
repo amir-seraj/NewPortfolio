@@ -15,7 +15,7 @@ export async function generateStaticParams(): Promise<Params[]> {
   return allprojects.map((project) => ({ slug: project.slug }));
 }
 
-export const dynamicParams = false;
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
