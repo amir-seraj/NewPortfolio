@@ -1,39 +1,66 @@
-import { useRouter } from "next/router";
-import { motion, useReducedMotion } from "framer-motion";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/compat/router";
+import { motion, useReducedMotion } from "motion/react";
 import cn from "classnames";
 import { Container, Link } from "@components/ui";
 import { CloseButton } from "./Close";
 
-const EASE_EXPO = [0.16, 1, 0.3, 1];
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
-const LINKS = [
+const STATIC_LINKS = [
   { label: "Home", href: "/" },
   { label: "The evidence", href: "/projects" },
+  { label: "Blog", href: "/blog" },
   { label: "Who's asking", href: "/#about" },
-  { label: "Mail", href: "mailto:amirseraj.ir@gmail.com" },
 ];
 
-export const Menu = ({ onClose }) => {
-  const { pathname } = useRouter();
+export const Menu = ({ onClose, email = "amirseraj.ir@gmail.com" }) => {
+  const LINKS = [
+    ...STATIC_LINKS,
+    { label: "Mail", href: `mailto:${email}` },
+  ];
+  // next/compat/router works in both the app dir (returns null) and pages
+  // dir (returns the NextRouter) — plain next/router's useRouter throws
+  // when mounted under the App Router, which Nav now renders into via
+  // app/(site)/page.tsx.
+  const router = useRouter();
+  const pathname = router?.pathname;
   const reduceMotion = useReducedMotion();
+
+  // Overlay dialog basics: Escape closes, focus moves in on open (and back
+  // to the trigger via AnimatePresence unmount + browser default).
+  const closeRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
 
   const getClasses = (path: string) =>
     cn(
       pathname === path
-        ? "text-teal-700 dark:text-teal-300"
-        : "hover:text-teal-700 dark:hover:text-teal-300",
+        ? "text-mango-700 dark:text-mango-300"
+        : "hover:text-mango-700 dark:hover:text-mango-300",
       "font-heading md:ml-60 max-w-fit px-4 text-4xl font-bold uppercase tracking-tight transition-transform duration-150 ease-out hover:translate-x-1.5 md:text-5xl"
     );
 
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site menu"
       initial={reduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: EASE_EXPO }}
       className="fixed top-0 left-0 z-20 h-screen w-full bg-white bg-opacity-95 dark:bg-[#000000] dark:bg-opacity-90"
     >
-      <CloseButton onClose={onClose} />
+      <CloseButton ref={closeRef} onClose={onClose} />
       <Container className="h-full">
         <ul className="flex h-full flex-col justify-center gap-8">
           {LINKS.map(({ label, href }, idx) => (

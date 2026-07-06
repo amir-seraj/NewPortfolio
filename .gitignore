@@ -35,4 +35,14 @@ yarn-error.log*
 .vercel
 
 /public/*.js
-/public/*.js.*tsconfig.tsbuildinfo
+/public/*.js.*
+
+# testing (playwright)
+/test-results/
+/playwright-report/
+
+# payload cms local upload fallback
+/media
+.env*
+!.env.example
+tsconfig.tsbuildinfo

@@ -1,10 +1,12 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/legacy/image";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Box, Container, Link, Text } from "@components/ui";
 
-const EASE_EXPO = [0.16, 1, 0.3, 1];
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
 interface Project {
   slug: string;
@@ -105,7 +107,7 @@ const Banner = ({
             <span className="font-heading text-xl font-bold uppercase tracking-wide text-white md:text-3xl">
               {meta.display} · {meta.kind}
             </span>
-            <span className="whitespace-nowrap font-heading text-sm text-teal-300 transition-transform duration-200 group-hover:translate-x-1.5">
+            <span className="whitespace-nowrap font-heading text-sm text-mango-300 transition-transform duration-200 group-hover:translate-x-1.5">
               {meta.year} →
             </span>
           </span>
@@ -128,7 +130,7 @@ export const Evidence = ({ projects }: Props) => {
         </Text>
         <Link
           href="/projects"
-          className="font-heading text-sm font-medium uppercase tracking-wide text-teal-700 hover:underline dark:text-teal-300"
+          className="font-heading text-sm font-medium uppercase tracking-wide text-mango-700 hover:underline dark:text-mango-300"
         >
           All projects →
         </Link>

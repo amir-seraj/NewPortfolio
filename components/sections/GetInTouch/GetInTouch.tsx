@@ -1,11 +1,20 @@
-import { motion, useReducedMotion } from "framer-motion";
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
 
 import { Box, Container, Text } from "@components/ui";
 
-const EASE_EXPO = [0.16, 1, 0.3, 1];
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
-export const GetInTouch = () => {
+type GetInTouchProps = {
+  kicker?: string | null;
+  email?: string | null;
+};
+
+export const GetInTouch = ({ kicker, email }: GetInTouchProps) => {
   const reduceMotion = useReducedMotion();
+  const kickerText = kicker ?? "One address. No form.";
+  const emailAddress = email ?? "amirseraj.ir@gmail.com";
 
   return (
     <Box className="mb-20 py-16 text-center" id="contact">
@@ -20,13 +29,13 @@ export const GetInTouch = () => {
             className="mb-4 font-heading text-sm font-medium uppercase tracking-[0.14em] text-slate-600 dark:text-slate-300"
             align="center"
           >
-            One address. No form.
+            {kickerText}
           </Text>
           <a
-            href="mailto:amirseraj.ir@gmail.com"
-            className="inline-block font-heading text-2xl font-bold text-teal-700 underline decoration-2 underline-offset-8 transition-colors hover:text-teal-600 dark:text-teal-300 dark:hover:text-teal-200 md:text-4xl"
+            href={`mailto:${emailAddress}`}
+            className="inline-block font-heading text-2xl font-bold text-mango-700 underline decoration-2 underline-offset-8 transition-colors hover:text-mango-600 dark:text-mango-300 dark:hover:text-mango-200 md:text-4xl"
           >
-            amirseraj.ir@gmail.com
+            {emailAddress}
           </a>
         </motion.div>
       </Container>

@@ -9,18 +9,20 @@ interface Props {
   children?: ReactNode;
   as?: "div" | "section" | JSXElementConstructor<any>;
   full?: boolean;
+  email?: string | null;
 }
 
-export const Layout: FC<Props> = ({ children }) => {
+export const Layout: FC<Props> = ({ children, email }) => {
   return (
     <Box>
       <Box className={s.root}>
         <Box className="md:h-screen">
-          <SideBar />
+          <SideBar email={email} />
         </Box>
-        <Box className="overflow-x-hidden">
-          <main>{children}</main>
-        </Box>
+        {/* Pages own their single <main> landmark; this wrapper is layout
+            chrome only. A second <main> here made every page announce two
+            nested main landmarks to screen readers (invalid HTML). */}
+        <Box className="overflow-x-hidden">{children}</Box>
       </Box>
     </Box>
   );

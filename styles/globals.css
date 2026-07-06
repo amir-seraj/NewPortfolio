@@ -29,6 +29,9 @@
 html {
   @apply filter;
   scroll-behavior: smooth;
+  /* Native form controls, scrollbars and the canvas follow the same
+     system preference as Tailwind's darkMode: "media" variants. */
+  color-scheme: light dark;
 }
 html,
 body {
@@ -38,18 +41,35 @@ body {
   @apply text-slate-900 transition duration-100 ease-in-out dark:bg-[#282828] dark:text-slate-200;
   scroll-behavior: smooth;
 }
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+}
+
+/* Keyboard focus: one visible ring everywhere. currentColor tracks the
+   element's own (AA-checked) text color, so the ring stays visible on
+   white, graphite and the committed mango surfaces alike. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
 .times {
   font-family: Times, serif !important;
 }
 .prose pre {
-  @apply bg-slate-800 dark:bg-[#232B2B] !important;
+  @apply bg-mango-900 dark:bg-mango-950 !important;
 }
 code {
   @apply font-mono !important;
 }
 .prose code {
-  @apply whitespace-pre bg-slate-800 font-mono text-sm dark:bg-[#232B2B] !important;
+  /* text-mango-50: typography's default inline-code color is near-black,
+     unreadable on the mango-900 chip this rule paints under it. */
+  @apply whitespace-pre bg-mango-900 font-mono text-sm text-mango-50 dark:bg-mango-950 !important;
 }
 .prose svg {
   width: 0;
@@ -57,59 +77,6 @@ code {
 }
 .prose iframe {
   @apply w-full aspect-video;
-}
-
-/* NProgress */
-/* Make clicks pass-through */
-:root {
-  --nprogress-color: #e8e8e8;
-}
-#nprogress {
-  pointer-events: none;
-}
-#progress:after {
-  display: block;
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #232b2b27;
-}
-#nprogress .bar {
-  background: var(--nprogress-color);
-  position: fixed;
-  z-index: 1031;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-}
-
-.nprogress-custom-parent {
-  overflow: hidden;
-  position: relative;
-}
-.nprogress-custom-parent #nprogress .spinner,
-.nprogress-custom-parent #nprogress .bar {
-  position: absolute;
-}
-@-webkit-keyframes nprogress-spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@keyframes nprogress-spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /* Bold redesign: entrance utility. CSS animation (not class-gated

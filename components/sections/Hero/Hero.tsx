@@ -1,9 +1,11 @@
-import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+"use client";
+
+import Image from "next/legacy/image";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Box, Container, Link } from "@components/ui";
 
-const EASE_EXPO = [0.16, 1, 0.3, 1];
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
 const LINES = [
   { text: "Machines can learn", accent: false },
@@ -18,19 +20,32 @@ const STRIP = [
   "MSc HCI · Genova",
 ];
 
-export const Hero = () => {
+type HeroProps = {
+  hero?: {
+    lines?: { text: string; accent?: boolean | null }[] | null;
+    ctaLabel?: string | null;
+    ctaHref?: string | null;
+    strip?: { item: string }[] | null;
+  } | null;
+};
+
+export const Hero = ({ hero }: HeroProps) => {
   const reduceMotion = useReducedMotion();
+  const lines = hero?.lines?.length ? hero.lines : LINES;
+  const strip = hero?.strip?.length ? hero.strip.map((s) => s.item) : STRIP;
+  const ctaLabel = hero?.ctaLabel ?? "See the evidence";
+  const ctaHref = hero?.ctaHref ?? "#work";
 
   return (
     <Box id="top">
       <Container className="flex min-h-[70vh] flex-col items-center justify-center gap-6 pt-24 md:grid md:min-h-[86vh] md:grid-cols-5 md:gap-6 md:pt-10">
         <Box className="order-1 w-full md:order-none md:col-span-3">
           <h1 className="font-heading text-4xl font-bold leading-[1.06] tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl 2xl:text-7xl">
-            {LINES.map(({ text, accent }, i) => (
+            {lines.map(({ text, accent }, i) => (
               <span key={text} className="block overflow-hidden pb-[0.08em]">
                 <motion.span
                   className={
-                    accent ? "block text-teal-700 dark:text-teal-300" : "block"
+                    accent ? "block text-mango-700 dark:text-mango-300" : "block"
                   }
                   initial={reduceMotion ? false : { y: "105%" }}
                   animate={{ y: 0 }}
@@ -52,10 +67,10 @@ export const Hero = () => {
             className="mt-9"
           >
             <Link
-              href="#work"
-              className="inline-block bg-teal-300 px-8 py-4 font-heading text-sm font-bold uppercase tracking-wider text-teal-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-teal-200 active:scale-95"
+              href={ctaHref}
+              className="inline-block bg-mango-300 px-8 py-4 font-heading text-sm font-bold uppercase tracking-wider text-mango-950 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-mango-200 active:scale-95"
             >
-              See the evidence
+              {ctaLabel}
             </Link>
           </motion.div>
         </Box>
@@ -79,10 +94,10 @@ export const Hero = () => {
       </Container>
 
       <Box
-        className="flex flex-wrap gap-x-9 gap-y-2 bg-[#0f2e2a] px-5 py-3.5 font-heading text-xs font-bold uppercase tracking-[0.14em] text-teal-300 md:px-12 md:text-sm"
+        className="flex flex-wrap gap-x-9 gap-y-2 bg-mango-950 px-5 py-3.5 font-heading text-xs font-bold uppercase tracking-[0.14em] text-mango-300 md:px-12 md:text-sm"
         role="presentation"
       >
-        {STRIP.map((item, i) => (
+        {strip.map((item, i) => (
           <motion.span
             key={item}
             initial={reduceMotion ? false : { opacity: 0, y: 10 }}

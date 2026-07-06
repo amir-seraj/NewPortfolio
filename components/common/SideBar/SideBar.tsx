@@ -9,7 +9,11 @@ import { Box, Link, Text } from "@components/ui";
 import s from "./SideBar.module.scss";
 import { Logo } from "../Logo/Logo";
 
-export const SideBar = () => {
+export const SideBar = ({
+  email = "amirseraj.ir@gmail.com",
+}: {
+  email?: string | null;
+}) => {
   const links = [
     {
       href: "https://github.com/amir-seraj",
@@ -23,7 +27,7 @@ export const SideBar = () => {
       title: "Linkedin",
     },
     {
-      href: "mailto:amirseraj.ir@gmail.com",
+      href: `mailto:${email ?? "amirseraj.ir@gmail.com"}`,
       Icon: AiFillMail,
       title: "Email",
     },
@@ -34,7 +38,9 @@ export const SideBar = () => {
       <Box className={s.main}>
         <Logo />
         <Box className={s.bar}>
-          <Text as="h5" casing="uppercase" className="mb-1 font-heading">
+          {/* p, not h5: this rail label sat before the page h1 in the
+              heading outline (h5 -> h1 skip on every page). */}
+          <Text as="p" casing="uppercase" className="mb-1 font-heading">
             Researcher / Developer
           </Text>
           <Text

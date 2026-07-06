@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" font-family="Verdana, 'DejaVu Sans', sans-serif" role="img" aria-label="reSilence system architecture: webcam feeds a Python analysis stage combining MediaPipe and DeepFace, whose fused state travels over OSC to Max/MSP, which generates sound and light.">
+  <rect width="720" height="300" rx="12" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="719" height="299" rx="12" fill="none" stroke="#d7e3e1"/>
+
+  <!-- lane labels -->
+  <text x="36" y="42" font-size="11" letter-spacing="2" fill="#7a8a87">SENSE</text>
+  <text x="216" y="42" font-size="11" letter-spacing="2" fill="#7a8a87">ANALYZE</text>
+  <text x="466" y="42" font-size="11" letter-spacing="2" fill="#7a8a87">TRANSPORT</text>
+  <text x="592" y="42" font-size="11" letter-spacing="2" fill="#7a8a87">GENERATE</text>
+
+  <!-- webcam -->
+  <rect x="36" y="112" width="120" height="64" rx="10" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5"/>
+  <circle cx="66" cy="144" r="12" fill="none" stroke="#0f766e" stroke-width="2"/>
+  <circle cx="66" cy="144" r="4.5" fill="#0f766e"/>
+  <text x="88" y="140" font-size="14" font-weight="bold" fill="#134e4a">Webcam</text>
+  <text x="88" y="157" font-size="11" fill="#3f5c58">30 fps feed</text>
+
+  <!-- python analysis -->
+  <rect x="216" y="76" width="190" height="136" rx="10" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5"/>
+  <text x="236" y="104" font-size="14" font-weight="bold" fill="#134e4a">Python analysis</text>
+  <rect x="236" y="118" width="150" height="30" rx="6" fill="#ffffff" stroke="#99b8b3"/>
+  <text x="248" y="137" font-size="12" fill="#1f3835">MediaPipe · movement</text>
+  <rect x="236" y="154" width="150" height="30" rx="6" fill="#ffffff" stroke="#99b8b3"/>
+  <text x="248" y="173" font-size="12" fill="#1f3835">DeepFace · emotion</text>
+  <text x="236" y="202" font-size="11" fill="#3f5c58">fused into one STATE</text>
+
+  <!-- OSC -->
+  <rect x="466" y="112" width="86" height="64" rx="32" fill="#ffffff" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="509" y="140" font-size="14" font-weight="bold" fill="#134e4a" text-anchor="middle">OSC</text>
+  <text x="509" y="157" font-size="11" fill="#3f5c58" text-anchor="middle">messages</text>
+
+  <!-- Max/MSP -->
+  <rect x="592" y="76" width="92" height="136" rx="10" fill="#134e4a"/>
+  <text x="638" y="106" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Max/MSP</text>
+  <text x="638" y="140" font-size="12" fill="#99f6e4" text-anchor="middle">sound</text>
+  <text x="638" y="158" font-size="12" fill="#99f6e4" text-anchor="middle">light</text>
+  <text x="638" y="192" font-size="11" fill="#5eead4" text-anchor="middle">responds live</text>
+
+  <!-- arrows -->
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#0d9488"/>
+    </marker>
+  </defs>
+  <line x1="156" y1="144" x2="208" y2="144" stroke="#0d9488" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="406" y1="144" x2="458" y2="144" stroke="#0d9488" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="552" y1="144" x2="584" y2="144" stroke="#0d9488" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- feedback loop -->
+  <path d="M 638 212 L 638 252 L 96 252 L 96 184" fill="none" stroke="#7a8a87" stroke-width="1.5" stroke-dasharray="4 5" marker-end="url(#arr)"/>
+  <text x="360" y="245" font-size="11" fill="#7a8a87" text-anchor="middle">the participant hears and sees the response — and moves again</text>
+</svg>
