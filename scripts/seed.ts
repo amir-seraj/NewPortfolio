@@ -1,8 +1,10 @@
 import { existsSync } from "fs";
 import { getPayload } from "payload";
 import config from "@payload-config";
+import { assertProdSafety } from "./prod-guard";
 
 async function run() {
+  assertProdSafety();
   const payload = await getPayload({ config });
 
   // --- projects: upsert by slug ---

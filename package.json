@@ -13,7 +13,7 @@
     "generate:importmap": "payload generate:importmap",
     "seed": "payload run scripts/seed.ts",
     "extract:classes": "payload run scripts/extract-body-classes.ts",
-    "build:prod": "payload migrate && npm run build"
+    "build:prod": "payload migrate --forceAcceptWarning && npm run build"
   },
   "dependencies": {
     "@next/env": "^14.2.7",

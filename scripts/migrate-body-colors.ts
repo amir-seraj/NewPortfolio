@@ -40,6 +40,7 @@
  */
 import { getPayload } from "payload";
 import config from "@payload-config";
+import { assertProdSafety } from "./prod-guard";
 
 const DRY = process.argv.includes("--dry");
 
@@ -66,6 +67,7 @@ function migrateBody(html: string): string {
 }
 
 async function run() {
+  assertProdSafety();
   const payload = await getPayload({ config });
   const { docs } = await payload.find({ collection: "projects", limit: 100 });
 

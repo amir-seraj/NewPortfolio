@@ -16,6 +16,7 @@
  */
 import { getPayload } from "payload";
 import config from "@payload-config";
+import { assertProdSafety } from "./prod-guard";
 import { parseHtml } from "./convert/parser";
 import { classifyProject, type LayoutBlock } from "./convert/classify";
 import { summarizeOriginal, summarizeBlocks, checkParity } from "./convert/parity";
@@ -28,6 +29,7 @@ interface ProjectDoc {
 }
 
 async function run(): Promise<void> {
+  assertProdSafety();
   const payload = await getPayload({ config });
   const { docs } = await payload.find({ collection: "projects", limit: 100 });
 
