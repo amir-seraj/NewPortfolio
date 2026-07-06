@@ -52,6 +52,19 @@ function relativeLuminance(hex) {
   return 0.2126 * R + 0.7152 * G + 0.0722 * B;
 }
 
+/** Composite `top` at `alpha` over an opaque `under`; returns hex. */
+function blend(top, under, alpha) {
+  const t = hexToRgb(top);
+  const u = hexToRgb(under);
+  const c = (a, b) => Math.round(a * alpha + b * (1 - alpha));
+  return (
+    "#" +
+    [c(t.r, u.r), c(t.g, u.g), c(t.b, u.b)]
+      .map((v) => v.toString(16).padStart(2, "0"))
+      .join("")
+  );
+}
+
 function contrastRatio(hexA, hexB) {
   const L1 = relativeLuminance(hexA);
   const L2 = relativeLuminance(hexB);
@@ -178,6 +191,50 @@ const pairs = [
     label: "mango-600 on #FFFFFF (hover states, light mode, e.g. GetInTouch)",
     fg: mango[600],
     bg: neutrals.white,
+    size: "body",
+    min: 4.5,
+  },
+
+  // D. CMS body content after scripts/migrate-body-colors.ts (Task 14) -----
+  // Case-study info panels: `bg-mango-50` + `text-mango-900` headings.
+  {
+    label: "mango-900 on mango-50 (case-study info panel, light — migrated content)",
+    fg: mango[900],
+    bg: mango[50],
+    size: "body",
+    min: 4.5,
+  },
+  // Gradient result banners: `from-mango-600 to-mango-800 text-white`.
+  // Both gradient ends must hold the white copy on their own.
+  {
+    label: "#FFFFFF on mango-600 (migrated gradient banner, light end)",
+    fg: neutrals.white,
+    bg: mango[600],
+    size: "body",
+    min: 4.5,
+  },
+  {
+    label: "#FFFFFF on mango-800 (migrated gradient banner, dark end)",
+    fg: neutrals.white,
+    bg: mango[800],
+    size: "body",
+    min: 4.5,
+  },
+  // Same banners' supporting copy is `text-lg opacity-90` (18px = large):
+  // white at 90% alpha composited onto the darker gradient start.
+  {
+    label: "white@90% on mango-600 (banner body copy, text-lg -> large)",
+    fg: blend(neutrals.white, mango[600], 0.9),
+    bg: mango[600],
+    size: "large",
+    min: 3,
+  },
+  // Dark-mode panel tint: `dark:bg-mango-900/20` composited over #282828,
+  // holding `dark:text-mango-100` headings.
+  {
+    label: "mango-100 on mango-900@20% over #282828 (panel, dark — migrated)",
+    fg: mango[100],
+    bg: blend(mango[900], neutrals.darkBody, 0.2),
     size: "body",
     min: 4.5,
   },
