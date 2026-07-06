@@ -17,11 +17,11 @@ export const Projects: CollectionConfig = {
     { name: "description", type: "textarea", required: true },
     {
       name: "body",
-      type: "textarea",
+      type: "code",
       required: true,
       admin: {
-        rows: 30,
-        description: "Raw HTML with Tailwind classes. New class names require re-running the class extraction (happens automatically on deploy).",
+        language: "html",
+        description: "Raw HTML with Tailwind classes. New class names require re-running the class extraction — this happens automatically at deploy time (see scripts/extract-body-classes.ts).",
       },
     },
     { name: "coverImage", type: "text", required: true, admin: { description: "Path under /public, e.g. /images/…" } },

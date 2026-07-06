@@ -15,7 +15,20 @@ import { Settings } from "./cms/globals/Settings";
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default buildConfig({
-  admin: { user: "users" },
+  admin: {
+    user: "users",
+    meta: {
+      titleSuffix: " · Amir Seraj Admin",
+      description: "Content admin for amirseraj.ir — projects, posts, and site settings.",
+      icons: [{ type: "image/png", url: "/favicon/icon.png" }],
+    },
+    components: {
+      graphics: {
+        Logo: "/cms/components/AdminLogo#AdminLogo",
+        Icon: "/cms/components/AdminIcon#AdminIcon",
+      },
+    },
+  },
   collections: [Users, Media, Tags, Posts, Projects],
   globals: [Home, Settings],
   editor: lexicalEditor(),
