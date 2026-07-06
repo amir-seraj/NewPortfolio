@@ -28,11 +28,21 @@ import {
   isElement,
   significantChildren,
   rawOf,
+  hasUndecodedEntities,
 } from "./parser";
 import { buildRichText } from "./lexical";
-import { rawTextOf, textOfInline } from "./text";
+import { extractVisible, rawTextOf, textOfInline } from "./text";
 
 export type LayoutBlock = { blockType: string } & Record<string, any>;
+
+/** Low-confidence guard: if a node's decoded visible text still contains
+ * something entity-shaped, our NAMED_ENTITIES table doesn't know it — a
+ * typed block would render the literal "&whatever;" to readers, while a
+ * RawHtml fallback lets the browser (which knows every entity) decode it
+ * correctly. So such sections always fall back to RawHtml, verbatim. */
+function proseHasUndecodedEntities(node: ElementNode): boolean {
+  return hasUndecodedEntities(extractVisible([node]).prose);
+}
 
 function imgField(node: ElementNode): { src: string; alt: string } {
   return { src: node.attrs.src ?? "", alt: node.attrs.alt ?? "" };
@@ -256,6 +266,10 @@ const LAYOUT_ONLY_DISQUALIFIERS = /\bbg-|gradient|shadow|\brounded/;
 /** Classifies one top-level <div>. Always returns 1+ blocks (never fails —
  * the final fallback is a verbatim RawHtml block). */
 function classifyDiv(node: ElementNode, source: string): LayoutBlock[] {
+  // Entity-decode guard (see proseHasUndecodedEntities): anything our
+  // decoder can't fully decode stays RawHtml so the browser decodes it.
+  if (proseHasUndecodedEntities(node)) return [rawHtmlBlock(node, source)];
+
   const banner = tryResultBanner(node);
   if (banner) return [banner];
   const card = tryIterationCard(node);
@@ -313,14 +327,20 @@ export function classifyProject(nodes: Node[], source: string): ClassifyResult {
   }
 
   for (const node of elements) {
-    if (isSimpleTopLevelProse(node)) {
+    if (isSimpleTopLevelProse(node) && !proseHasUndecodedEntities(node)) {
       pending.push(node);
       continue;
     }
     flushRichBody();
 
+    // Entity-decode guard, same rule as classifyDiv: any section whose
+    // decoded text still looks entity-shaped is low-confidence → RawHtml.
     if (isElement(node, "h2") || isElement(node, "h3")) {
-      push({ blockType: "SectionHeading", text: textOfInline(node), level: node.tag });
+      if (proseHasUndecodedEntities(node)) {
+        push(rawHtmlBlock(node, source));
+      } else {
+        push({ blockType: "SectionHeading", text: textOfInline(node), level: node.tag });
+      }
       continue;
     }
     if (isElement(node, "div")) {
@@ -328,7 +348,14 @@ export function classifyProject(nodes: Node[], source: string): ClassifyResult {
       continue;
     }
     if (isElement(node, "pre")) {
-      push(codeSnippetBlock(node));
+      // Same guard for code: unknown entities inside <pre><code> would
+      // stay literal in a CodeSnippet but be decoded by the browser in
+      // RawHtml — fall back when in doubt.
+      if (hasUndecodedEntities(rawTextOf(node))) {
+        push(rawHtmlBlock(node, source));
+      } else {
+        push(codeSnippetBlock(node));
+      }
       continue;
     }
     // Anything else at the top level (stray img/table/svg/heading level)

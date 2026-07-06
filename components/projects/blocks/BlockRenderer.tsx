@@ -36,7 +36,15 @@ export const BlockRenderer = ({ blocks }: Props) => (
   <div className="space-y-8">
     {blocks.map((block, i) => {
       const Component = COMPONENTS[block.blockType];
-      if (!Component) return null;
+      if (!Component) {
+        // A block type the renderer doesn't know (e.g. schema grew a new
+        // block without a matching component). Skipping silently would
+        // hide the content loss — warn loudly instead.
+        console.warn(
+          `BlockRenderer: no component registered for blockType "${block.blockType}" (block ${i}) — block skipped`
+        );
+        return null;
+      }
       return <Component key={block.id ?? i} {...block} />;
     })}
   </div>

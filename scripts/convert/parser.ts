@@ -161,10 +161,51 @@ const NAMED_ENTITIES: Record<string, string> = {
   reg: "®",
   trade: "™",
   deg: "°",
+  uarr: "↑",
+  darr: "↓",
+  // Typographic quotes/dashes and other common prose entities.
+  rsquo: "’",
+  lsquo: "‘",
+  ldquo: "“",
+  rdquo: "”",
+  sbquo: "‚",
+  bdquo: "„",
+  prime: "′",
+  Prime: "″",
+  dagger: "†",
+  Dagger: "‡",
+  permil: "‰",
+  laquo: "«",
+  raquo: "»",
+  sect: "§",
+  para: "¶",
+  plusmn: "±",
+  minus: "−",
+  le: "≤",
+  ge: "≥",
+  ne: "≠",
+  asymp: "≈",
+  infin: "∞",
+  micro: "µ",
+  euro: "€",
+  pound: "£",
+  cent: "¢",
+  yen: "¥",
+  frac12: "½",
+  frac14: "¼",
+  frac34: "¾",
+  sup2: "²",
+  sup3: "³",
+  shy: "­",
+  ensp: " ",
+  emsp: " ",
+  thinsp: " ",
+  zwnj: "‌",
+  zwj: "‍",
 };
 
 export function decodeEntities(text: string): string {
-  return text.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (whole, ent: string) => {
+  return text.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+\d*);/g, (whole, ent: string) => {
     if (ent[0] === "#") {
       const isHex = ent[1]?.toLowerCase() === "x";
       const code = isHex ? parseInt(ent.slice(2), 16) : parseInt(ent.slice(1), 10);
@@ -172,6 +213,17 @@ export function decodeEntities(text: string): string {
     }
     return NAMED_ENTITIES[ent] ?? whole;
   });
+}
+
+/**
+ * True if `text` (already run through decodeEntities) still contains
+ * something that looks like an HTML entity — i.e. one our table doesn't
+ * know. The classifier treats any such section as low-confidence and falls
+ * back to RawHtml, where the browser (which knows every named entity)
+ * decodes it correctly — instead of a reader seeing a literal "&rsquo;".
+ */
+export function hasUndecodedEntities(text: string): boolean {
+  return /&[a-zA-Z]+\d*;|&#\d+;|&#x[0-9a-fA-F]+;/.test(text);
 }
 
 /** Collapses all whitespace runs (including newlines) to a single space. */
