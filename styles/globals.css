@@ -29,6 +29,9 @@
 html {
   @apply filter;
   scroll-behavior: smooth;
+  /* Native form controls, scrollbars and the canvas follow the same
+     system preference as Tailwind's darkMode: "media" variants. */
+  color-scheme: light dark;
 }
 html,
 body {

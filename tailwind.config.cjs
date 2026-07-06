@@ -1,5 +1,13 @@
 module.exports = {
-  darkMode: "class",
+  // "media", not "class": the dark theme follows the visitor's OS preference.
+  // The old class strategy needed hooks/theme.ts to stamp `.dark` on <html>,
+  // but no component ever mounted it, so every dark: style was unreachable.
+  // A toggle would add UI chrome, a tab stop, persisted state and a no-FOUC
+  // script for a 30-second-visit audience (PRODUCT.md: "One address, no
+  // form" — no settings, no friction). System preference makes both fully
+  // styled themes reachable with zero JS; viewport themeColor already keys
+  // off prefers-color-scheme the same way (see Task 14 report, decision #2).
+  darkMode: "media",
   content: [
     "app/**/*.{js,ts,jsx,tsx}",
     "pages/**/*.{js,ts,jsx,tsx}",
