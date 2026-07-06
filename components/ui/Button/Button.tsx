@@ -57,10 +57,8 @@ export const Button: FC<ButtonProps> = forwardRef((props, buttonRef) => {
     <>
       {href ? (
         <Tag ref={mergeRefs([ref, buttonRef])} {...rest}>
-          <Link href={href} legacyBehavior>
-            <a className={classes} target={target}>
-              {children}
-            </a>
+          <Link href={href} className={classes} target={target}>
+            {children}
           </Link>
         </Tag>
       ) : (

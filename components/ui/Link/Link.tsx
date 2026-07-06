@@ -21,11 +21,11 @@ export const Link: FC<Props> = ({
 }) => {
   const classes = cn(s.root, className);
 
+  // No legacyBehavior: NextLink has rendered the <a> itself since Next 13;
+  // the old nested-anchor pattern logged a deprecation error on every page.
   return (
-    <NextLink href={href} legacyBehavior>
-      <a className={classes} {...rest} onClick={onClick}>
-        {children}
-      </a>
+    <NextLink href={href} className={classes} {...rest} onClick={onClick}>
+      {children}
     </NextLink>
   );
 };
