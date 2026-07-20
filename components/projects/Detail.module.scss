@@ -1,0 +1,139 @@
+.prose {
+  color: #334155;
+  font-size: 1rem;
+  line-height: 1.85;
+
+  > h2:first-child {
+    display: none;
+  }
+
+  > p:first-child,
+  > h2:first-child + p {
+    margin-top: 0;
+    color: #0f172a;
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    line-height: 1.65;
+  }
+
+  h2,
+  h3,
+  h4 {
+    scroll-margin-top: 7rem;
+    font-family: "Pop", sans-serif;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+
+  h2 {
+    margin-top: 5rem;
+    border-top: 1px solid #cbd5e1;
+    padding-top: 2rem;
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    line-height: 1.15;
+  }
+
+  h3 {
+    margin-top: 3rem;
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+    line-height: 1.25;
+  }
+
+  h4 {
+    margin-top: 2.25rem;
+    font-size: 1.1rem;
+  }
+
+  p,
+  li {
+    line-height: 1.85;
+  }
+
+  a {
+    color: #984f06;
+    font-weight: 600;
+    text-decoration-color: rgba(152, 79, 6, 0.4);
+    text-underline-offset: 0.24em;
+
+    &:hover {
+      text-decoration-color: #984f06;
+    }
+  }
+
+  blockquote {
+    margin-left: 0;
+    border-left: 3px solid #f9b571;
+    background: rgba(249, 181, 113, 0.13);
+    padding: 1.2rem 1.4rem;
+    color: #334155;
+    font-style: normal;
+  }
+
+  img {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    box-shadow: 0 24px 55px -42px rgba(15, 23, 42, 0.5);
+  }
+
+  hr {
+    margin: 4rem 0;
+    border-color: #cbd5e1;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  th {
+    font-family: "Pop", sans-serif;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose {
+    color: #cbd5e1;
+
+    > p:first-child,
+    > h2:first-child + p,
+    h2,
+    h3,
+    h4 {
+      color: #f8fafc;
+    }
+
+    h2,
+    hr {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    a {
+      color: #f9b571;
+      text-decoration-color: rgba(249, 181, 113, 0.4);
+
+      &:hover {
+        text-decoration-color: #f9b571;
+      }
+    }
+
+    blockquote {
+      background: rgba(249, 181, 113, 0.08);
+      color: #e2e8f0;
+    }
+
+    img {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: #292929;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .prose {
+    font-size: 0.96rem;
+
+    h2 {
+      margin-top: 3.75rem;
+    }
+  }
+}

@@ -1,20 +1,30 @@
 import type { Metadata } from "next";
-import { Projects } from "@components/sections";
-import { Nav } from "@components/common";
-import { getProjects, getSettings } from "../../../cms/queries";
 
-export const metadata: Metadata = {
-  title: "Projects | Amir Seraj",
-  description:
-    "Thirteen shipped projects, 2023 to 2026: systems that read emotion, posture and balance, plus the engineering that came before them.",
-  alternates: { canonical: "https://amirseraj.ir/projects" },
-  openGraph: {
-    url: "https://amirseraj.ir/projects",
-    images: ["/images/banner.jpg"],
-  },
-};
+import { Nav } from "@components/common";
+import { Projects } from "@components/sections";
+import { getProjects, getSettings } from "../../../content/reader";
 
 export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [projects, settings] = await Promise.all([getProjects(), getSettings()]);
+  const years = projects.map((project) => project.year);
+  const firstYear = years.length ? Math.min(...years) : new Date().getFullYear();
+  const lastYear = years.length ? Math.max(...years) : firstYear;
+  const range = firstYear === lastYear ? String(firstYear) : `${firstYear} to ${lastYear}`;
+  const canonical = `${settings.siteUrl.replace(/\/$/, "")}/projects`;
+  const description = `${projects.length} shipped projects, ${range}: systems that read emotion, posture and balance, plus the engineering that connects them.`;
+  return {
+    title: "Projects | Amir Seraj",
+    description,
+    alternates: { canonical },
+    openGraph: {
+      url: canonical,
+      description,
+      images: [settings.defaultOgImage],
+    },
+  };
+}
 
 export default async function ProjectsPage() {
   const [allprojects, settings] = await Promise.all([
@@ -24,7 +34,7 @@ export default async function ProjectsPage() {
   return (
     <main>
       <Nav
-        className="fixed py-3 bg-mango-900 bg-opacity-90 text-mango-50 backdrop-blur dark:bg-mango-950 dark:bg-opacity-90"
+        className="fixed border-b border-slate-300/70 bg-[#f4f1eb]/90 text-slate-900 backdrop-blur dark:border-white/10 dark:bg-[#202020]/90 dark:text-slate-100"
         email={settings.email}
       />
       <Projects allprojects={allprojects} email={settings.email} />

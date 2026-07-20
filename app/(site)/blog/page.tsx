@@ -1,27 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Nav } from "@components/common";
+
+import { Footer, Nav } from "@components/common";
 import { Container } from "@components/ui";
 import { PostCard } from "../../../components/blog/PostCard";
-import { getPublishedPosts, getSettings, getUsedTags } from "../../../cms/queries";
+import {
+  getPublishedPosts,
+  getSettings,
+  getUsedTags,
+} from "../../../content/reader";
 
 export const metadata: Metadata = {
   title: "Blog | Amir Seraj",
-  description: "Notes on affective computing, HCI research, and building interactive systems.",
-  alternates: { canonical: "https://amirseraj.ir/blog" },
+  description:
+    "Notes on affective computing, HCI research, and building interactive systems.",
+  alternates: { canonical: "/blog" },
 };
 
 export const revalidate = 60;
 
-// 44px-tall pill filters; the active tag is filled mango and announced via
-// aria-current. All pairings AA (scripts/check-contrast.mjs: mango-700/white,
-// mango-950/mango-300).
 const pillBase =
-  "inline-flex min-h-[44px] items-center rounded-full border px-4 font-heading text-xs font-semibold uppercase tracking-wide transition-colors";
+  "inline-flex min-h-[42px] items-center rounded-full border px-4 font-heading text-[10px] font-bold uppercase tracking-[0.12em] transition-colors";
 const pillActive =
-  "border-mango-700 bg-mango-700 text-white dark:border-mango-300 dark:bg-mango-300 dark:text-mango-950";
+  "border-slate-950 bg-slate-950 text-white dark:border-mango-300 dark:bg-mango-300 dark:text-mango-950";
 const pillIdle =
-  "border-slate-300 text-slate-700 hover:border-mango-600 hover:text-mango-700 dark:border-slate-600 dark:text-slate-300 dark:hover:border-mango-300 dark:hover:text-mango-300";
+  "border-slate-300 text-slate-600 hover:border-slate-950 hover:text-slate-950 dark:border-white/15 dark:text-slate-300 dark:hover:border-mango-300 dark:hover:text-mango-300";
 
 export default async function BlogPage({
   searchParams,
@@ -34,77 +37,122 @@ export default async function BlogPage({
     getUsedTags(),
     getSettings(),
   ]);
-  const activeTag = tag ? allTags.find((t) => t.slug === tag) : undefined;
+  const activeTag = tag ? allTags.find((item) => item.slug === tag) : undefined;
+  const entryLabel = `${posts.length} ${posts.length === 1 ? "note" : "notes"}`;
 
   return (
-    <main>
+    <main id="top" className="bg-[#f4f1eb] text-slate-950 dark:bg-[#202020] dark:text-white">
       <Nav
-        className="fixed py-3 bg-white bg-opacity-75 backdrop-blur dark:bg-[#323232] dark:bg-opacity-90"
+        className="fixed border-b border-slate-300/70 bg-[#f4f1eb]/90 text-slate-950 backdrop-blur dark:border-white/10 dark:bg-[#202020]/90 dark:text-white"
         email={settings.email}
       />
-      <Container className="pt-32 pb-20">
-        <h1 className="font-heading text-4xl font-bold text-slate-900 dark:text-slate-100 md:text-5xl">
-          Blog
-        </h1>
-        <p className="mt-3 max-w-[58ch] text-slate-600 dark:text-slate-300">
-          Notes on affective computing, HCI research, and building interactive
-          systems.
-        </p>
-        {allTags.length > 0 && (
-          <nav aria-label="Filter posts by tag" className="mt-8 flex flex-wrap gap-2">
+
+      <header className="relative overflow-hidden bg-[#1d1d1d] text-white">
+        <span
+          aria-hidden="true"
+          className="absolute -bottom-[0.22em] -right-[0.04em] select-none font-heading text-[clamp(15rem,40vw,38rem)] font-bold leading-none tracking-[-0.1em] text-white/[0.025]"
+        >
+          N
+        </span>
+        <div
+          aria-hidden="true"
+          className="absolute inset-y-0 right-[14%] hidden w-px bg-white/[0.06] md:block"
+        />
+        <Container className="relative max-w-[1500px] pb-24 pt-36 md:pb-32 md:pt-44">
+          <div className="max-w-5xl">
+            <p className="font-heading text-[10px] font-bold uppercase tracking-[0.22em] text-mango-300">
+              Field notes / {entryLabel}
+            </p>
+            <h1 className="mt-6 max-w-[11ch] text-balance font-heading text-[clamp(3.5rem,9vw,8.5rem)] font-bold leading-[0.92] tracking-[-0.055em]">
+              Ideas still in motion.
+            </h1>
+            <p className="mt-8 max-w-[58ch] text-base leading-relaxed text-slate-300 md:text-xl md:leading-relaxed">
+              Notes from the space between research questions and working
+              prototypes—what changed, what failed, and what remains open.
+            </p>
+          </div>
+        </Container>
+      </header>
+
+      <Container className="max-w-[1500px] pb-24 md:pb-32">
+        <div className="relative -mt-7 mb-12 border border-slate-300 bg-white px-5 py-4 shadow-[0_20px_60px_-42px_rgba(15,23,42,0.45)] md:flex md:items-center md:justify-between md:px-7 dark:border-white/15 dark:bg-[#292929]">
+          <p className="mb-3 font-heading text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500 md:mb-0 dark:text-slate-400">
+            Filter the notebook
+          </p>
+          <nav aria-label="Filter posts by tag" className="flex flex-wrap gap-2">
             <Link
               href="/blog"
-              aria-current={!tag ? "true" : undefined}
+              aria-current={!tag ? "page" : undefined}
               className={`${pillBase} ${!tag ? pillActive : pillIdle}`}
             >
               All
             </Link>
-            {allTags.map((t) => (
+            {allTags.map((item) => (
               <Link
-                key={t.slug}
-                href={`/blog?tag=${t.slug}`}
-                aria-current={tag === t.slug ? "true" : undefined}
-                className={`${pillBase} ${tag === t.slug ? pillActive : pillIdle}`}
+                key={item.slug}
+                href={`/blog?tag=${item.slug}`}
+                aria-current={tag === item.slug ? "page" : undefined}
+                className={`${pillBase} ${
+                  tag === item.slug ? pillActive : pillIdle
+                }`}
               >
-                {t.name}
+                {item.name}
               </Link>
             ))}
           </nav>
-        )}
+        </div>
+
         {posts.length > 0 ? (
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        ) : tag ? (
-          // Filter produced nothing: name the tag, offer the way back.
-          <div className="mt-14">
-            <p className="text-slate-900 dark:text-slate-100">
-              No posts tagged &ldquo;{activeTag?.name ?? tag}&rdquo; yet.
-            </p>
-            <Link
-              href="/blog"
-              className="mt-4 inline-flex min-h-[44px] items-center text-mango-700 underline underline-offset-4 hover:text-mango-600 dark:text-mango-300 dark:hover:text-mango-200"
-            >
-              Show all posts
-            </Link>
+          <div>
+            <PostCard post={posts[0]} featured index={0} />
+            {posts.length > 1 && (
+              <div className="mt-8 grid gap-8 md:grid-cols-2">
+                {posts.slice(1).map((post, index) => (
+                  <PostCard key={post.id} post={post} index={index + 1} />
+                ))}
+              </div>
+            )}
           </div>
         ) : (
-          // Nothing published at all: point at the shipped evidence instead.
-          <div className="mt-14">
-            <p className="text-slate-900 dark:text-slate-100">
-              Nothing published here yet. The receipts live in the projects.
+          <div className="border border-slate-300 bg-white px-6 py-16 text-center dark:border-white/15 dark:bg-[#292929]">
+            <p className="font-heading text-[10px] font-bold uppercase tracking-[0.18em] text-mango-700 dark:text-mango-300">
+              No signal yet
             </p>
+            <h2 className="mt-4 font-heading text-3xl font-bold">
+              {tag
+                ? `Nothing filed under “${activeTag?.name ?? tag}” yet.`
+                : "The first field note is still taking shape."}
+            </h2>
             <Link
-              href="/projects"
-              className="mt-5 inline-flex min-h-[44px] items-center bg-mango-300 px-6 font-heading text-sm font-bold uppercase tracking-wider text-mango-950 transition-colors hover:bg-mango-200"
+              href={tag ? "/blog" : "/projects"}
+              className="mt-7 inline-flex min-h-[44px] items-center bg-slate-950 px-6 font-heading text-xs font-bold uppercase tracking-[0.14em] text-white dark:bg-mango-300 dark:text-mango-950"
             >
-              See the evidence
+              {tag ? "Show all notes" : "See the projects"} →
             </Link>
           </div>
         )}
       </Container>
+
+      <section className="bg-mango-300 text-mango-950">
+        <Container className="flex max-w-[1500px] flex-col gap-8 py-14 md:flex-row md:items-end md:justify-between md:py-20">
+          <div>
+            <p className="font-heading text-[10px] font-bold uppercase tracking-[0.2em]">
+              Beyond the notebook
+            </p>
+            <h2 className="mt-4 max-w-[18ch] font-heading text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+              The ideas have working evidence.
+            </h2>
+          </div>
+          <Link
+            href="/projects"
+            className="inline-flex min-h-[44px] w-fit items-center border-b-2 border-mango-950 font-heading text-xs font-bold uppercase tracking-[0.14em] transition-transform hover:translate-x-1"
+          >
+            Explore the projects →
+          </Link>
+        </Container>
+      </section>
+
+      <Footer email={settings.email} />
     </main>
   );
 }

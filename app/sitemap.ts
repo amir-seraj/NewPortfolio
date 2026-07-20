@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
-import { getProjects, getPublishedPosts } from "../cms/queries";
+import { getProjects, getPublishedPosts, getSettings } from "../content/reader";
 
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = "https://amirseraj.ir";
-  const allprojects = await getProjects();
-  const posts = await getPublishedPosts();
+  const [allprojects, posts, settings] = await Promise.all([
+    getProjects(),
+    getPublishedPosts(),
+    getSettings(),
+  ]);
+  const base = settings.siteUrl.replace(/\/$/, "");
   return [
     { url: base },
     { url: `${base}/projects` },

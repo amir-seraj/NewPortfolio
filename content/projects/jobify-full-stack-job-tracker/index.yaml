@@ -1,0 +1,16 @@
+title: "Jobify: A Full-Stack Job Application Tracker"
+shortTitle: "Jobify"
+kind: "Full-stack application"
+description: "A comprehensive MERN stack application for managing and tracking job applications with real-time analytics."
+tags:
+  - "MERN Stack"
+  - "MongoDB"
+  - "Express.js"
+  - "React"
+  - "Node.js"
+  - "JWT"
+featured: false
+featuredOrder: 0
+publishedAt: "2023-08-15"
+readTime: 4
+coverImage: "/images/projects/jobify-full-stack-job-tracker/coverImage.png"

@@ -2,17 +2,16 @@ import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "@styles/globals.css";
 import { Layout } from "@components/common";
-import { getSettings } from "../../cms/queries";
+import { getSettings } from "../../content/reader";
 
 // Hardcoded fallbacks — identical to the pre-CMS static `metadata` export.
-// Used verbatim if the DB is unreachable (spec: static-first, never
-// white-screen) or a field is empty on a fresh, unseeded clone.
+// Used verbatim if repository content is missing on a fresh clone.
 const FALLBACK = {
   siteName: "Amir Seraj",
   siteUrl: "https://amirseraj.ir",
   description:
     "Machines can learn to notice people — I teach them. Affective computing, emotion recognition and interactive systems. MSc HCI, Genova.",
-  ogImage: "/images/banner.jpg",
+  ogImage: "/images/social-card.png",
   twitterHandle: "@amirseraj",
 };
 
@@ -21,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   try {
     settings = await getSettings();
   } catch (err) {
-    console.warn("[layout] getSettings() failed — using static fallback metadata:", err);
+    console.warn("[layout] settings unavailable — using static metadata:", err);
   }
 
   const siteName = settings?.siteName ?? FALLBACK.siteName;
@@ -45,7 +44,13 @@ export async function generateMetadata(): Promise<Metadata> {
       site: twitterHandle,
       creator: twitterHandle,
     },
-    icons: { icon: "/favicon/icon.png", apple: "/favicon/icon.png" },
+    icons: {
+      icon: [
+        { url: "/favicon/icon.svg", type: "image/svg+xml" },
+        { url: "/favicon/icon.png", type: "image/png" },
+      ],
+      apple: "/favicon/icon.png",
+    },
     manifest: "/favicon/site.webmanifest",
   };
 }
@@ -59,26 +64,15 @@ export const viewport: Viewport = {
   ],
 };
 
-export default async function SiteLayout({ children }: { children: React.ReactNode }) {
-  let email: string | null = null;
-  try {
-    email = (await getSettings())?.email ?? null;
-  } catch (err) {
-    console.warn("[layout] getSettings() failed — SideBar falls back to its default email:", err);
-  }
-
+export default async function SiteLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Syne+Mono&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body style={{ fontSize: 20 }}>
-        <Layout email={email}>{children}</Layout>
+      <body>
+        <Layout>{children}</Layout>
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

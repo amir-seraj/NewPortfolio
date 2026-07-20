@@ -1,0 +1,13 @@
+title: "Facial Verification"
+shortTitle: "Facial Verification"
+kind: "Computer vision"
+description: "A face verification pipeline in notebooks: the computer-vision groundwork behind the affect research."
+tags:
+  - "Computer Vision"
+  - "Deep Learning"
+  - "Python"
+featured: false
+featuredOrder: 0
+publishedAt: "2024-11-25"
+readTime: 3
+coverImage: "/images/projects/facial-verification/coverImage.png"

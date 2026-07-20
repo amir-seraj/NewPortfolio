@@ -1,0 +1,18 @@
+Humans segment continuous experience into discrete events automatically, registering a boundary whenever their prediction of what happens next fails. This thesis operationalises that theory, Event Segmentation Theory (EST), as a 15-channel feature representation and three self-supervised encoders (a Vision Transformer, a GRU autoencoder, and a predictive extension), then asks a harder question than most theses attempt: not just "does it work," but _why does it stop working where it does_.
+
+## The honest result
+
+MCC@15 = 0.405 on Assembly101, 0.593 on Breakfast — and a diagnostic explaining precisely why no model in the family goes higher.
+
+Supervisors: Prof. Gualtiero Volpe (Genova) · Prof. Giovanna Varni (Trento). Defended June 2026.
+
+## What it found
+
+-   • The per-frame boundary score genuinely carries signal — ground-truth frames score 1.75× higher than non-boundary frames.
+-   • But 77–79% of every model's predicted boundaries still land nowhere near a real one: the noise has a heavier tail than the signal.
+-   • Even an oracle that knows the true number of boundaries per video recovers fewer than one in five.
+-   • The two reconstruction-based encoders transfer across datasets (Assembly101 ↔ Breakfast) without meaningful loss — the ceiling tracks the test corpus, not the encoder.
+
+The published version of this work appeared at CHItaly 2025. The thesis re-evaluates everything under a stricter, unified protocol, and the headline number from the paper does not survive it — which became the more interesting finding. The forward direction it points to: score boundaries on a 2-D temporal self-similarity manifold instead of a 1-D per-frame scalar, the same turn the rest of the field has been making since 2022.
+
+[Read the published paper (CHItaly 2025)](https://doi.org/10.1145/3750069.3755958)

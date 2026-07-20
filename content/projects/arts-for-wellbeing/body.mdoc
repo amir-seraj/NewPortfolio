@@ -1,0 +1,33 @@
+Arts for Wellbeing investigated a difficult design question: how can an interactive system notice changes in emotion and movement without reducing a person to a single label? The project combined affect sensing, movement analysis, and graded sound material as a research instrument rather than a diagnostic tool.
+
+## Research context
+
+Artistic interventions are often described through personal reflection. Those accounts matter, but they are difficult to align with what happens moment by moment during an experience. This project explored whether computer-vision and movement signals could add another layer of evidence while preserving the ambiguity that makes an artistic encounter meaningful.
+
+The work followed the same research line as reSilence and the emotion-recognition dataset: use machine perception to support reflection, not to claim privileged access to somebody's inner state.
+
+## Building the sensing pipeline
+
+### Facial affect
+
+The facial-expression component built on a model trained with RAF-DB. Rather than treating the highest-scoring expression as ground truth, the analysis retained changing confidence across time. That made it possible to look for transitions and uncertain periods instead of producing a rigid sequence of emotion labels.
+
+### Movement
+
+Movement-analysis notebooks examined how activity changed through an intervention. The useful features were deliberately interpretable: intensity, variation, rhythm, and periods of stillness. Keeping those features legible made conversations with non-technical collaborators easier and exposed when an apparent result came from tracking noise.
+
+### Sound conditions
+
+The study materials included low-, medium-, and high-aggression soundscapes. These were not intended as universal emotional categories. They created controlled differences in density and intensity that could be aligned with the observed movement and affect signals.
+
+## A cautious interpretation layer
+
+The central technical challenge was synchronization. Video-derived signals, movement summaries, and audio conditions had to refer to the same window of an experience before they could be compared. The pipeline therefore emphasized timestamps and inspection over a single automated score.
+
+Equally important was restraint. Facial-expression models inherit the limits of their training data, lighting changes the signal, and a visible expression is not the same thing as a felt emotion. The analysis was designed to generate research questions for human review, not conclusions about participants.
+
+## Outcome
+
+The project produced a reusable set of notebooks connecting facial affect, movement, and sound conditions. More importantly, it clarified a design principle that continues across my work: an affective system should show its uncertainty and make room for interpretation. The sensing pipeline is useful when it helps researchers notice a moment worth revisiting—not when it pretends to explain the person in front of it.
+
+[View the research repository on GitHub](https://github.com/amir-seraj/Arts-for-wellbeing-project)

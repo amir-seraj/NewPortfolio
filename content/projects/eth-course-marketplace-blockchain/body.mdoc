@@ -1,0 +1,72 @@
+ETH Course Marketplace was my bachelor's final project: a full-stack experiment in what changes when course ownership and access are represented by a smart contract rather than a conventional application database.
+
+## The question behind the dApp
+
+A blockchain course marketplace sounds simple—connect a wallet, pay, unlock content—but each of those verbs crosses a boundary between the browser and an irreversible public system. The real design problem was coordinating contract state, wallet state, and interface state without asking the user to understand all three.
+
+The project therefore treated the transaction experience as part of the architecture. A purchase was not complete merely because a button had been pressed; the interface needed to explain wallet connection, network state, confirmation, failure, and the course state recorded by the contract.
+
+## Contract model
+
+The `CourseMarketplace.sol` contract represents each purchased course with an identifier, price, ownership proof, owner address, and lifecycle state.
+
+```
+enum State {
+    Purchased,
+    Activated,
+    Deactivated
+}
+
+struct Course {
+    uint id;
+    uint price;
+    bytes32 proof;
+    address owner;
+    State state;
+}
+```
+
+Separating purchase from activation made access changes explicit. Ownership verification remained on-chain, while the application could present a familiar course-management flow around that state.
+
+## Connecting the browser to Ethereum
+
+The frontend used Next.js, React, Tailwind CSS, SWR, and Web3.js. A provider layer handled MetaMask connection, contract access, loading state, and reusable hooks. This kept wallet behavior out of individual interface components and provided one place to respond to account or network changes.
+
+The interface included:
+
+-   a course catalog and filtering;
+-   wallet and network status;
+-   purchase confirmation and transaction feedback;
+-   a dashboard for purchased, activated, and deactivated courses;
+-   responsive and multilingual presentation.
+
+The most important interface decision was to keep transaction state visible. Wallet rejection, insufficient value, the wrong network, and a pending confirmation are different situations and should not collapse into one generic error.
+
+## Testing the trust boundary
+
+Contract tests focused on the rules that the interface could not be trusted to enforce: ownership, correct payment, lifecycle changes, and duplicate purchases.
+
+```
+describe("Purchase the new course", () => {
+  it("should not allow repurchase", async () => {
+    await catchRevert(
+      contract.purchaseCourse(courseId, proof, {
+        from: buyer,
+        value
+      })
+    );
+  });
+});
+```
+
+Testing reverts was as important as testing successful transactions. A decentralized interface can guide a user, but the contract must remain correct when the interface is bypassed.
+
+## Gas and storage decisions
+
+Gas cost exposed the consequence of every storage choice. The contract used custom errors and restrained on-chain state rather than treating Ethereum like an ordinary database. Batch operations were considered where they reduced repeated transaction overhead without making one failure harder to understand.
+
+## What the project clarified
+
+The marketplace demonstrated a complete dApp path from Solidity and Truffle through MetaMask to a responsive Next.js interface. More importantly, it made the product limits of the architecture concrete. Course media still needs an appropriate storage strategy, network fees affect accessibility, and wallet concepts remain a barrier for new users.
+
+Layer-two networks and IPFS would be logical technical extensions. The more important design extension would be progressive explanation: revealing blockchain detail when it helps somebody recover or decide, not forcing every learner to become a protocol expert before buying a course.

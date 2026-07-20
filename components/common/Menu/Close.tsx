@@ -10,17 +10,16 @@ export const CloseButton = forwardRef<HTMLButtonElement, { onClose: () => void }
     return (
       <motion.button
         ref={ref}
-        // p-3/-m-3: 44px hit area around the glyph + label
-        className="group fixed right-8 top-7 -m-3 flex items-center gap-2 p-3 md:right-12"
+        type="button"
+        aria-label="Close menu"
+        className="group absolute right-5 top-5 z-[1] flex min-h-[44px] items-center gap-2 rounded-full border border-white/20 px-4 font-heading text-[10px] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:border-mango-300 hover:text-mango-300 md:right-10 md:top-8"
         onClick={onClose}
-        initial={reduceMotion ? false : { y: -60, opacity: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        initial={reduceMotion ? false : { y: -18, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.45, delay: 0.15 }}
       >
-        <VscChromeClose className="w-auto h-6 transition duration-300 ease-in-out transform group-hover:rotate-90 group-hover:text-mango-600 dark:group-hover:text-mango-300" />
-        <span className="text-sm tracking-widest uppercase font-heading group-hover:scale-95">
-          Close
-        </span>
+        <VscChromeClose className="h-5 w-5 transition-transform group-hover:rotate-90" />
+        Close
       </motion.button>
     );
   }

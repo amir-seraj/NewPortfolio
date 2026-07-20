@@ -1,0 +1,16 @@
+title: "Building a Decentralized Course Marketplace on Ethereum"
+shortTitle: "Course Marketplace"
+kind: "Web3 capstone"
+description: "A comprehensive exploration of blockchain technology, smart contracts, and modern web development - My Bachelor's Degree Capstone Project."
+tags:
+  - "Blockchain"
+  - "Ethereum"
+  - "Solidity"
+  - "Next.js"
+  - "Web3"
+  - "DApp"
+featured: false
+featuredOrder: 0
+publishedAt: "2024-06-15"
+readTime: 4
+coverImage: "/images/projects/eth-course-marketplace-blockchain/coverImage.png"

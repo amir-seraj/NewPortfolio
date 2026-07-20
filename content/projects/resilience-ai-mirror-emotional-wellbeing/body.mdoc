@@ -1,0 +1,50 @@
+reSilence is an interactive installation that turns a webcam into a reflective instrument. Movement and facial signals are translated into sound and light, inviting a participant to notice how their body changes the environment rather than asking them to complete a task on a screen.
+
+## Starting with a different role for technology
+
+The project began inside the Cultural Welfare Technologies initiative with a question: can sensing technology create a pause instead of another demand for attention?
+
+My collaborator and I designed a home-accessible experience around an ordinary webcam. The participant stands or sits within view, explores movement and expression, and receives continuous audiovisual feedback generated in Max/MSP. The system is less interested in naming an emotion than in creating a loop between action, perception, and reflection.
+
+## The participant experience
+
+A small or slow gesture produces a different texture from a sudden, expansive movement. Changes in visible facial expression influence another layer of the audiovisual composition. As participants discover these relationships, they begin to test the system: repeating a gesture, exaggerating it, becoming still, or trying to return to a previous sound.
+
+That shift—from being observed to actively probing the observation—is central. The participant becomes both performer and listener.
+
+## System architecture
+
+![System architecture: webcam analysis in Python sends affect and movement signals to Max/MSP](/images/project-content/resilience-ai-mirror-emotional-wellbeing/architecture.svg)
+
+The installation is divided into three layers:
+
+1.  **Perception:** OpenCV captures the webcam stream and MediaPipe extracts facial landmarks and body pose.
+2.  **Interpretation:** Python derives legible signals such as movement intensity, gesture amplitude, and changing facial features over time.
+3.  **Expression:** OSC messages carry those signals into Max/MSP, where mappings control sound and light.
+
+Keeping these layers separate made the artistic mapping changeable without retraining or rewriting the perception pipeline.
+
+## Designing affect without claiming certainty
+
+MediaPipe provides dense facial geometry, but landmarks are not emotions. Lighting, pose, identity, and context all affect what is visible. The system therefore works with dimensions and change—more or less movement, shifts in mouth or brow geometry, temporal patterns—rather than presenting a definitive label to the participant.
+
+Combining face and body signals also reduced dependence on one fragile cue. A personalized calibration phase established a local baseline for the session instead of assuming every participant should produce the same geometry.
+
+## Real-time constraints
+
+The feedback loop only feels connected when visual analysis and sound respond together. Processing was divided so camera capture did not wait for every downstream calculation. Feature selection reduced unnecessary work, and the system prioritized stable, interpretable signals over extracting every possible landmark-derived measurement.
+
+OSC provided a lightweight boundary between Python and Max/MSP. It also made debugging tangible: perception values could be monitored before they entered the artistic mapping.
+
+## What happened in use
+
+During sessions, participants quickly learned that their behavior shaped the piece. They coordinated movement with sound, repeated actions that produced an interesting response, and used stillness as deliberately as motion. The most useful observation was not whether the system had classified an expression correctly; it was that feedback made people attend to how they were moving and presenting themselves.
+
+## Reflection
+
+reSilence strengthened two principles that now guide my affective-computing work:
+
+-   sensing should expose uncertainty rather than perform confidence;
+-   the mapping from a person to feedback is an interaction-design decision, not a neutral technical step.
+
+The installation demonstrates a role for machine perception that is neither surveillance nor automation. It can become material for a participant to question, play, and reflect with—a mirror whose value lies in the conversation, not the verdict.

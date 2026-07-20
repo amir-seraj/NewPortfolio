@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "lines": [
+      { "text": "Machines can learn", "accent": false },
+      { "text": "to notice people.", "accent": false },
+      { "text": "I teach them.", "accent": true }
+    ],
+    "ctaLabel": "See the evidence",
+    "ctaHref": "#work",
+    "strip": [
+      "Affective computing",
+      "Emotion recognition",
+      "Interactive art",
+      "MSc HCI · Genova"
+    ]
+  },
+  "about": {
+    "heading": "Who's asking",
+    "paragraphs": [
+      "Engineer's training. Researcher's questions. Three shipped systems that read emotion, posture and balance, and answer well. If software is going to watch people anyway, it should learn some manners; mine do."
+    ],
+    "stats": [
+      { "value": 13, "label": "projects shipped, 2023 to 2026" },
+      { "value": 2, "label": "installations exhibited in 2024" },
+      { "value": 1, "label": "mirror that reads faces" }
+    ]
+  },
+  "contactKicker": "One address. No form."
+}

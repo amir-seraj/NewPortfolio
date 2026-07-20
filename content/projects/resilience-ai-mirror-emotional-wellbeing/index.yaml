@@ -1,0 +1,15 @@
+title: "reSilence: Crafting an AI-Powered Mirror for Emotional Wellbeing"
+shortTitle: "reSilence"
+kind: "Affective installation"
+description: "A deep dive into the technology behind an interactive art installation that listens to your body and emotions."
+tags:
+  - "AI"
+  - "Computer Vision"
+  - "Interactive Art"
+  - "Python"
+  - "Max/MSP"
+featured: true
+featuredOrder: 1
+publishedAt: "2024-12-15"
+readTime: 4
+coverImage: "/images/projects/resilience-ai-mirror-emotional-wellbeing/coverImage.png"

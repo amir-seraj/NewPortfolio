@@ -1,0 +1,25 @@
+diff --git a/node_modules/@keystar/ui/dist/keystar-ui-breadcrumbs.js b/node_modules/@keystar/ui/dist/keystar-ui-breadcrumbs.js
+index 074f111..88a86b0 100644
+--- a/node_modules/@keystar/ui/dist/keystar-ui-breadcrumbs.js
++++ b/node_modules/@keystar/ui/dist/keystar-ui-breadcrumbs.js
+@@ -32,11 +32,18 @@ function BreadcrumbItem(props) {
+     direction
+   } = useLocale();
+   const ref = useRef(null);
+-  const ElementType = props.href ? "a" : "span";
++  const {
++    href,
++    ...propsWithoutHref
++  } = props;
++  const ElementType = href ? "a" : "span";
+   let t1;
+   if ($[0] !== props || $[1] !== ElementType) {
+     t1 = {
+-      ...props,
++      ...propsWithoutHref,
++      ...(href ? {
++        href
++      } : {}),
+       elementType: ElementType
+     };
+     $[0] = props;

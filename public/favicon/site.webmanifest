@@ -4,11 +4,16 @@
   "icons": [
     {
       "src": "/favicon/icon.png",
-      "sizes": "2000x1781",
+      "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/favicon/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ],
-  "theme_color": "#282828",
-  "background_color": "#ffffff",
+  "theme_color": "#1d1d1d",
+  "background_color": "#f4f1eb",
   "display": "browser"
 }

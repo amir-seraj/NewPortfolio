@@ -1,0 +1,37 @@
+MetaGoogler is a desktop tool for repairing music libraries without turning metadata cleanup into a second hobby. It combines audio fingerprinting, language-model suggestions, cover-art retrieval, and cautious batch operations behind one focused interface.
+
+## The problem hiding in a music folder
+
+Long-lived libraries accumulate inconsistent artist names, missing artwork, vague filenames, and tags inherited from multiple stores. Fixing one track is simple. Fixing hundreds is risky: an incorrect automated guess can spread faster than a careful manual edit.
+
+The product goal was therefore not “automate everything.” It was to make strong suggestions, keep the evidence visible, and let the user decide how much automation to trust.
+
+## Identification before generation
+
+The workflow begins with audio fingerprinting through the AudD API. Sampling from the middle of a song avoids intros and silence that may be less distinctive. A fingerprint result provides an external anchor before any language model is asked to normalize or complete metadata.
+
+When a reliable match is unavailable, the system can still work from existing tags and filenames, but the interface distinguishes that weaker evidence from a fingerprint-backed identification.
+
+## A provider-independent suggestion layer
+
+Metadata suggestions can be requested from more than thirteen switchable language-model providers. A shared adapter keeps the application workflow stable while provider-specific clients handle authentication and request details.
+
+The model proposes structured fields rather than directly rewriting a file. Suggestions appear in a live sidebar beside the current metadata, making differences reviewable. Validation catches empty or malformed responses before they reach the batch queue.
+
+## Designing safe batch operations
+
+Batch processing is where convenience can become destructive. MetaGoogler separates analysis from application: tracks are inspected first, proposed changes can be reviewed, and file renaming follows the explicit `Artist - Title` convention only when the required fields are present.
+
+Cover art follows the same pattern. The tool retrieves candidate artwork, shows what will be embedded, and keeps the metadata operation visible instead of silently replacing files.
+
+## Desktop interaction
+
+The CustomTkinter interface keeps the file list, active track, suggestion state, and metadata preview in one window. The layout is designed for repeated decisions: move through a batch, inspect the evidence, accept or adjust, and continue without opening separate utilities.
+
+## Outcome and next pressure
+
+The current application turns fingerprinting, AI assistance, artwork search, validation, and renaming into one coherent workflow. The next challenge is provenance—recording which source supplied each field so users can understand not only what changed, but why the tool trusted that value.
+
+MetaGoogler remains an active Python project.
+
+[View MetaGoogler on GitHub](https://github.com/amir-seraj/MetaGoogler)

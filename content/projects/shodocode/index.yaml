@@ -1,0 +1,15 @@
+title: "Shodocode"
+shortTitle: "Shodocode"
+kind: "Learning product"
+description: "書道 shodō, the way of writing: learn algorithm patterns by copying the master until the hand remembers. Live at shodocode.com."
+tags:
+  - "Next.js"
+  - "React"
+  - "TypeScript"
+  - "EdTech"
+  - "Spaced Repetition"
+featured: false
+featuredOrder: 0
+publishedAt: "2026-07-03"
+readTime: 3
+coverImage: "/images/projects/shodocode/coverImage.jpg"

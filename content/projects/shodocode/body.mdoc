@@ -1,0 +1,45 @@
+Recognising an algorithm after seeing the solution is not the same as being able to produce it under pressure. Shodocode is a learning product built around that gap. It borrows its metaphor from Japanese calligraphy: study the form, copy the master, and repeat the strokes until the pattern becomes available to the hand.
+
+## The learning problem
+
+Most algorithm platforms begin with a blank editor and end with pass or fail. That is useful for assessment, but harsh as a first encounter with a pattern. A learner can understand the explanation, freeze when implementation begins, and receive little guidance about which part of the reasoning disappeared.
+
+Shodocode separates understanding from recall through a three-part loop.
+
+## Think, watch, drill
+
+### Think
+
+Guided questions ask the learner to identify constraints, invariants, and likely data structures before code appears. The aim is to make the shape of the solution explicit rather than reward a memorized snippet.
+
+### Watch
+
+The implementation unfolds beside a synchronized visualization. Code and state changes remain connected, so a pointer movement or queue operation is seen as part of the algorithm rather than an isolated line.
+
+### Drill
+
+The learner then types the solution with progressively less support. Repetition is deliberate, but not endless: the product records where recall breaks and schedules the pattern for later review.
+
+## Designing the surrounding system
+
+The core loop sits inside a broader learning model:
+
+-   spaced-repetition reviews bring patterns back before they disappear;
+-   algorithm variants reveal which parts of a solution are essential and which are implementation choices;
+-   daily challenges create a small return habit;
+-   achievements make progress visible without replacing the learning goal;
+-   administrative tools keep explanations, drills, and visualizations aligned as content changes.
+
+## Product architecture
+
+Shodocode uses Next.js 16, React 19, and TypeScript. Drizzle provides a shared data layer over SQLite locally and Postgres in production. NextAuth handles identity, Zustand manages interactive client state, and Sentry provides production instrumentation.
+
+Vitest and Playwright cover the learning interactions where a content or timing regression would be difficult to spot through static rendering alone. The content tooling is treated as part of the product: a polished learner experience depends on authors being able to verify every step of an exercise.
+
+## Current status
+
+The product is in active development. The source remains private while the curriculum and interaction model evolve, but the live application demonstrates the full think–watch–drill loop.
+
+The key design question now is transfer: how much scaffolding can be removed before a learner can solve a variation rather than repeat the exact sequence they practiced?
+
+[Visit Shodocode](https://shodocode.com)

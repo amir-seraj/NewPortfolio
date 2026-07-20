@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Amir Seraj — HCI researcher and creative technologist</title>
+  <desc id="desc">Machines can learn to notice people. I teach them.</desc>
+  <rect width="1200" height="630" fill="#1d1d1d"/>
+  <path d="M0 104h1200M0 526h1200M870 0v630" stroke="#fff" stroke-opacity=".08"/>
+  <circle cx="1038" cy="154" r="92" fill="none" stroke="#f9b571" stroke-opacity=".55" stroke-width="2"/>
+  <circle cx="1038" cy="154" r="48" fill="#f9b571"/>
+  <text x="80" y="88" fill="#f9b571" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="4">AFFECTIVE COMPUTING · HCI · INTERACTIVE ART</text>
+  <text x="76" y="234" fill="#f4f1eb" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="-3">Machines can learn</text>
+  <text x="76" y="316" fill="#f4f1eb" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="-3">to notice people.</text>
+  <text x="76" y="398" fill="#f9b571" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="-3">I teach them.</text>
+  <text x="80" y="562" fill="#f4f1eb" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Amir Seraj</text>
+  <text x="1032" y="562" text-anchor="end" fill="#94a3b8" font-family="Arial, Helvetica, sans-serif" font-size="20">amirseraj.ir</text>
+</svg>

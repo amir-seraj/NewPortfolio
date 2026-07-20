@@ -1,8 +1,6 @@
-export { SideBar } from './SideBar/SideBar';
 export { Footer } from './Footer/Footer';
 export { Nav } from './Nav/Nav';
 export { Copyright } from './Copyright/Copyright';
-export { MailMe } from './MailMe/MailMe';
 export { Menu } from './Menu/Menu';
 export { MenuButton } from './Menu/Button';
 export { Layout } from './Layout/Layout';

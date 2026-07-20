@@ -5,19 +5,19 @@
 @font-face {
   font-family: "Mont";
   font-weight: 400;
-  src: url("/fonts/Poppins/Montserrat-Regular.ttf");
+  src: url("/fonts/Poppins/Poppins-Regular.ttf");
   font-display: swap;
 }
 @font-face {
   font-family: "Mont";
   font-weight: 500;
-  src: url("/fonts/Poppins/Montserrat-Medium.ttf");
+  src: url("/fonts/Poppins/Poppins-Medium.ttf");
   font-display: swap;
 }
 @font-face {
   font-family: "Mont";
   font-weight: 600;
-  src: url("/fonts/Poppins/Montserrat-SemiBold.ttf");
+  src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
   font-display: swap;
 }
 
@@ -76,7 +76,7 @@ code {
   height: 0;
 }
 .prose iframe {
-  @apply w-full aspect-video;
+  @apply aspect-video w-full;
 }
 
 /* Bold redesign: entrance utility. CSS animation (not class-gated
@@ -99,4 +99,55 @@ code {
   .anim-rise {
     animation: none;
   }
+}
+
+/* Blog identity: a restrained editorial grid and a generated cover keep
+   posts without uploaded artwork looking deliberate instead of unfinished. */
+.blog-hero-grid {
+  background-image: linear-gradient(
+      rgba(249, 181, 113, 0.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(249, 181, 113, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: linear-gradient(to left, black, transparent);
+  mask-image: linear-gradient(to left, black, transparent);
+}
+
+.blog-card-pattern {
+  background-color: #532b03;
+  background-image: radial-gradient(
+      circle at 18% 22%,
+      rgba(249, 181, 113, 0.32),
+      transparent 29%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 48%,
+      rgba(249, 181, 113, 0.12) 49%,
+      rgba(249, 181, 113, 0.12) 51%,
+      transparent 52%
+    );
+  background-size: auto, 34px 34px;
+}
+
+.blog-article > :first-child {
+  margin-top: 0;
+}
+
+.blog-article p,
+.blog-article li {
+  line-height: 1.85;
+}
+
+.blog-article h2,
+.blog-article h3 {
+  font-family: "Pop", sans-serif;
+  scroll-margin-top: 7rem;
+}
+
+.blog-article blockquote {
+  border-left-color: #f9b571;
+  background: rgba(249, 181, 113, 0.12);
+  padding: 1rem 1.25rem;
 }

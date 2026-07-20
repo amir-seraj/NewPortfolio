@@ -1,0 +1,57 @@
+Jobify is a full-stack application for managing job applications as an ongoing process rather than a folder of bookmarks and disconnected notes. It brings application status, search, and monthly activity into one authenticated workspace.
+
+## The product problem
+
+Applying to several roles creates a small information system: company, position, location, work type, status, and the history of when something changed. A spreadsheet can hold those fields, but it becomes harder to answer practical questions such as “How many interviews did I reach this month?” or “Which applications are still waiting?”
+
+The goal was to make capture fast while preserving enough structure for useful analysis later.
+
+## The core workflow
+
+After registering or signing in, a user can add an application, edit its details, change its status, or remove it. Each record stores company, position, job type, location, status, and timestamps. Search, filtering, sorting, and pagination keep the list usable as it grows.
+
+Three status categories—pending, interview, and declined—provide a deliberately small shared vocabulary. The dashboard then turns those records into totals and monthly charts so progress can be read without manually recounting the list.
+
+## Architecture
+
+The MERN stack separates the React client from an Express API backed by MongoDB and Mongoose.
+
+```
+jobify/
+├── client/src/
+│   ├── components/
+│   ├── pages/
+│   └── context/
+├── controllers/
+├── models/
+├── routes/
+├── middleware/
+└── server.js
+```
+
+The API follows resource-oriented routes for authentication, application management, and statistics. Controllers contain request logic, models define validation, middleware handles authentication and errors, and the client consumes the same interface for list and dashboard views.
+
+## Authentication and data isolation
+
+Registration and login issue JSON Web Tokens. Passwords are hashed with bcrypt, and protected middleware resolves the current user before application routes execute. Every job query is scoped to that user; authentication without data isolation would still expose the central privacy failure the application is meant to avoid.
+
+Rate limiting and centralized error responses protect the API from common abuse and keep failure states consistent for the client.
+
+## State and interface decisions
+
+React Context and a reducer organize authentication, list queries, filters, modal state, and mutations. That central state made cross-page behavior predictable, but it also exposed the point where a larger application might benefit from separating server cache from local interface state.
+
+Recharts renders area and bar views from the statistics endpoint. The charts are a consequence of structured records, not a parallel analytics system: the same applications visible in the list drive the summaries.
+
+## What I learned
+
+Jobify was an end-to-end exercise in making boundaries explicit:
+
+-   client validation improves feedback, while server validation protects data;
+-   authentication identifies the user, while query scoping protects ownership;
+-   database structure enables analytics only when statuses and timestamps are consistent;
+-   responsive design matters most in the quick actions people repeat.
+
+The next useful additions would be reminders, document attachments, and export. Each introduces a new responsibility—scheduled work, file privacy, or data portability—so they belong after the core application lifecycle is reliable.
+
+[View Jobify on GitHub](https://github.com/amir-seraj/jobify)

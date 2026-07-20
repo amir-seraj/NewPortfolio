@@ -1,0 +1,14 @@
+title: "AI Image & Video Pipeline Framework"
+shortTitle: "AI Media Pipeline"
+kind: "AI framework"
+description: "A Python framework for orchestrating generative image, video and 3D pipelines: VLMs, reconstruction and texturing under one roof."
+tags:
+  - "Generative AI"
+  - "Python"
+  - "VLM"
+  - "3D"
+featured: false
+featuredOrder: 0
+publishedAt: "2026-03-17"
+readTime: 3
+coverImage: "/images/projects/ai-image-video-pipeline-framework/coverImage.png"

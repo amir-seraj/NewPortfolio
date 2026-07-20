@@ -1,0 +1,33 @@
+Facial Verification is a notebook-based computer-vision pipeline for deciding whether two images are likely to show the same person. It became practical groundwork for later affective-computing projects, but its main lesson was broader: a model output only becomes a decision after preprocessing, comparison, and threshold choices are made explicit.
+
+## Verification is not identification
+
+Face identification asks, “Who is this among many known people?” Verification asks a narrower question: “Do these two observations appear to belong to the same person?” That narrower framing changes both the pipeline and the way errors should be interpreted.
+
+The project focuses on producing a comparable representation for each face and measuring the distance between those representations. A threshold then separates likely matches from likely non-matches.
+
+## The pipeline
+
+### Detection and alignment
+
+Before two faces can be compared, each image must provide a reliable crop. Detection locates the face; alignment reduces variation caused by head angle and framing. This stage is easy to overlook, but inconsistent crops can dominate the final distance even when the embedding model is working correctly.
+
+### Embedding and comparison
+
+The aligned face is transformed into a numerical embedding. Pairwise distance provides a continuous similarity signal rather than a yes-or-no answer. Keeping that continuous value visible makes it possible to inspect borderline cases and compare threshold choices.
+
+### Decision threshold
+
+The threshold is a product decision as much as a model setting. A strict threshold rejects more genuine matches; a loose threshold accepts more impostor pairs. The appropriate balance depends on what a false acceptance or false rejection would mean in the surrounding application.
+
+## What I tested
+
+The notebooks make each stage inspectable: original image, detected crop, aligned input, embedding comparison, and final decision. This structure helped separate model failures from preprocessing failures and made experiments repeatable across image pairs.
+
+## Limits and learning
+
+Face verification remains sensitive to lighting, pose, image quality, demographic representation, and the data used to train the embedding model. It should never be presented as an infallible identity check. The project therefore treats confidence and threshold calibration as first-class outputs.
+
+That perspective carried directly into later emotion-recognition work. Whether a system compares identity or expression, the responsible question is not simply “Can the model predict?” It is “What evidence produced the prediction, where can it fail, and what should the application do with uncertainty?”
+
+[View the notebooks on GitHub](https://github.com/amir-seraj/Facial-verification)

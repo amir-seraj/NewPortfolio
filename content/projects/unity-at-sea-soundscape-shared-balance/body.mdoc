@@ -1,0 +1,66 @@
+Unity at Sea is a three-person installation about interdependence. Participants share an imaginary raft marked on the floor; a Kinect observes their collective balance, and a responsive soundscape turns stability and imbalance into calm water, warning waves, or a storm.
+
+## Making collaboration physical
+
+The project began with a question that is usually discussed in abstract terms: what does it feel like when one person's movement changes the conditions for everyone else?
+
+Three participants enter the same constrained area. No individual can “win” alone. Moving toward a comfortable position may pull the group's equilibrium away from the center, while a small adjustment can help somebody else recover. Sound makes those invisible negotiations immediate.
+
+## The interaction loop
+
+The installation uses a closed feedback cycle:
+
+1.  A Kinect tracks the participants' skeletal positions.
+2.  EyesWeb receives the body data and calculates a collective equilibrium point.
+3.  Deviation from the target area becomes a continuous balance signal.
+4.  The audio engine maps that signal to a changing water soundscape.
+5.  Participants hear the consequence and adjust together.
+
+The system never needs to explain the calculation numerically. The sound communicates enough for the group to form a strategy.
+
+## Three sonic conditions
+
+The sound design provides a legible progression rather than an on/off alarm.
+
+### Calm water
+
+When the collective balance remains near the center, gentle water creates room for small movements. This is not silence; the environment still feels alive.
+
+### Choppy water
+
+As the group drifts, denser and more agitated waves act as an early warning. Participants can hear directionless instability before the system reaches its most intense state.
+
+### Storm
+
+Large imbalance produces a chaotic soundscape. The storm is intentionally difficult to ignore, but it also gives the group a clear shared reason to coordinate and recover.
+
+Transitions are continuous enough to preserve cause and effect. Abruptly switching three audio files would communicate categories but lose the feeling that every movement contributes.
+
+## Sensing with Kinect and EyesWeb
+
+The Kinect supplied real-time depth and skeletal data for multiple people. EyesWeb—developed at Casa Paganini–InfoMus at the University of Genoa—provided the environment for processing those positions and deriving group-level movement features.
+
+The central calculation was intentionally interpretable: combine participant positions into a collective center, then measure its deviation from the raft's equilibrium area. That signal was easier to tune and explain than a black-box classification of “cooperation.”
+
+## Designing for immediate feedback
+
+Latency and noise directly affected the social experience. If the sound responded too late, participants blamed one another for feedback produced by an earlier movement. Smoothing reduced skeletal jitter, while restrained audio mapping preserved a sense of continuity without making the installation sluggish.
+
+The floor area, sensing boundary, and sound thresholds were tuned together. Interaction space is part of the algorithm in an embodied system.
+
+## Presentation at Casa Paganini
+
+When presented at Casa Paganini in Genoa, the installation prompted communication almost immediately. Participants watched one another, negotiated space verbally, and developed small strategies for returning the group to calm water.
+
+Several patterns became visible:
+
+-   sound provided a shared reference without appointing a leader;
+-   people became more aware of the space their body occupied;
+-   an individual's adjustment was understood through its collective consequence;
+-   recovery from the storm was often more engaging than maintaining perfect balance.
+
+## What the project changed for me
+
+Unity at Sea demonstrated that a simple sensing model can support a rich social interaction when the feedback is embodied and shared. The technical achievement was not merely tracking three people. It was translating group state into sound clearly enough that participants could discover the rule through their bodies.
+
+That lesson continues through my later work: machine perception becomes meaningful when it creates a relationship people can feel and negotiate, not when it produces the most elaborate hidden analysis.

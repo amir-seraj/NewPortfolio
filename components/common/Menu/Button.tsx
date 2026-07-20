@@ -1,15 +1,21 @@
-import { VscMenu } from 'react-icons/vsc';
+import { forwardRef } from "react";
+import { VscMenu } from "react-icons/vsc";
 
-export const MenuButton = ({ onOpen }: { onOpen: () => void }) => {
-  return (
-    <button
-      aria-label='Open menu'
-      aria-haspopup='dialog'
-      // p-2.5/-m-2.5: 44px hit area around the 24px glyph without moving layout
-      className='-m-2.5 transform p-2.5 hover:scale-90'
-      onClick={onOpen}
-    >
-      <VscMenu className='h-6 w-auto' />
-    </button>
-  );
-};
+export const MenuButton = forwardRef<
+  HTMLButtonElement,
+  { onOpen: () => void; expanded?: boolean }
+>(({ onOpen, expanded = false }, ref) => (
+  <button
+    ref={ref}
+    type="button"
+    aria-label="Open menu"
+    aria-haspopup="dialog"
+    aria-expanded={expanded}
+    className="-mr-2 grid min-h-[44px] min-w-[44px] place-items-center rounded-full transition-colors hover:bg-black/5 md:hidden dark:hover:bg-white/10"
+    onClick={onOpen}
+  >
+    <VscMenu className="h-6 w-6" />
+  </button>
+));
+
+MenuButton.displayName = "MenuButton";

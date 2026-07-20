@@ -1,0 +1,14 @@
+title: "Emotion Recognition in Games"
+shortTitle: "Emotion Recognition"
+kind: "Research dataset"
+description: "A multimodal dataset and facial-expression pipeline for emotion recognition in a video-game context."
+tags:
+  - "Affective Computing"
+  - "Computer Vision"
+  - "Dataset"
+  - "Python"
+featured: false
+featuredOrder: 0
+publishedAt: "2024-10-29"
+readTime: 3
+coverImage: "/images/projects/emotion-recognition-games-dataset/coverImage.png"

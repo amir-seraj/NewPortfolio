@@ -1,16 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
+import { MdOutlineArrowForward } from "react-icons/md";
 
-import { Box, Container, Link, Text } from "@components/ui";
+import { Container, Link } from "@components/ui";
 
 const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
 interface Project {
   slug: string;
   title: string;
+  shortTitle?: string;
+  kind?: string;
+  description?: string;
+  tags?: string[];
+  year?: number;
+  featured?: boolean;
+  featuredOrder?: number;
   coverImage: string;
 }
 
@@ -18,128 +25,145 @@ interface Props {
   projects: Project[];
 }
 
-const FEATURED: Record<string, { display: string; kind: string; year: string }> =
-  {
-    "resilience-ai-mirror-emotional-wellbeing": {
-      display: "reSilence",
-      kind: "AI mirror",
-      year: "2024",
-    },
-    "unity-at-sea-soundscape-shared-balance": {
-      display: "Unity at Sea",
-      kind: "Installation",
-      year: "2024",
-    },
-    "perfect-posture-case-study": {
-      display: "Perfect Posture",
-      kind: "ML study",
-      year: "2024",
-    },
-  };
-
-const OPEN = "inset(0 0% 0 0)";
-const CLOSED = "inset(0 100% 0 0)";
-
-/**
- * Server markup ships fully visible (no reveal gating), so crawlers and
- * headless renders never see a blank section. On the client, banners still
- * below the fold get clipped and wipe open on first view. The observer
- * watches the un-clipped wrapper: a clip-path'd element reports zero
- * intersection area and would never fire.
- */
-const Banner = ({
-  slug,
-  coverImage,
+function ProjectCard({
+  project,
   index,
+  lead = false,
 }: {
-  slug: string;
-  coverImage: string;
+  project: Project;
   index: number;
-}) => {
-  const meta = FEATURED[slug];
-  const wrapRef = useRef<HTMLDivElement>(null);
+  lead?: boolean;
+}) {
   const reduceMotion = useReducedMotion();
-  const [phase, setPhase] = useState<"visible" | "hidden" | "revealed">(
-    "visible"
-  );
-
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el || reduceMotion) return;
-    if (el.getBoundingClientRect().top <= window.innerHeight * 0.9) return;
-    setPhase("hidden");
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0].isIntersecting) return;
-        io.disconnect();
-        setPhase("revealed");
-      },
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [reduceMotion]);
+  const displayTitle = project.shortTitle || project.title;
 
   return (
-    <div ref={wrapRef}>
-      <motion.div
-        initial={false}
-        animate={{ clipPath: phase === "hidden" ? CLOSED : OPEN }}
-        transition={
-          phase === "revealed"
-            ? { duration: 0.7, ease: EASE_EXPO, delay: (index % 3) * 0.13 }
-            : { duration: 0 }
-        }
+    <motion.article
+      initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.68, ease: EASE_EXPO, delay: index * 0.08 }}
+      className={lead ? "lg:col-span-2" : ""}
+    >
+      <Link
+        href={`/projects/${project.slug}`}
+        className={`group grid h-full overflow-hidden border border-slate-300 bg-white transition-colors hover:border-mango-600 dark:border-white/15 dark:bg-[#292929] dark:hover:border-mango-300 ${
+          lead ? "lg:grid-cols-[1.3fr_0.7fr]" : "grid-rows-[auto_1fr]"
+        }`}
       >
-        <Link
-          href={`/projects/${slug}`}
-          className="group relative block h-[220px] overflow-hidden md:h-[280px]"
+        <div
+          className={`relative overflow-hidden border-b border-slate-300 bg-[#e9e5dd] dark:border-white/15 dark:bg-[#242424] ${
+            lead
+              ? "aspect-[16/11] lg:aspect-auto lg:min-h-[540px] lg:border-b-0 lg:border-r"
+              : "aspect-[16/10]"
+          }`}
         >
           <Image
-            src={coverImage}
-            layout="fill"
-            objectFit="cover"
-            alt={`${meta.display} — ${meta.kind}`}
-            className="transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            src={project.coverImage}
+            alt={`${displayTitle} — ${project.kind || "project"}`}
+            fill
+            sizes={
+              lead
+                ? "(min-width: 1024px) 58vw, 100vw"
+                : "(min-width: 1024px) 36vw, 100vw"
+            }
+            className="object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.025] md:p-8"
           />
-          <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
-          <span className="absolute inset-x-6 bottom-5 z-10 flex items-baseline justify-between gap-4 md:inset-x-8">
-            <span className="font-heading text-xl font-bold uppercase tracking-wide text-white md:text-3xl">
-              {meta.display} · {meta.kind}
-            </span>
-            <span className="whitespace-nowrap font-heading text-sm text-mango-300 transition-transform duration-200 group-hover:translate-x-1.5">
-              {meta.year} →
-            </span>
+          <span className="absolute left-4 top-4 bg-slate-950 px-3 py-2 font-heading text-[9px] font-bold uppercase tracking-[0.16em] text-white dark:bg-mango-300 dark:text-mango-950">
+            Project {String(index + 1).padStart(2, "0")}
           </span>
-        </Link>
-      </motion.div>
-    </div>
-  );
-};
+        </div>
 
-export const Evidence = ({ projects }: Props) => {
-  const featured = Object.keys(FEATURED)
-    .map((slug) => projects.find((p) => p.slug === slug))
-    .filter(Boolean) as Project[];
+        <div className={`flex flex-col justify-between ${lead ? "p-6 md:p-9" : "p-6"}`}>
+          <div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-heading text-[9px] font-bold uppercase tracking-[0.16em] text-mango-700 dark:text-mango-300">
+              <span>{project.kind || "Project"}</span>
+              {project.year && (
+                <>
+                  <span className="h-1 w-1 rounded-full bg-current opacity-50" />
+                  <span>{project.year}</span>
+                </>
+              )}
+            </div>
+            <h3
+              className={`mt-5 text-balance font-heading font-bold leading-[1.05] tracking-tight text-slate-950 transition-colors group-hover:text-mango-700 dark:text-white dark:group-hover:text-mango-300 ${
+                lead ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"
+              }`}
+            >
+              {project.title}
+            </h3>
+            {project.description && (
+              <p className="mt-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {project.description}
+              </p>
+            )}
+          </div>
+
+          <div className="mt-10 flex items-end justify-between gap-5 border-t border-slate-200 pt-5 dark:border-white/10">
+            <div className="flex max-w-[75%] flex-wrap gap-x-3 gap-y-1 text-[10px] text-slate-500 dark:text-slate-400">
+              {project.tags?.slice(0, 3).map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+            <MdOutlineArrowForward className="h-5 w-5 shrink-0 text-mango-700 transition-transform group-hover:translate-x-1 dark:text-mango-300" />
+          </div>
+        </div>
+      </Link>
+    </motion.article>
+  );
+}
+
+export function Evidence({ projects }: Props) {
+  const explicitlyFeatured = projects
+    .filter((project) => project.featured)
+    .sort((a, b) => (a.featuredOrder ?? 0) - (b.featuredOrder ?? 0));
+  const featured = (
+    explicitlyFeatured.length > 0
+      ? explicitlyFeatured
+      : projects.slice(-3).reverse()
+  ).slice(0, 3);
 
   return (
-    <Container full id="work" className="mb-28">
-      <Container className="mb-8 flex items-baseline justify-between">
-        <Text as="h2" className="font-heading text-3xl font-bold md:text-4xl">
-          The evidence
-        </Text>
-        <Link
-          href="/projects"
-          className="font-heading text-sm font-medium uppercase tracking-wide text-mango-700 hover:underline dark:text-mango-300"
-        >
-          All projects →
-        </Link>
+    <section
+      id="work"
+      className="bg-[#f4f1eb] py-24 text-slate-950 md:py-32 lg:py-40 dark:bg-[#202020] dark:text-white"
+    >
+      <Container className="max-w-[1500px]">
+        <div className="mb-12 flex flex-col gap-7 border-b border-slate-300 pb-8 md:flex-row md:items-end md:justify-between dark:border-white/15">
+          <div>
+            <p className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-mango-700 dark:text-mango-300">
+              02 / Selected work
+            </p>
+            <h2 className="mt-5 max-w-[13ch] font-heading text-4xl font-bold leading-[1.02] tracking-tight md:text-6xl">
+              Systems with something to prove.
+            </h2>
+          </div>
+          <div className="md:text-right">
+            <p className="max-w-[42ch] text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              Three projects where sensing, interpretation, and interaction
+              meet in public—not just in a notebook.
+            </p>
+            <Link
+              href="/projects"
+              className="group mt-5 inline-flex min-h-[44px] items-center font-heading text-xs font-bold uppercase tracking-[0.14em] text-mango-700 dark:text-mango-300"
+            >
+              Explore all {projects.length} projects
+              <MdOutlineArrowForward className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          {featured.map((project, index) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              index={index}
+              lead={index === 0}
+            />
+          ))}
+        </div>
       </Container>
-      <Box className="flex flex-col gap-5 px-5 md:px-10">
-        {featured.map(({ slug, coverImage }, i) => (
-          <Banner key={slug} slug={slug} coverImage={coverImage} index={i} />
-        ))}
-      </Box>
-    </Container>
+    </section>
   );
-};
+}

@@ -1,13 +1,7 @@
 import { defineConfig } from "@playwright/test";
 
-// Port 3100, not Next's default 3000: a dev server was already running on
-// 3000 from another session and, mid-implementation, started returning 500
-// on every route (verified via curl) despite serving this repo's current
-// code. Rather than depend on — or disrupt — whatever owns port 3000, this
-// config starts its own `next dev` on 3100. Guarantee: a fresh server unless
-// something already holds 3100 locally (reuseExistingServer attaches to an
-// existing listener without verifying what it serves); in CI it always
-// starts fresh and fails loudly if the port is taken.
+// Tests use an isolated port so they never attach to the local preview server
+// on 3000. CI always starts a fresh instance.
 export default defineConfig({
   testDir: "tests/e2e",
   timeout: 30_000,

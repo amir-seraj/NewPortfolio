@@ -1,8 +1,7 @@
-import { withPayload } from "@payloadcms/next/withPayload";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    qualities: [75, 100],
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "**.public.blob.vercel-storage.com" },
@@ -14,4 +13,4 @@ const nextConfig = {
   },
 };
 
-export default withPayload(nextConfig);
+export default nextConfig;

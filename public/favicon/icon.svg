@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Amir Seraj monogram</title>
+  <rect width="512" height="512" rx="112" fill="#1d1d1d"/>
+  <circle cx="394" cy="118" r="54" fill="#f9b571"/>
+  <path d="M116 365 220 140h44l104 225h-57l-24-56H194l-24 56h-54Zm99-105h51l-26-62-25 62Z" fill="#f4f1eb"/>
+  <path d="m330 150 46 46-46 46" fill="none" stroke="#f9b571" stroke-width="24" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

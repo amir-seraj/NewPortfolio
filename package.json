@@ -1,33 +1,27 @@
 {
   "name": "amirseraj",
   "type": "module",
+  "overrides": {
+    "postcss": "$postcss"
+  },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "payload run scripts/extract-body-classes.ts || true",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test:e2e": "playwright test",
-    "payload": "payload",
-    "generate:types": "payload generate:types",
-    "generate:importmap": "payload generate:importmap",
-    "seed": "payload run scripts/seed.ts",
-    "extract:classes": "payload run scripts/extract-body-classes.ts",
-    "build:prod": "payload migrate --forceAcceptWarning && npm run build"
+    "lint": "eslint app components content keystatic.config.ts",
+    "postinstall": "patch-package",
+    "restore:projects": "node scripts/restore-projects-from-git.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@next/env": "^14.2.7",
+    "@keystatic/core": "^0.5.51",
+    "@keystatic/next": "^5.0.4",
+    "@markdoc/markdoc": "^0.5.8",
     "@next/third-parties": "^15.5.20",
-    "@payloadcms/db-postgres": "^3.85.2",
-    "@payloadcms/next": "^3.85.2",
-    "@payloadcms/richtext-lexical": "^3.85.2",
-    "@payloadcms/storage-vercel-blob": "^3.85.2",
     "@tailwindcss/typography": "^0.5.0",
     "classnames": "^2.3.1",
-    "graphql": "^17.0.2",
     "motion": "^12.42.2",
     "next": "^15.5.20",
-    "payload": "^3.85.2",
     "prismjs": "^1.27.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -41,13 +35,17 @@
     "@types/node": "^17.0.5",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@types/turndown": "^5.0.6",
     "autoprefixer": "^10.4.1",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.5.20",
-    "postcss": "^8.4.5",
+    "patch-package": "^8.0.1",
+    "postcss": "^8.5.16",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.7",
     "tailwindcss": "^3.0.23",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
     "typescript": "^5.9.3"
   }
 }

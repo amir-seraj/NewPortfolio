@@ -1,0 +1,14 @@
+title: "MetaGoogler"
+shortTitle: "MetaGoogler"
+kind: "Desktop application"
+description: "A desktop app for audiophiles: audio fingerprinting, AI-suggested metadata and intelligent cover-art fetching."
+tags:
+  - "Python"
+  - "LLM"
+  - "Desktop App"
+  - "Audio"
+featured: false
+featuredOrder: 0
+publishedAt: "2026-04-27"
+readTime: 3
+coverImage: "/images/projects/metagoogler/coverImage.png"

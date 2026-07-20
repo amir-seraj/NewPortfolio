@@ -1,23 +1,10 @@
-import { Container, Text, Link } from "@components/ui";
+import { Container } from "@components/ui";
 
-export const Copyright = () => (
-  <Container className="flex flex-col justify-center py-5 border-t border-slate-300 dark:border-slate-700 md:flex-row">
-    <Text fontSize="sm">
-      {" "}
-      Copyright © {new Date().getFullYear()} | All rights reserved {"/"}{" "}
-    </Text>
-    <Text fontSize="sm" className="mx-1">
-      {" "}
-      Made with ❤️ in Italy by{" "}
-      {/* mango, not yellow: yellow-600 on white was 3.2:1 (AA fail) and
-          off the brand accent scale. */}
-      <Link
-        href="https://amirseraj.ir"
-        className="font-medium text-mango-700 hover:text-mango-600 dark:text-mango-300 dark:hover:text-mango-200"
-      >
-        Amir Seraj
-      </Link>
-      .
-    </Text>
-  </Container>
-);
+export function Copyright() {
+  return (
+    <Container className="flex max-w-[1500px] flex-col gap-1 py-5 font-heading text-[9px] font-bold uppercase tracking-[0.14em] sm:flex-row sm:items-center sm:justify-between">
+      <span>© {new Date().getFullYear()} Amir Seraj</span>
+      <span>Designed and built in Genova, Italy</span>
+    </Container>
+  );
+}

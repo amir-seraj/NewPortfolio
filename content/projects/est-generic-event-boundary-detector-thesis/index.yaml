@@ -1,0 +1,15 @@
+title: "An EST-Based Generic Event Boundary Detector"
+shortTitle: "EST Thesis"
+kind: "MSc thesis"
+description: "MSc thesis, Università di Genova & Trento: teaching machines to notice event boundaries the way humans do, then honestly diagnosing why the approach hits a ceiling."
+tags:
+  - "Computer Vision"
+  - "Cognitive Science"
+  - "Vision Transformers"
+  - "Self-Supervised Learning"
+  - "MSc Thesis"
+featured: false
+featuredOrder: 0
+publishedAt: "2025-02-15"
+readTime: 3
+coverImage: "/images/projects/est-generic-event-boundary-detector-thesis/coverImage.jpg"

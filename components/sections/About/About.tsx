@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
-import { Box, Container, Text } from "@components/ui";
+import { Container } from "@components/ui";
 
 const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 
@@ -27,32 +27,36 @@ type AboutProps = {
     paragraphs?: { text: string }[] | null;
     stats?: { value: number; label: string }[] | null;
   } | null;
+  projectCount?: number;
+  projectYearRange?: string;
 };
 
-const CountUp = ({ value }: { value: number }) => {
+function CountUp({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el || reduceMotion) return;
-    const io = new IntersectionObserver(
+    const element = ref.current;
+    if (!element || reduceMotion) return;
+    const observer = new IntersectionObserver(
       (entries) => {
         if (!entries[0].isIntersecting) return;
-        io.disconnect();
-        const t0 = performance.now();
-        const dur = 700;
+        observer.disconnect();
+        const startedAt = performance.now();
+        const duration = 700;
         const tick = (now: number) => {
-          const p = Math.min(1, (now - t0) / dur);
-          el.textContent = String(Math.round(value * (1 - Math.pow(1 - p, 3))));
-          if (p < 1) requestAnimationFrame(tick);
+          const progress = Math.min(1, (now - startedAt) / duration);
+          element.textContent = String(
+            Math.round(value * (1 - Math.pow(1 - progress, 3)))
+          );
+          if (progress < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
       },
       { threshold: 0.5 }
     );
-    io.observe(el);
-    return () => io.disconnect();
+    observer.observe(element);
+    return () => observer.disconnect();
   }, [value, reduceMotion]);
 
   return (
@@ -60,54 +64,88 @@ const CountUp = ({ value }: { value: number }) => {
       {value}
     </span>
   );
-};
+}
 
-export const About = ({ about }: AboutProps) => {
+export function About({ about, projectCount, projectYearRange }: AboutProps) {
   const reduceMotion = useReducedMotion();
   const heading = about?.heading ?? HEADING;
   const paragraphs = about?.paragraphs?.length ? about.paragraphs : PARAGRAPHS;
-  const stats = about?.stats?.length ? about.stats : COUNTS;
+  const configuredStats = about?.stats?.length ? about.stats : COUNTS;
+  const stats = configuredStats.map((stat, index) =>
+    index === 0 && projectCount !== undefined
+      ? {
+          value: projectCount,
+          label: `projects shipped${projectYearRange ? `, ${projectYearRange}` : ""}`,
+        }
+      : stat
+  );
 
   return (
-    <Container
-      id="about"
-      className="mb-28 grid w-full gap-12 pt-24 md:grid-cols-2 md:gap-16 2xl:max-w-7xl"
-    >
-      <motion.div
-        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: EASE_EXPO }}
-      >
-        <Text
-          as="h2"
-          className="mb-5 font-heading text-3xl font-bold md:text-4xl"
-        >
-          {heading}
-        </Text>
-        {paragraphs.map((p, i) => (
-          <Text key={i} as="p" className="max-w-[58ch] leading-relaxed">
-            {p.text}
-          </Text>
-        ))}
-      </motion.div>
-      <Box className="flex flex-col gap-6 md:pt-2">
-        {stats.map(({ value, label }, i) => (
+    <section id="about" className="bg-[#1d1d1d] text-white">
+      <Container className="max-w-[1320px] py-24 md:py-32 lg:py-40">
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
           <motion.div
-            key={label}
-            className="border-t border-slate-300 pt-4 dark:border-slate-600"
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, ease: EASE_EXPO, delay: i * 0.12 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.6, ease: EASE_EXPO }}
+            className="md:col-span-4"
           >
-            <span className="block font-heading text-4xl font-bold leading-tight text-mango-700 dark:text-mango-300">
-              <CountUp value={value} />
-            </span>
-            {label}
+            <p className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-mango-300">
+              01 / Point of view
+            </p>
+            <h2 className="mt-5 max-w-[11ch] font-heading text-4xl font-bold leading-[1.02] tracking-tight md:text-5xl">
+              {heading}
+            </h2>
           </motion.div>
-        ))}
-      </Box>
-    </Container>
+
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.68, ease: EASE_EXPO, delay: 0.1 }}
+            className="md:col-span-8 lg:col-span-7 lg:col-start-6"
+          >
+            {paragraphs.map((paragraph, index) => (
+              <p
+                key={`${paragraph.text}-${index}`}
+                className="mb-6 text-balance text-xl leading-relaxed text-slate-200 last:mb-0 md:text-2xl md:leading-relaxed lg:text-3xl"
+              >
+                {paragraph.text}
+              </p>
+            ))}
+            <p className="mt-8 max-w-[58ch] text-sm leading-relaxed text-slate-400 md:text-base">
+              My work sits where machine perception meets interaction design:
+              rigorous enough to measure, thoughtful enough to question what
+              should be measured in the first place.
+            </p>
+          </motion.div>
+        </div>
+
+        <div className="mt-20 grid border-y border-white/15 md:mt-28 md:grid-cols-3 md:divide-x md:divide-white/15">
+          {stats.map(({ value, label }, index) => (
+            <motion.div
+              key={label}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{
+                duration: 0.6,
+                ease: EASE_EXPO,
+                delay: index * 0.1,
+              }}
+              className="grid grid-cols-[76px_1fr] items-center gap-5 border-b border-white/15 py-7 last:border-b-0 md:block md:border-b-0 md:px-8 md:py-9 md:first:pl-0 md:last:pr-0"
+            >
+              <span className="font-heading text-5xl font-bold leading-none text-mango-300 md:text-6xl">
+                <CountUp value={value} />
+              </span>
+              <p className="mt-0 max-w-[22ch] text-sm leading-relaxed text-slate-300 md:mt-4">
+                {label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
-};
+}

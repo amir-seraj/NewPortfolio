@@ -1,0 +1,45 @@
+Hip-hop carries relationships that ordinary track metadata rarely expresses: scenes influence artists, groups overlap, performances become recordings, and genres emerge from place and time. This team project translated part of that cultural structure into an ontology and a small application for querying it.
+
+**Team:** AmirArsalan Serajoddin, MohammadReza Mahmoudi, and Ali Rahneshin.
+
+![Hip-hop ontology diagram](/images/project-content/ontology-for-hiphop/2.png)
+
+## Why model hip-hop?
+
+Music knowledge systems often begin with catalog information—artist, album, track, duration. Hip-hop also depends on lineage, collaboration, regional context, and the movement of ideas between people. We chose the domain because it is culturally significant, personally meaningful to the team, and less represented in existing music ontologies than classical, jazz, or rock traditions.
+
+The goal was not to encode the whole culture. It was to define a useful, defensible slice and make the assumptions of that model visible.
+
+## Learning from existing vocabularies
+
+We reviewed the Music Ontology, Schema.org, DBTune, and the Polifonia Ontology Network. Reusing established concepts where possible made the model easier to connect with other music data. The review also showed where a general-purpose vocabulary becomes too shallow for hip-hop-specific questions.
+
+Paper sketches came first. They let the group debate relationships before class names made them feel permanent. Draw.io diagrams then turned those sketches into a cleaner graph for review.
+
+## Building the knowledge model
+
+The ontology was implemented in Protégé. Core classes included artists, groups, albums, tracks, performances, recordings, genres, and related entities. Data properties describe literal values such as names and dates; object properties express relationships between entities.
+
+For example, a `has_recording` relationship can connect a performance, artist, or group to a recording without copying the recording's metadata into every entity. That distinction is the practical value of the ontology: queries can follow relationships instead of depending on duplicated table fields.
+
+## From ontology to application
+
+A Jena Fuseki server provided SPARQL update and query endpoints. The React application could insert track data, fetch results, and present different views over the same graph.
+
+![React application interface](/images/project-content/ontology-for-hiphop/3.png)
+
+![Query results interface](/images/project-content/ontology-for-hiphop/4.png)
+
+The application supported views by genre, recent date, and duration, with basic pagination for larger result sets. React hooks managed endpoint state and side effects, while the query layer kept knowledge-graph syntax outside the presentation components.
+
+## The difficult part: deciding what a relationship means
+
+The technical tools were not the hardest constraint. Terms that sound obvious in conversation can become ambiguous in a formal model. Is a collective always a group? Does influence belong between artists, recordings, genres, or all three? How should a name change over time be represented?
+
+Those questions required scope decisions rather than more code. We documented the model as one interpretation and favored relationships that supported concrete queries.
+
+## Outcome
+
+The project produced an ontology, a Fuseki-backed query service, and a React interface that demonstrated insertion and retrieval. It also changed how I think about application schemas. Every data model encodes a point of view; ontologies simply make that fact harder to ignore.
+
+The next step would be validation with domain experts and alignment with more existing vocabularies. Cultural knowledge deserves a model that can be questioned and revised, not one that mistakes structure for authority.

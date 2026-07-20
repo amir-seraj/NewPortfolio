@@ -1,0 +1,33 @@
+Emotion Recognition in Games is a dataset and analysis pipeline for connecting visible player affect to events inside a game session. The work covers the full path from recorded footage to aligned observations: extracting faces, estimating expressions, and matching those estimates back to the gameplay timeline.
+
+## Why alignment matters
+
+A list of facial-expression predictions says little on its own. The research value appears when a change can be placed beside what the player was doing: encountering difficulty, recovering from failure, waiting, or adapting to a new situation.
+
+That introduced two linked problems. The computer-vision pipeline needed usable face crops under natural gameplay conditions, and the resulting detections needed timestamps precise enough to compare with game events.
+
+## From session video to research data
+
+### Face extraction
+
+The first notebooks process recorded sessions and isolate frames where a face can be detected reliably. Gameplay footage is not a portrait dataset: people lean away, turn toward another screen, change expression quickly, and sit under inconsistent light. Failed or low-quality detections are therefore part of the dataset rather than something to hide.
+
+### Expression estimation
+
+Facial-expression recognition runs on the extracted face sequence. Predictions are retained over time so isolated spikes can be distinguished from a sustained change. This makes the output more useful for later review and reduces the temptation to treat one frame as a complete emotional event.
+
+### Event matching
+
+The final stage aligns affect observations with the game timeline. This turns two separate logs into a multimodal research record: what occurred in the game and what was visually observable from the player at approximately the same moment.
+
+## Decisions and limitations
+
+The pipeline favors traceability over a polished headline score. Intermediate face crops can be inspected, timestamps remain visible, and uncertain predictions can be revisited. That matters because expression models are sensitive to identity, pose, lighting, and the assumptions built into their labels.
+
+The dataset does not claim to reveal how a player truly felt. It captures visible signals that may support a broader interpretation when combined with gameplay, observation, and self-report. Keeping that distinction explicit is part of the technical design.
+
+## What this enabled
+
+The result is a reusable workflow for studying player experience at event level rather than only through end-of-session summaries. It also became groundwork for later projects such as Perfect Posture and reSilence, where the same core question returns in different forms: what can a system responsibly notice about the person using it?
+
+[View the project on GitHub](https://github.com/amir-seraj/Emotion-recognition)

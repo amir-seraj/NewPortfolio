@@ -1,0 +1,40 @@
+Generative-media experiments rarely stay inside one model. A useful workflow may begin with a vision-language model, move through image generation, reconstruct a mesh, and finish with a separate texturing stage. This framework turns that collection of model-specific scripts into one repeatable pipeline.
+
+## The problem
+
+Each model arrived with its own environment assumptions, input formats, checkpoints, and launch commands. That made individual demos easy to run once but difficult to compare, reproduce, or compose. A change near the beginning of the workflow could mean manually rebuilding every stage that followed.
+
+The goal was not to hide the models behind a universal abstraction. Their differences matter. The goal was to create enough shared structure that an experiment could be described, rerun, and inspected without losing the model-specific controls.
+
+## A pipeline instead of a notebook
+
+The framework treats generation as a sequence of explicit stages:
+
+1.  Prepare prompts, references, and model inputs.
+2.  Invoke a vision-language or generation model directly.
+3.  pass the resulting asset into image, video, or 3D processing.
+4.  Save intermediate outputs and the configuration that produced them.
+
+The repository includes direct VLM invocation, scripted pipelines, and experiments with InstantMesh and Hunyuan3D for reconstruction and painting. Keeping intermediate artifacts visible was an intentional decision: when a final render fails, the useful question is which transformation introduced the failure.
+
+## Engineering decisions
+
+### Reproducible environments
+
+Model experimentation is especially sensitive to CUDA, compiler, and dependency versions. Environment setup therefore lives beside the pipeline code rather than in personal shell history. Scripted runs make the path from input to output inspectable by someone other than the original author.
+
+### Performance as an experiment
+
+FP8 compilation tests explore whether lower-precision execution can shorten inference without silently changing the character of the output. Performance work is recorded as part of the experiment rather than treated as an invisible deployment detail.
+
+### Model-specific adapters
+
+Shared orchestration handles inputs, outputs, and stage order. Thin adapters keep model-specific arguments close to the model they affect. This avoids a single configuration object filled with options that only make sense for one backend.
+
+## What the framework changed
+
+The project provides a stable place to compare techniques and assemble longer media workflows. A new model no longer requires inventing a new project structure; it can join the same sequence while retaining its own controls. The most valuable output is not one generated image or mesh, but a clearer record of how it was made.
+
+This remains an active framework. The next design pressure is scheduling: deciding which stages can share resources, which can run concurrently, and how failures should resume without repeating expensive earlier work.
+
+[View the framework on GitHub](https://github.com/amir-seraj/AI-Image-Video-Pipeline-Framework)
