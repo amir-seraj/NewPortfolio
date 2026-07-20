@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Keystatic discovers repository content at runtime. Include those files in
+  // every server route bundle so hosts such as Netlify can read them after the
+  // build workspace has been replaced by isolated functions.
+  outputFileTracingIncludes: {
+    "/**": ["./content/**/*"],
+  },
   images: {
     qualities: [75, 100],
     remotePatterns: [
